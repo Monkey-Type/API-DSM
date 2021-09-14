@@ -50,8 +50,6 @@
     font-family: 'Roboto', sans-serif, bold;
 }
 
-
-
 .icon3{
     top: 40%;
     left: 32%;
@@ -237,7 +235,7 @@
 
 .texto2{
     bottom: 39%;
-    left: 24%;
+    left: 25%;
     width: 92%;
     bottom: 41%;
     position: absolute;
@@ -246,7 +244,7 @@
 
 .texto3{
     bottom: 38.5%;
-    left: 24%;
+    left: 25%;
     width: 92%;
     position: absolute;
     font-family: 'Roboto', sans-serif, bold;
