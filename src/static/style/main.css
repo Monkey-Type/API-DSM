@@ -10,7 +10,35 @@
     height: 100%;
     background-color: White;
     position: fixed;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
 }
+
+.left div{
+    padding: 36px 0px 36px 0px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.left a{
+    color: #4E5056;
+}
+
+.left a:hover{
+    color: #DC6A7B;
+}
+
+.left a:active{
+    color: #C62F45;
+}
+
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+.material-icons.md-64 { font-size: 64px; }
 
 .icon1{
     top: 3%;
@@ -22,19 +50,7 @@
     font-family: 'Roboto', sans-serif, bold;
 }
 
-.icon2{
-    top: 30%;
-    left: 32%;
-    width: 36%;
-    height: 4%;
-    background-image: url("imagens/Alerta.png");
-    background-size: 100% 100%;
-    background-color: White;
-    border-radius: 5px;
-    border: none;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
+
 
 .icon3{
     top: 40%;
@@ -99,7 +115,7 @@
     height: 5%;
     border-radius: 5px;
     position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
+    color:#4E5056;
 }
 
 .center{
