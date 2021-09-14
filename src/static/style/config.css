@@ -1,0 +1,461 @@
+body{
+    position: relative;
+    background-color: #DFDFE2;
+}
+
+.left{
+    top: 0px;
+    left: 0px;
+    width: 5%;
+    height: 100%;
+    background-color: White;
+    position: fixed;
+}
+
+.icon1{
+    top: 3%;
+    left: 32%;
+    width: 36%;
+    height: 4%;
+    border-radius: 5px;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.icon2{
+    top: 30%;
+    left: 32%;
+    width: 36%;
+    height: 4%;
+    background-image: url("imagens/Alerta.png");
+    background-size: 100% 100%;
+    background-color: White;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.icon3{
+    top: 40%;
+    left: 32%;
+    width: 36%;
+    height: 4%;
+    background-image: url("imagens/Download.png");
+    background-size: 100% 100%;
+    background-color: White;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.icon4{
+    top: 50%;
+    left: 32%;
+    width: 36%;
+    height: 4%;
+    background-image: url("imagens/Lapis.png");
+    background-size: 100% 100%;
+    background-color: White;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.icon5{
+    bottom: 10%;
+    left: 32%;
+    width: 36%;
+    height: 4%;
+    background-image: url("imagens/Config.png");
+    background-size: 100% 100%;
+    background-color: White;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.icon6{
+    bottom: 3%;
+    left: 35%;
+    width: 36%;
+    height: 4%;
+    background-image: url("imagens/Sair.png");
+    background-size: 100% 100%;
+    background-color: White;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.icon7{
+    bottom: 39%;
+    left: 10%;
+    width: 10%;
+    height: 5%;
+    border-radius: 5px;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.center{
+    top: 0px;
+    width: 70%;
+    height: 200%;
+    position: absolute;
+}
+
+.feed{
+    top: 0%;
+    left: 15%;
+    right: 15%;
+    width: 70%;
+    bottom: 0%;
+    position: relative;
+}
+
+.topico{
+    top: 25%;
+    left: 0%;
+    right: 0%;
+    color: #4E5056;
+    position: absolute;
+    letter-spacing: 2px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.topico2{
+    top: 105px;
+    left: 0px;
+    right: 2px;
+    color: #4E5056;
+    position: absolute;
+    letter-spacing: 2px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.topico3{
+    bottom: 45%;
+    left: 0px;
+    right: 2px;
+    color: #4E5056;
+    position: absolute;
+    letter-spacing: 2px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.user{
+    top: 6%;
+    left: 3%;
+    width: 35%;
+    height: 87%;
+    position: absolute;
+}
+
+.card1{
+    top: 180px;
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    background-color: White;
+    position: relative;
+}
+
+.card2{
+    top: 180px;
+    width: 100%;
+    height: 270px;
+    border-radius: 10px;
+    background-color: White;
+    position: relative;
+}
+
+.nome{
+    top: 7%;
+    left: 45%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.funcao{
+    top: 18%;
+    left: 45%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.data{
+    top: 26.5%;
+    left: 45%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.barra{
+    top: 25%;
+    left: 3%;
+    bottom: 31%;
+    width: 0.6%;
+    background-color: #DFDFE2;
+    position: absolute;
+}
+
+.texto{
+    top: 40%;
+    left: 45%;
+    width: 50%;
+    bottom: 41%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.texto2{
+    bottom: 39%;
+    left: 24%;
+    width: 92%;
+    bottom: 41%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.texto3{
+    bottom: 38.5%;
+    left: 24%;
+    width: 92%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+
+.botao1{
+    right: 5.1%;
+    bottom: 7%;
+    width: 49.8%;
+    height: 15%;
+    background-color: White;
+    border: 5px #DC6A7B;
+    border-radius: 5px;
+    border-style: solid;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+    }
+
+.botao2{
+    left: 200px;
+    bottom: 20px;
+    width: 9%;
+    height: 15%;
+    background-color: White;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.download{
+    right: 10px;
+    bottom: 20px;
+    width: 80px;
+    height: 40px;
+    background-color: White;
+    border-radius: 5px;
+    border: none;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.right{
+    top: 0px;
+    right: 0px;
+    width: 25%;
+    height: 100%;
+    background-color:White;
+    position: fixed;
+}
+
+.filtro1{
+    top: 160px;
+    left: 8%;
+    width: 84%;
+    height: 5%;
+    border: none;
+    position: absolute;
+}
+
+.filtro2{
+    top: 230px;
+    left: 8%;
+    width: 38%;
+    height: 5%;
+    border: none;
+    position: absolute;
+}
+
+.filtro3{
+    right: 7%;
+    top: 230px;
+    width: 40%;
+    height: 5.63%;
+    border-color: #BFC0C5;
+    background-color: White;
+    border-radius: 10px;
+    font-size: 1.3em;
+    color: #8b8b8b;
+    border-style: solid;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.filtro4{
+    top: 300px;
+    left: 8%;
+    width: 84%;
+    height: 5%;
+    border: none;
+    position: absolute;
+}
+
+.filtro5{
+    top: 370px;
+    left: 8%;
+    width: 40%;
+    height: 5%;
+    border: none;
+    position: absolute;
+}
+
+.filtro6{
+    top: 370px;
+    right: 7%;
+    width: 40%;
+    height: 5%;
+    border: none;
+    position: absolute;
+}
+
+.input1{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-color: #BFC0C5;
+    border-style: solid;
+    text-indent: 10px;
+    font-size: 1.3em;
+    color: #BFC0C5;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input2{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-color: #BFC0C5;
+    border-style: solid;
+    text-indent: 10px;
+    font-size: 1.3em;
+    color: #BFC0C5;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+}
+
+.input3{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-color: #BFC0C5;
+    border-style: solid;
+    text-indent: 10px;
+    font-size: 1.3em;
+    color: #BFC0C5;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+}
+
+.select1{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 2px solid #BFC0C5;
+    text-indent: 10px;
+    font-size: 1.3em;
+    color: #BFC0C5;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+}
+
+.select2{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 2px solid #BFC0C5;
+    text-indent: 10px;
+    font-size: 1.3em;
+    color: #BFC0C5;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Check{
+    bottom: 31.5%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.toggle {
+    margin-bottom: 40px;
+}
+
+.toggle > input {
+    display: none;
+}
+
+.toggle > label {
+    position: relative;
+    display: block;
+    height: 30px;
+    width: 60px;
+    background: #898989;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.toggle > label:after {
+    position: absolute;
+    left: -2px;
+    top: -3px;
+    display: block;
+    width: 34px;
+    height: 34px;
+    border-radius: 100px;
+    background: #fff;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: all 0.3s ease;
+}
+.toggle > label:active:after {
+    transform: scale(1.15, 0.85);
+}
+.toggle > input:checked ~ label {
+    background: #DC6A7B;
+}
+.toggle > input:checked ~ label:after {
+    left: 30px;
+    background: #C62F45;
+}
+.toggle > input:disabled ~ label {
+    background: #d5d5d5;
+    pointer-events: none;
+}
+.toggle > input:disabled ~ label:after {
+    background: #bcbdbc;
+}
