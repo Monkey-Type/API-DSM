@@ -11,6 +11,7 @@
 
 <p align="center" style="">
     <a href="#sobre">Sobre</a> | 
+    <a href="#sprints">Sprints</a> | 
     <a href="#backlogs">Backlogs</a> | 
     <a href="#user-stories">User Stories</a> | 
     <a href="#prototipo">Protótipo Navegável</a> | 
@@ -25,19 +26,45 @@
 
 Tem por objetivo proporcionar um portal de informações para o Corpo Docente e Administrativo da <b>Fatec SJC</b> capaz de exibir e gerar de forma seletiva e controlada os avisos gerais ou específicos de cada usuário, respeitando as respectivas hierarquias dentro da universidade com o intuíto de melhorar a comunicação interna da instituição.
 <br><br>
-> **Status do Projeto: Em Andamento :warning:
+
+>### Status do Projeto: Em Andamento :warning:
 <br><br>
+
+<span id="sprints">
+
+<table>
+    <tr>
+        <td>Sprint</td>
+        <td>Tag</td>
+        <td>Lançamento</td>
+        <td>Status</td>
+        <td>Histórico</td>
+    </tr>
+    <tr>
+        <td>01</td>
+        <td>Sprint#01</td>
+        <td>dd/mm/aaaa</td>
+        <td>Em Aberto</td>
+        <td>inserir relatório</td>
+    </tr>
+</table>
+
+> [Voltar ao Topo](#topo)
+<br>
+
 
 <span id="backlogs">
 
 ## :page_with_curl: Backlogs
 
-> Opção 1:
+> RF - Requisito Funcional
+
+> RNF - Requisito Não Funcional
 <br>
 <table>
     <tr>
         <td>CÓDIGO</td>
-        <td>REQUISITOS</td>
+        <td align="center">REQUISITOS</td>
     </tr>
     <tr>
         <td>RF - 1</td>
@@ -59,20 +86,87 @@ Tem por objetivo proporcionar um portal de informações para o Corpo Docente e 
         <td>RF - 5</td>
         <td> Quem recebe a mensagem não poderá excluí-la, porém poderá arquivá-la</td>
     </tr>
+    <tr>
+        <td>RF - 6</td>
+        <td> Quem criou a mensagem é o único com poder de exclusão da mesma</td>
+    </tr>
+    <tr>
+        <td>RF - 7</td>
+        <td>  O Usuário dever ter a opção de receber ou não notificações por e-mail, cada vez que receber uma mensagem no sistema</td>
+    </tr>
+    <tr>
+        <td>RF - 8</td>
+        <td> Nas categoria de usuário onde há uma hierarquia, por exemplo, chefe da secretaria e assistente da secretaria, deve haver a opção de habilitar que pode mandar mensagem dentro desse grupod e usuário</td>
+    </tr>
+    <tr>
+        <td>RF - 9</td>
+        <td>  Filtro de mensagens: numa ferramenta de busca, por data, por categorias de remetente</td>
+    </tr>
+    <tr>
+        <td>RF - 10</td>
+        <td> Possibilidade de anexar documentos (e.g.: PDFs, Docs, etc)</td>
+    </tr>
+    <tr>
+        <td>RF - 11</td>
+        <td> Visualização de informações de divulgação via sistema de modo seletivo (filtro por data, interessados, curso, etc.)</td>
+    </tr>
+    <tr>
+        <td>RF - 12</td>
+        <td> Acesso às informações do sistema através de perfis de usuário/papeis (adm,usuário comum, coordenador de curso, etc.)</td>
+    </tr>
+    <tr>
+        <td>RF - 13</td>
+        <td> O Sistema deve ser responsivo</td>
+    </tr>
+    <tr>
+        <td>RNF - 1</td>
+        <td> Desenvolver o back end com a linguagem Python 3+ e o 
+microframework Flask</td>
+    </tr>
+    <tr>
+        <td>RNF - 2</td>
+        <td> Utilizar o sistema gerenciador de banco de dados 
+MariaDB/MySQL/PostGresSQL</td>
+    </tr>
+    <tr>
+        <td>RNF - 3</td>
+        <td> Utilizar HTML 5 para arquitetura da informação da aplicação</td>
+    </tr>
+    <tr>
+        <td>RNF - 4</td>
+        <td> Utilizar CSS 3 para especificação do layout e demais características de renderização da interface com o usuário</td>
+    </tr>
+    <tr>
+        <td>RNF - 5</td>
+        <td> Utilizar o GitHub para controle de versão dos artefatos de projeto</td>
+    </tr>
+    <tr>
+        <td>RNF - 6</td>
+        <td> Interface com navegação intuitiva (e.g. acesso à informação com poucos “cliques”)</td>
+    </tr>
+    <tr>
+        <td>RNF - 7</td>
+        <td> Sistema responsivo</td>
+    </tr>
+    <tr>
+        <td>RNF - 8</td>
+        <td> Utilizar JavaScript no front end (obs: pode fazer uso de frameworks)</td>
+    </tr>
+    <tr>
+        <td>RNF - 9</td>
+        <td> Deve  seguir a identidade visual da Fatec-SJC</td>
+    </tr>
 </table>
 
-> ### Opção 2:
+<br>
 
-- imagem teste:
-
-> ![Backlogteste](https://user-images.githubusercontent.com/58151594/132950835-6eeb106b-12b9-4958-afef-065919dba5b7.png)
-
+> [Voltar ao Topo](#topo)
 
 <span id="user-stories">
 <br><br>
 
-## :page_with_curl: Histórias do Usuário
-> Opção 1:
+## :page_with_curl: User Stories
+> TEXTO
 <br>
 <table>
     <tr>
@@ -113,46 +207,45 @@ Tem por objetivo proporcionar um portal de informações para o Corpo Docente e 
     </tr>
 </table>
 
+
 <br>
 
-> Opção 2:
-<br>
-
-![BackLogsTeste](https://user-images.githubusercontent.com/58151594/132950627-754812a6-f08b-48e0-b615-9f59aae1170f.png)
+> [Voltar ao Topo](#topo)
 
 <span id="prototipo">
 
-## :movie_camera: Protótipo
+## :movie_camera: Protótipo Navegável
 <br>
 
 > Preview de Protótipo Navegável - Teste
 <br><br>
 
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/58151594/132951486-b8fd293c-1afe-4b3f-a238-0f674d0a1b9c.gif)
+<br>
 
+> [Voltar ao Topo](#topo)
 
 <span id="tecnologias">
 
-## Tecnologias
+## :computer: Tecnologias
 
-> Adicionar tecnologias
-
-# :computer: Tecnologias Utilizadas
-
-> Opção 1 - Imagem
+> TEXTO
 
 ![TECNOLOGIAS](https://user-images.githubusercontent.com/58151594/132951991-1f14ca07-eb46-4001-848a-8fce66807639.png)
 
-<br><br>
-
-> Opção 2 - Lista (cada item gera um link)
 <br>
+
+> Listando as Tecnologias com links
 
 - HTML 5: 
 - CSS3:
 - Python 3.9*:
 - VSCode: 
 - etc
+<br>
+
+> [Voltar ao Topo](#topo)
+
 <br>
 
 ## :monkey::computer: Equipe Monkey Type:
@@ -190,10 +283,3 @@ Tem por objetivo proporcionar um portal de informações para o Corpo Docente e 
     </tr>
 </table>
 <br><br>
-
-> Opção 2 - Lista:
-<br>
-- Nome Completo (Função): @twitter-contato - exemplo@contato.versão.email.com
-- Nome Completo (Função): @twitter-contato - exemplo@contato.versão.email.com
-- Nome Completo (Função): @twitter-contato - exemplo@contato.versão.email.com
-- Nome Completo (Função): @twitter-contato - exemplo@contato.versão.email.com
