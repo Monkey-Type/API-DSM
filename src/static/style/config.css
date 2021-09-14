@@ -3,105 +3,6 @@ body{
     background-color: #DFDFE2;
 }
 
-.left{
-    top: 0px;
-    left: 0px;
-    width: 5%;
-    height: 100%;
-    background-color: White;
-    position: fixed;
-}
-
-.icon1{
-    top: 3%;
-    left: 32%;
-    width: 36%;
-    height: 4%;
-    border-radius: 5px;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.icon2{
-    top: 30%;
-    left: 32%;
-    width: 36%;
-    height: 4%;
-    background-image: url("imagens/Alerta.png");
-    background-size: 100% 100%;
-    background-color: White;
-    border-radius: 5px;
-    border: none;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.icon3{
-    top: 40%;
-    left: 32%;
-    width: 36%;
-    height: 4%;
-    background-image: url("imagens/Download.png");
-    background-size: 100% 100%;
-    background-color: White;
-    border-radius: 5px;
-    border: none;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.icon4{
-    top: 50%;
-    left: 32%;
-    width: 36%;
-    height: 4%;
-    background-image: url("imagens/Lapis.png");
-    background-size: 100% 100%;
-    background-color: White;
-    border-radius: 5px;
-    border: none;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.icon5{
-    bottom: 10%;
-    left: 32%;
-    width: 36%;
-    height: 4%;
-    background-image: url("imagens/Config.png");
-    background-size: 100% 100%;
-    background-color: White;
-    border-radius: 5px;
-    border: none;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.icon6{
-    bottom: 3%;
-    left: 35%;
-    width: 36%;
-    height: 4%;
-    background-image: url("imagens/Sair.png");
-    background-size: 100% 100%;
-    background-color: White;
-    border-radius: 5px;
-    border: none;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.icon7{
-    bottom: 39%;
-    left: 10%;
-    width: 10%;
-    height: 5%;
-    border-radius: 5px;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
 .center{
     top: 0px;
     width: 70%;
@@ -239,6 +140,7 @@ body{
     bottom: 7%;
     width: 49.8%;
     height: 15%;
+    left:auto;
     background-color: White;
     border: 5px #DC6A7B;
     border-radius: 5px;
@@ -246,6 +148,7 @@ body{
     position: absolute;
     font-family: 'Roboto', sans-serif, bold;
     }
+
 
 .botao2{
     left: 200px;
