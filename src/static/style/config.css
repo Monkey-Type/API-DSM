@@ -26,16 +26,18 @@ body{
     color: #4E5056;
     position: absolute;
     line-height: 20px;
-    font-family: 'Roboto', sans-serif, bold;
+    
 }
 
 
 .user{
-    top: 6%;
-    left: 5%;
-    width: 33%;
-    height: 85%;
-    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1 1 0;
+}
+.user > span{
+    font-size: 15vw;
 }
 
 .card1{
@@ -45,6 +47,18 @@ body{
     border-radius: 10px;
     background-color: White;
     position: relative;
+    display: flex;
+    gap: 20px;
+    align-items:center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.user-info{
+    flex: 2 1 0;
+    display: flex;
+    flex-direction: column;
+    gap:5px
 }
 
 .card2{
@@ -56,32 +70,11 @@ body{
     position: relative;
 }
 
-.nome{
-    top: 7%;
-    left: 45%;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
 
 .titulo{
     top: 10%;
     left: 5%;
     position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.funcao{
-    top: 18%;
-    left: 45%;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
-}
-
-.data{
-    top: 26.5%;
-    left: 45%;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
 }
 
 .barra{
@@ -99,21 +92,15 @@ body{
     width: 50%;
     bottom: 41%;
     position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
+    height: 113px;
 }
 
-.botao1{
-    right: 5.1%;
-    bottom: 7%;
-    width: 49.8%;
-    height: 15%;
-    left:auto;
+.btn-edita{
     background-color: White;
     border: 5px #DC6A7B;
     border-radius: 5px;
     border-style: solid;
-    position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
+    height: 50px;
 }
 
 .btn_cancelar{
@@ -127,7 +114,7 @@ body{
     border-radius: 5px;
     border-style: solid;
     position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
+    
 }
 
 .btn_trocar_senha{
@@ -141,7 +128,7 @@ body{
     border-radius: 5px;
     border-style: solid;
     position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
+    
 }
 
 
@@ -149,14 +136,14 @@ body{
     top: 26%;
     left: 5%;
     position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
+    
 }
 
 .senhatxt2{
     top: 50%;
     left: 5%;
     position: absolute;
-    font-family: 'Roboto', sans-serif, bold;
+    
 }
 
 
@@ -178,7 +165,6 @@ body{
     font-size: 1.3em;
     color: #BFC0C5;
     position: absolute;
-    font-family: 'Roboto', sans-serif;
 }
 
 .senha2{
@@ -199,6 +185,5 @@ body{
     font-size: 1.3em;
     color: #BFC0C5;
     position: absolute;
-    font-family: 'Roboto', sans-serif;
 }
 

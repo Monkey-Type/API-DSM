@@ -285,6 +285,7 @@ body{
     background-color:White;
     position: fixed;
     padding: 25px;
+    padding-top: 105px;
 }
 
 .right > hr{
