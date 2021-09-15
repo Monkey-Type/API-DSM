@@ -1,159 +1,126 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-}
-.header{
-    display: flex;
-    min-height: 8vh;
-    justify-content: space-around;
-    align-items: center;
-    border-bottom: 1px solid rgb(0, 0, 0);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.37);
-    box-shadow: 0px 3px 5px 0px rgba(184, 175, 184, 0.514);
-    background: white;
-}
-body{
-    background: #f4f4f5;
-}
-.fatec_logo{
-    margin-right: 60%;
-    line-height: 0.743;
-}
-.fatec_logo h2{
-    color: #C62f45;
-    text-align: end;
-}
+/*Registrar área*/
 .fatec_newuser{
-    font-size: 20px;
+    margin-right: 5%;
+    color: #4E5056;
+    font-weight: bold;
 }
-.fatec_newuser button{
-    border: 1px solid #dc6a7b;
-    background-color: white;
-    color: #dc6a7b;
-    border-radius: 10%;
-    padding: 10px;
-    width: 125px;
-    transition: 0.3s;
+/*Conteudo main*/
+.central-div-controll{
+    width: 100vw;
+    height: 100vh;
+    background: #f4f4f5;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
 }
-.fatec_newuser button:hover{
-    color: white;
-    background-color: #C62f45;
-}
-.caixa_central{
-    border: 1px solid black;
-    background: white;
-    border-radius: 10px;
-    height:  500px;
+.login-div{
+    background: #fff;
+    border-radius: 5px;
+    border: 1px solid rgb(0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.37);
+    box-shadow: 0px 3px 5px 0px rgb(46, 45, 45);
     width: 450px;
-    margin: auto;
-    margin-top: 5%;
+    height: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center
 }
-.caixa_login{
-    align-items: center;
-    margin: auto;
-    margin-top: 50px;
+.login-form-div{
+    height: 75%;
+    width: 75%;
+    color: #4E5056;
 }
-.caixa_login h3{
-    font-size: 35px;
+.login-form-div h1{
     text-align: center;
-    text-transform: uppercase;
-    
+    line-height: 1em;
+    font-size: 3.5em;
 }
-.logue-se{
-    color: gray;
-    text-transform: uppercase;
+.login-form-div h3{
     display: block;
+    font-size: 15px;
+    width: 100%;
     text-align: center;
-    margin-bottom: 10px;
+    margin: -0.5em 0 1.5em 0;
+    color: #898C94;
 }
-.caixa_login button[type="siga"]{
-    border: 3px solid #C62f45;
-    border-radius: 5px;
-    color: #C62f45;
-    font-weight: bold;
-    background: none;
-    display: block;
-    margin: auto;
-    margin-top: 10px;
-    padding: 10px;
-    width: 300px;
-    transition: 0.3s;
-}
-.caixa_login button:hover{
-    color: white;
-    background-color: #C62f45;
-}
-.caixa_login input[type="email"],.caixa_login input[type="password"]{
-    border: 1px solid rgb(134, 134, 134);
-    border: 1px solid rgba(134, 134, 134, 0.726);
-    background: none;
-    display: block;
-    margin: auto;
-    padding: 10px;
-    width: 300px;
-    border-radius: 5px;
-    text-align: center;
-    outline: none;
-    
-}
-.caixa_login h2{
-    color: black;
-    text-indent: 19%;
+.login-form-div p{
     font-size: 20px;
 }
-.senha{
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-around;
-    font-weight: bold;
-    align-items: center;
+.senha-div a{
+    color: #C62F45;
+    font-size: 13px;
 }
-.help_pass{
-    font-size: 10px;
-    color: #C62f45;
-    text-transform: uppercase;
+.senha-div{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
 }
-.caixa_login input[type="submit"]{
-    background-color: #C62f45;
-    color: white;
-    display: block;
-    margin: auto;
-    border: 1px solid #C62f45;
-    padding: 5px;
-    width: 300px;
+/*Botão*/
+.fatec_newuser input[type="submit"]{
+    width: 150px;
+    height: 2.5em;
+    background: none;
+    border: 3px solid #DC6A7B;
+    color: #DC6A7B;
     border-radius: 5px;
-    font-size: 25px;
-    transition: 0.3s;
-}
-.caixa_login input[type="submit"]:hover{
-    color: white;
-    background-color: #fc0026;
-}
-footer{
-    position: absolute;
-    bottom: 0;
-    background: white;
-    width: 100%;
-    height: 35px;
-    align-items: center;
-    display: inline-flex;
-    justify-content: space-around;
-}
-footer h3, .links a{
-    color: #4e5056;
-    font-size: 15px;
-}
-.links{
-    width: 500px;
-    display: inline-flex;
-    justify-content: space-around;
+    font-size: 1em;
     font-weight: bold;
+    margin-left: 0.5em;
+    cursor: pointer;
+    transition: 0.5s;
 }
-.links p:hover{
-    color: #C62f45;
+.fatec_newuser input[type="submit"]:hover{
+    color: white;
+    background-color: #da354e;
+    border-color: #da354e;
+    cursor: pointer;
 }
-a {
-    text-decoration: none;
+.login-form-div input[type="button"]{
+    border: 2px solid  #DC6A7B;
+    border-radius: 5px;
+    color: #DC6A7B;
+    background: none;
+    width: 100%;
+    height: 2.5em;
+    margin: 1em 0;
+    font-weight: bold;
+    font-size: 1em;
+    transition: 0.5s;
+}
+.login-form-div input[type="button"]:hover{
+    color: white;
+    background-color: #da354e;
+    border-color: #da354e;
+    cursor: pointer;
+}
+.login-form-div input[type="password"],.login-form-div input[type="email"]{
+    height: 2.5em;
+    width: 100%;
+    background: none;
+    border: 2px solid #BFC0C5;
+    border-radius: 5px;
+    text-indent: 2em;
+    outline: 0;
+    opacity: 50%;
+}
+.login-form-div input[type="password"]:hover,.login-form-div input[type="email"]:hover{
+    opacity: 75%;
+}
+.login-form-div input[type="submit"]{
+    width: 100%;
+    height: 2.5em;
+    background: #C62F45;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    margin-top: 5%;
+    color: white;
+    font-weight: bold;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.login-form-div input[type="submit"]:hover{
+    background: #e60728;
 }
