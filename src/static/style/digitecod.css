@@ -1,0 +1,65 @@
+*{
+font-family:'Roboto', sans-serif;
+margin: 0;
+padding: 0;
+}
+.header{
+border-bottom: 1px solid black;
+height: 8vh;
+width: 100%;
+display: flex;
+text-indent: 116px;
+}
+    
+.logo_fatec {
+font-size: 18px;
+}
+    
+.logo_fatec h2{
+font-size: 1em;
+text-align: end;
+line-height: 7px;
+color: #c62f45;
+}
+
+.digcod{
+text-align: center;
+width: 500px;
+margin: auto;
+margin-top: 150px;
+}   
+
+.digcod h1{
+border: blue;
+font-size: 50px;
+color: #4E5056;
+}
+
+.digcod h2{
+font-size: 18px;
+color: #BFC0C5;
+margin-bottom: 15px;
+}
+
+.digcod h3{
+font-size: 15px;
+color: #4E5056;   
+text-align: left;
+text-indent: 36px;
+}
+
+.div input[type='number']{
+-moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.codigo{
+display: inline-flex;
+}
+.codigo [type="number"]{
+width: 10px;
+}
