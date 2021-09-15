@@ -1,0 +1,291 @@
+body{
+    position: relative;
+    background-color: #DFDFE2;
+}
+
+.center{
+    top: 0px;
+    width: 70%;
+    height: 200%;
+    position: absolute;
+}
+
+.feed{
+    top: 0%;
+    left: 15%;
+    right: 15%;
+    width: 70%;
+    bottom: 0%;
+    position: relative;
+}
+
+.topico{
+    top: 12%;
+    left: 0%;  
+    right: 0%;
+    color: #4E5056;
+    position: absolute;
+    letter-spacing: 2px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.topico2{
+    top: 105px;
+    left: 0px;
+    right: 2px;
+    color: #4E5056;
+    position: absolute;
+    letter-spacing: 2px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.topico3{
+    bottom: 45%;
+    left: 0px;
+    right: 2px;
+    color: #4E5056;
+    position: absolute;
+    letter-spacing: 2px;
+    line-height: 20px;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.user{
+    top: 6%;
+    left: 5%;
+    width: 33%;
+    height: 85%;
+    position: absolute;
+}
+
+.card1{
+    top: 180px;
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    background-color: White;
+    position: relative;
+}
+
+.card2{
+    top: 230px;
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+    background-color: White;
+    position: relative;
+}
+
+.nome{
+    top: 7%;
+    left: 45%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.titulo{
+    top: 10%;
+    left: 5%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.funcao{
+    top: 18%;
+    left: 45%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.data{
+    top: 26.5%;
+    left: 45%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.barra{
+    top: 25%;
+    left: 3%;
+    bottom: 31%;
+    width: 0.6%;
+    background-color: #DFDFE2;
+    position: absolute;
+}
+
+.texto{
+    top: 40%;
+    left: 45%;
+    width: 50%;
+    bottom: 41%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.botao1{
+    right: 5.1%;
+    bottom: 7%;
+    width: 49.8%;
+    height: 15%;
+    left:auto;
+    background-color: White;
+    border: 5px #DC6A7B;
+    border-radius: 5px;
+    border-style: solid;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.btn_cancelar{
+    right: 33%;
+    bottom: 6%;
+    width: 24%;
+    height: 13%;
+    left:auto;
+    background-color: White;
+    border: 5px #DC6A7B;
+    border-radius: 5px;
+    border-style: solid;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.btn_trocar_senha{
+    right: 7.1%;
+    bottom: 6%;
+    width: 24%;
+    height: 13%;
+    left:auto;
+    background-color: #C62F45;
+    border: 5px #C62F45;
+    border-radius: 5px;
+    border-style: solid;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+
+.senhatxt1{
+    top: 26%;
+    left: 5%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+.senhatxt2{
+    top: 50%;
+    left: 5%;
+    position: absolute;
+    font-family: 'Roboto', sans-serif, bold;
+}
+
+
+.senha1{
+    top: 32%;
+    left: 4.5%;
+    width: 88%;
+    height: 12%;
+    position: absolute;
+}
+
+.senha11{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-color: #BFC0C5;
+    border-style: solid;
+    text-indent: 15px;
+    font-size: 1.3em;
+    color: #BFC0C5;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+}
+
+.senha2{
+    top: 56%;
+    left: 4.5%;
+    width: 88%;
+    height: 12%;
+    position: absolute;
+}
+
+.senha22{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-color: #BFC0C5;
+    border-style: solid;
+    text-indent: 15px;
+    font-size: 1.3em;
+    color: #BFC0C5;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+}
+
+.right{
+    top: 0px;
+    right: 0px;
+    width: 25%;
+    height: 100%;
+    background-color:White;
+    position: fixed;
+}
+
+.Check{
+    bottom: 31.5%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.toggle {
+    margin-bottom: 40px;
+}
+
+.toggle > input {
+    display: none;
+}
+
+.toggle > label {
+    position: relative;
+    display: block;
+    height: 30px;
+    width: 60px;
+    background: #898989;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.toggle > label:after {
+    position: absolute;
+    left: -2px;
+    top: -3px;
+    display: block;
+    width: 34px;
+    height: 34px;
+    border-radius: 100px;
+    background: #fff;
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+    content: '';
+    transition: all 0.3s ease;
+}
+.toggle > label:active:after {
+    transform: scale(1.15, 0.85);
+}
+.toggle > input:checked ~ label {
+    background: #DC6A7B;
+}
+.toggle > input:checked ~ label:after {
+    left: 30px;
+    background: #C62F45;
+}
+.toggle > input:disabled ~ label {
+    background: #d5d5d5;
+    pointer-events: none;
+}
+.toggle > input:disabled ~ label:after {
+    background: #bcbdbc;
+}
