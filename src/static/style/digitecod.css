@@ -1,0 +1,83 @@
+*{
+font-family:'Roboto', sans-serif;
+margin: 0;
+padding: 0;
+}
+
+.digcod{
+text-align: center;
+width: 500px;
+height: 250px;
+margin: auto;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+background-color: white;
+border-radius: 5px;
+border: 1px solid rgb(0, 0, 0);
+border: 1px solid rgba(0, 0, 0, 0.37);
+box-shadow: 0px 3px 5px 0px rgb(46, 45, 45);
+}   
+
+.digcod h1{
+font-size: 50px;
+color: #4E5056;
+}
+
+.digcod h2{
+font-size: 18px;
+color: #BFC0C5;
+margin-bottom: 15px;
+}
+
+
+
+.div input[type='number']{
+-moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.codigo{
+
+}
+.codigo [type="number"]{
+width: 30px;
+height: 30px;
+
+margin-left: 15px;
+
+}
+.central-div-controll{
+  height: 100vh;
+  background: #f4f4f5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
+}
+.formdiv{
+width: 60%;
+text-align: left;
+
+}
+.formdiv h3{
+font-size: 15px;
+color: #4E5056;   
+display: inline-flex;
+margin-right: 0;
+}
+.formdiv input[type='button']{
+border: none;
+border-radius: 5px;
+background-color: #C62F45;
+color: white;
+height: 50px;
+width: 100%;
+margin-top: 10px;
+cursor: pointer;
+}
