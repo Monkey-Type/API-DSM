@@ -26,7 +26,6 @@ body{
     color: #4E5056;
     position: absolute;
     line-height: 20px;
-    
 }
 
 
@@ -114,7 +113,6 @@ body{
     border-radius: 5px;
     border-style: solid;
     position: absolute;
-    
 }
 
 .btn_trocar_senha{
@@ -128,7 +126,6 @@ body{
     border-radius: 5px;
     border-style: solid;
     position: absolute;
-    
 }
 
 
@@ -136,14 +133,12 @@ body{
     top: 26%;
     left: 5%;
     position: absolute;
-    
 }
 
 .senhatxt2{
     top: 50%;
     left: 5%;
     position: absolute;
-    
 }
 
 
