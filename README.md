@@ -24,7 +24,7 @@
 
 ## :bookmark_tabs: Sobre o projeto
 
-<p align="justify">Tem por objetivo proporcionar um portal de informações para o Corpo Docente, Discente e Administrativo da <b>Fatec SJC</b> capaz de exibir e gerar de forma seletiva e controlada os avisos gerais ou específicos de cada usuário, respeitando as respectivas hierarquias dentro da universidade com o intuíto de melhorar a comunicação interna da instituição.</p>
+<p align="justify">Em face de uma pandemia mundial instituições de ensino do mundo todo enfrentaram o grande desafio de adaptarem  as atividades acadêmicas para o ensino remoto em um curto espaço de tempo. Com isso o aumento do uso de ferramentas de correios eletrônicos para comunicação dentro das instituições cresceu de forma exponencial levando a diversos problemas de perda de informações. Com o intuito de resolver esse problema, a <strong>FATEC São José dos Campos</strong> propôs aos alunos do 1° semestre do curso de <strong>Desenvolvimento de Software Multiplataforma (DSM)</strong>, o desenvolvimento de um portal de informações para o Corpo Docente, Discente e Administrativo da Fatec SJC capaz de exibir e gerar de forma seletiva e controlada os avisos gerais ou específicos de cada usuário, respeitando as respectivas hierarquias dentro da universidade com o intuíto de melhorar a comunicação interna da instituição.</p>
 
 >### Status do Projeto: Em Andamento :warning:
 <br><br>
@@ -37,44 +37,13 @@
 
 ## :running: Sprints
 
+| Sprint | Link | Início | Entrega | Status |
+|--- |--- |--- |--- |---
+| 01 | [Sprint 01](#sprint1) | 08/09/2021 | 19/09/2021 | -[x] |
+| 02 | Sprint 02 | 20/09/2021 | 10/10/2021 | Em Aberto |
+| 03 | Sprint 03 | 18/10/2021 | 07/11/2021 | Em Aberto |
+| 04 | Sprint 04 | 08/11/2021 | 28/11/2021 | Em Aberto |
 
-<table>
-    <tr>
-        <td align="center">Sprint</td>
-        <td align="center">Link</td>
-        <td align="center">Início</td>
-        <td align="center">Entrega</td>
-        <td align="center">Status</td>
-    </tr>
-    <tr>
-        <td>01</td>
-        <td><a href="#sprint1">Sprint 01</a></td>
-        <td>08/09/2021</td>
-        <td>19/09/2021</td>
-        <td>🗹</td>
-    </tr>
-    <tr>
-        <td>02</td>
-        <td><a href="#sprint1">Sprint 02</a></td>
-        <td>20/09/2021</td>
-        <td>10/10/2021</td>
-        <td>Em Aberto</td>
-    </tr>
-    <tr>
-        <td>03</td>
-        <td><a href="#sprint1">Sprint 03</a></td>
-        <td>18/10/2021</td>
-        <td>07/11/2021</td>
-        <td>Em Aberto</td>
-    </tr>
-    <tr>
-        <td>04</td>
-        <td><a href="#sprint1">Sprint 04</a></td>
-        <td>08/11/2021</td>
-        <td>28/11/2021</td>
-        <td>Em Aberto</td>
-    </tr>
-</table>
 <br>
 
 > [Voltar ao Topo](#topo) ☝️
@@ -99,7 +68,7 @@
     <tr>
         <td>RF - 1</td>
         <td> Envio de informações para divulgação via sistema (Administrador)</td>
-        <td># 1</td>
+        <td></td>
     </tr>
     <tr>
         <td>RF - 2</td>
@@ -109,7 +78,7 @@
     <tr>
         <td>RF - 3</td>
         <td> A Identidade Visual do sistema deve levar em consideração a identidade visual da Fatec de SJC</td>
-        <td># 1</td>
+        <td>#01</td>
     </tr>
     <tr>
         <td>RF - 4</td>
@@ -175,22 +144,22 @@
     <tr>
         <td>RNF - 3</td>
         <td> Utilizar HTML 5 para arquitetura da informação da aplicação</td>
-        <td></td>
+        <td>#01</td>
     </tr>
     <tr>
         <td>RNF - 4</td>
         <td> Utilizar CSS 3 para especificação do layout e demais características de renderização da interface com o usuário</td>
-        <td></td>
+        <td>#01</td>
     </tr>
     <tr>
         <td>RNF - 5</td>
         <td> Utilizar o GitHub para controle de versão dos artefatos de projeto</td>
-        <td></td>
+        <td>#01 #02 #03 #04</td>
     </tr>
     <tr>
         <td>RNF - 6</td>
         <td> Interface com navegação intuitiva (e.g. acesso à informação com poucos “cliques”)</td>
-        <td></td>
+        <td>#01</td>
     </tr>
     <tr>
         <td>RNF - 7</td>
@@ -205,7 +174,7 @@
     <tr>
         <td>RNF - 9</td>
         <td> Deve  seguir a identidade visual da Fatec-SJC</td>
-        <td></td>
+        <td>#01</td>
     </tr>
 </table>
 
@@ -219,6 +188,7 @@
 ## :page_with_curl: User Stories 
 <br>
 
+
 <table>
     <tr>
         <td>Requisito</td>
@@ -227,73 +197,73 @@
         <td>Finalidade</td>
     </tr>
     <tr>
-        <td>#1</td>
+        <td  align="center">#1</td>
         <td> Administrador/Secretaria</td>
         <td> Como usuário administrador, eu quero enviar as informações</td>
         <td>Para que qualquer pessoa que possuam uma conta fatec consiga visualizar essas informações</td>
     </tr>
     <tr>
-        <td>#2</td>
+        <td  align="center">#2</td>
         <td>Administrador/Secretaria</td>
         <td> Como usuário administrador, eu quero poder anexar arquivos e documentos</td>
         <td>Para que alunos, professores e a comunidade da fatec possa vizualizar e fazer download desses arquivos/documentos</td>
     </tr>
     <tr>
-        <td>#3</td>
+        <td align="center">#3</td>
         <td> Administrador/Secretaria</td>
         <td> Como usuária administrador, eu quero poder filtrar as informações de modo seletivo (data, cursos, etc)</td>
         <td>Para gerenciar o que cada cargo envia na plataforma</td>
     </tr>
     <tr>
-        <td>#4</td>
+        <td align="center">#4</td>
         <td>Administrador/Secretaria</td>
         <td> Como usuário administrador, eu quero que a plataforma possua cargos (adm, aluno, professor)</td>
         <td>Para que cada cargo apenas veja o que é de seu interesse/autoridade</td>
     </tr>
     <tr>
-        <td>#5</td>
+        <td  align="center">#5</td>
         <td>Professor</td>
         <td> Como professor, eu quero poder enviar anúncios</td>
         <td>Para que alunos, outros professores ou secretaria que uma conta fatec consigam visualizar essas informações</td>
     </tr>
     <tr>
-        <td>#6</td>
+        <td  align="center">#6</td>
         <td>Professor</td>
         <td>Como professor, eu quero poder anexar arquivos, documentos, etc</td>
         <td>Para que alunos consigam acessar e fazer o download desses arquivos, documentos, etc</td>
     </tr>
     <tr>
-        <td>#7</td>
+        <td  align="center">#7</td>
         <td>Professor</td>
         <td> Como professor, eu quero poder filtrar as informações que recebo por data de modo seletivo (curso, interessados, etc)</td>
         <td>Para que não exista conflito de informações e para que eu consiga ver apenas o necessário</td>
     </tr>
     <tr>
-        <td>#8</td>
+        <td  align="center">#8</td>
         <td>Aluno</td>
         <td> Como aluno, eu quero poder enviar trabalhos, provas, arquivos em geral</td>
         <td>Para que meu professor possa visualizar e baixar esses arquivos</td>
     </tr>
     <tr>
-        <td>#9</td>
+        <td  align="center">#9</td>
         <td>Aluno</td>
         <td> Como aluno, eu quero poder filtrar as informações do sistema de maneira seletiva (materia, interessados, etc)</td>
         <td>Para que eu consigo ver apenas o necessário e me organizar melhor pela plataforma</td>
     </tr>
     <tr>
-        <td>#10</td>
+        <td  align="center">#10</td>
         <td>Cliente</td>
         <td> Como cliente, eu quero que a interface seja intuitiva</td>
         <td>Para que os usuários consigam aprender a usar a aplicação facilmente</td>
     </tr>
     <tr>
-        <td>#11</td>
+        <td  align="center">#11</td>
         <td>Cliente</td>
         <td> Como cliente, eu quero que interface seja responsiva</td>
         <td>Para que os usuários consigam ter facidade de acesso em qualquer dispositívo</td>
     </tr>
     <tr>
-        <td>#12</td>
+        <td  align="center">#12</td>
         <td>Cliente</td>
         <td> Como cliente, eu quero que o design siga a identidade visual da Fatec São Jose dos Campos</td>
         <td>Para que os usuários saibam que estão em um site da Fatec de São Jose dos Campos</td>
@@ -326,7 +296,7 @@
 
 <br>
 
-> Tecnologias usadas
+> Tecnologias links:
 - [HTML5](https://pt.wikipedia.org/wiki/HTML5)
 - [CSS3](https://pt.wikipedia.org/wiki/CSS3)
 - [Adobe XD](https://www.adobe.com/br/products/xd.html)
@@ -402,7 +372,7 @@
 
 <scan id="sprint1">
 
-> ## Sprint 01 :running:
+## Sprint #1 :running:
 <br>
 
 <p align="justify">Na primeira <b>Sprint</b> fizemos o levantamento dos <b>Requisitos</b> junto ao cliente através do Product Owner do nosso grupo. Assim tivemos uma melhor idéia do que consistiriam os <b>Requisitos Funcionais (RF)</b> e os <b>Requisitos Não Funcionais (RNF)</b> do produto, possibilitando a criação da nossa <B>Backlog</b>.
