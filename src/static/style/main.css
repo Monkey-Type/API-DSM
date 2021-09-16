@@ -3,6 +3,28 @@ body{
     background-color: #DFDFE2;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
+    padding: 0;
+    margin: 0;
+}
+
+input::-webkit-input-placeholder {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  }
+  
+input:-ms-input-placeholder {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+  
+input:-moz-placeholder {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+  
+input::-moz-placeholder {
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+textarea{
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
 .left{
@@ -16,9 +38,10 @@ body{
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
+    z-index: 3;
 }
 
-.left div{
+.left div,.left-expanded div{
     padding: 36px 0px 36px 0px;
     display: flex;
     justify-content: center;
@@ -26,18 +49,20 @@ body{
     gap: 36px;
 }
 
-.left a{
+.left a, .left-expanded a{
     color: #4E5056;
+    height: 36px;
+    text-decoration: none;
 }
 
-.left a:hover{
+.left a:hover, .left-expanded a:hover{
     color: #DC6A7B;
 }
 
-.left a:active{
+.left a:active, .left-expanded a:active{
     color: #C62F45;
 }
-
+.material-icons.md-32 { font-size: 32px; }
 .material-icons.md-36 { font-size: 36px; }
 .material-icons.md-48 { font-size: 48px; }
 .material-icons.md-64 { font-size: 64px; }
@@ -470,4 +495,52 @@ body{
 }
 .toggle > input:disabled ~ label:after {
     background: #bcbdbc;
+}
+
+/* Menu lateral (expandido) */
+
+.left-expanded{
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    background-color: White;
+    position: fixed;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+    box-shadow: 1px 0px 10px #4E5056;
+    transform:translateX(-300px);
+    transition: transform 0.5s ease-in-out;
+}
+
+.left-expanded.toggled{
+    transform:translateX(0px);
+    transition: transform 0.5s ease-in-out;
+}
+
+
+.hamburger.animated{
+    color:#C62F45
+}
+
+.left-expanded p{
+    padding: 0;
+    margin: 0;
+    height: 36px;
+    line-height: 36px;
+    font-size: 20px;
+}
+
+.left-expanded div{
+    width: 100px;
+}
+
+#nav{
+    cursor: pointer;
+    color: #4E5056;
+}
+#nav:hover{
+    color:#DC6A7B;
 }

@@ -42,15 +42,15 @@
 .text_assunto{
     font-size: 25px;
     flex: 1;
+    border: none;
 }
+
 
 .ferramentas_top a{
     color: #898C94;
     text-decoration: none;
     margin: 1px;
 }
-
-.material-icons.md-36 { font-size: 32px; }
 
 .ferramentas_btns_1{
     border-color: transparent;

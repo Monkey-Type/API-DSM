@@ -18,17 +18,43 @@
 <body>
 
     <div class="left">
-        <div>
+        <div id="nav" class="">
             <span class="material-icons md-36 icon2">menu</span>
         </div>
         <div>
             <a href="main.html"><span class="material-icons md-36">warning</span></a>
             <a href="arquivos.html"><span class="material-icons md-36">archive</span></a>
-            <a href=""><span class="material-icons md-36">edit</span></a>
+            <a href="enviar.html"><span class="material-icons md-36">edit</span></a>
         </div>
         <div>
             <a href="config.html"><span class="material-icons md-36">settings</span></a>
             <a href="login.html"><span class="material-icons md-36">logout</span></a>
+        </div>
+    </div>
+    <div id="menu" class="left-expanded">
+        <div>
+            <a href="main.html">
+                <p>FatecSJC</p>
+            </a>
+        </div>
+        <div>
+            <a href="main.html">
+                <p>Informativos</p>
+            </a>
+            <a href="arquivos.html">
+                <p>Arquivos</p>
+            </a>
+            <a href="enviar.html">
+                <p>Edit</p>
+            </a>
+        </div>
+        <div>
+            <a href="config.html">
+                <p>Configurações</p>
+            </a>
+            <a href="login.html">
+                <p>Sair</p>
+            </a>
         </div>
     </div>
     <div class="center">
@@ -38,24 +64,24 @@
                 <hr width="100%" align="center" color="#BFC0C5">
             </div>
             <div class="card_edicao">
-                    <div class="ferramentas_top">
-                        <font class="text_assunto" color="#4E5056"><b>Assunto</b></font>
-                        <div class="ferramentas_btns_1">
-                            <a href=""><span class="material-icons md-36">format_bold</span></a>
-                            <a href=""><span class="material-icons md-36">format_underlined</span></a>
-                            <a href=""><span class="material-icons md-36">format_italic</span></a>
-                        </div>
-                        <div class="ferramentas_btns_2">
-                            <a href=""><span class="material-icons md-36">attach_file</span></a>
-                            <a href=""><span class="material-icons md-36">insert_photo</span></a>
-                            <a href=""><span class="material-icons md-36">folder_open</span></a>
-                        </div>
-                        <div class="ferramentas_btn_envia">
-                            <a href=""><span class="material-icons md-36">send</span></a>
-                        </div>
+                <div class="ferramentas_top">
+                    <input type="text" class="text_assunto" placeholder="Asssunto">
+                    <div class="ferramentas_btns_1">
+                        <a href=""><span class="material-icons md-32">format_bold</span></a>
+                        <a href=""><span class="material-icons md-32">format_underlined</span></a>
+                        <a href=""><span class="material-icons md-32">format_italic</span></a>
                     </div>
-                    <hr width="100%" align="center" color="#BFC0C5">
-                    <textarea class="texto_editar" type="text" placeholder="Escreva a mensgem aqui..."></textarea>
+                    <div class="ferramentas_btns_2">
+                        <a href=""><span class="material-icons md-32">attach_file</span></a>
+                        <a href=""><span class="material-icons md-32">insert_photo</span></a>
+                        <a href=""><span class="material-icons md-32">folder_open</span></a>
+                    </div>
+                    <div class="ferramentas_btn_envia">
+                        <a href=""><span class="material-icons md-32">send</span></a>
+                    </div>
+                </div>
+                <hr width="100%" align="center" color="#BFC0C5">
+                <textarea class="texto_editar" type="text" placeholder="Escreva a mensgem aqui..."></textarea>
             </div>
             <div class="topico_seus_informes">
                 &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="91"><b>Seus Informes</b></font>
@@ -172,5 +198,6 @@
     </div>
 
 </body>
+<script src="../static/js/main.js"></script>
 
 </html>
