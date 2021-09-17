@@ -7,9 +7,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet">
     <!--Fontes-->
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/style/global.css">
     <link rel="stylesheet" href="../static/style/login.css">
     <title>Login Fatec</title>
-
 </head>
 <body>
     <header class="header">
@@ -19,29 +19,29 @@
         </div>
         <div class="fatec_newuser">
             <form action="">
-            <p>Novo aqui? <button type="submit" formaction="https://www.google.com" >Crie Uma conta</button></p>
+            <p>Novo aqui? <input type="submit" formaction="registrar.html" value="Crie Uma conta"></p>
             </form>
         </div>
     </header>
+    <!--Adicionar formaction="" para as outras paginas-->
     <main>
-        <div class="caixa_central">
-            <div class="caixa_login">
-                <h3>Entrar</h3>
-                <form action="">
-                    <!--Entrar com Siga-->
-                    <button formaction="#" type="siga" >Entrar com uma conta SIGA</button><br>
-                    <!--Email-->
-                    <p class="logue-se"> ------ Logue-se com o Email ------ </p>
-                    <h2>E-mail:</h2>
-                    <input type="email" id="email" name="email" placeholder="exemplo@fatec.sp.gov.br"><br>
-                    <!--Senha-->
-                    <div class="senha">
-                        <h2>Senha:</h2>
-                        <a href=""> <p class="help_pass">esqueceu a senha?</p> </a>
-                    </div>
-                    <input type="password" id="password" placeholder="Minimo de 5 caracteres" name="password"><br><br>
-                    <a href="main.html"><input type="submit" value="Entrar"></a>
-                </form>
+        <div class="central-div-controll">
+            <div class="login-div">
+                <div class="login-form-div">
+                    <form action="">
+                        <h1>Entrar</h1>
+                        <input type="button" value="Entrar com Siga">
+                        <h3>———Ou logue-se com o e-mail———</h3>
+                        <p>E-mail:</p>
+                        <input type="email" name="" id=""placeholder="exemple@fatec.sp.gov.br">
+                        <div class="senha-div">
+                            <p>Senha:</p>
+                            <p><a href="esqueceupass.html">Esqueci a senha</a></p>
+                        </div>
+                        <input type="password" name="" id="" placeholder="digite sua senha" >
+                        <input type="submit" formaction="main.html" value="Entrar">
+                    </form>
+                </div>
             </div>
         </div>
     </main>

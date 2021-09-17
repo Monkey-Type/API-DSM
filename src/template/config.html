@@ -17,17 +17,43 @@
 <body>
 
     <div class="left">
-        <div>
+        <div id="nav" class="">
             <span class="material-icons md-36 icon2">menu</span>
         </div>
         <div>
-            <a href=""><span class="material-icons md-36">warning</span></a>
-            <a href=""><span class="material-icons md-36">archive</span></a>
-            <a href=""><span class="material-icons md-36">edit</span></a>
+            <a href="main.html"><span class="material-icons md-36">warning</span></a>
+            <a href="arquivos.html"><span class="material-icons md-36">archive</span></a>
+            <a href="enviar.html"><span class="material-icons md-36">edit</span></a>
         </div>
         <div>
-            <a href=""><span class="material-icons md-36">settings</span></a>
+            <a href="config.html"><span class="material-icons md-36">settings</span></a>
             <a href="login.html"><span class="material-icons md-36">logout</span></a>
+        </div>
+    </div>
+    <div id="menu" class="left-expanded">
+        <div>
+            <a href="main.html">
+                <p>FatecSJC</p>
+            </a>
+        </div>
+        <div>
+            <a href="main.html">
+                <p>Informativos</p>
+            </a>
+            <a href="arquivos.html">
+                <p>Arquivos</p>
+            </a>
+            <a href="enviar.html">
+                <p>Edit</p>
+            </a>
+        </div>
+        <div>
+            <a href="config.html">
+                <p>Configurações</p>
+            </a>
+            <a href="login.html">
+                <p>Sair</p>
+            </a>
         </div>
     </div>
     <div class="center">
@@ -37,25 +63,31 @@
                 <hr width="100%" align="center" color="#BFC0C5">
             </div>
             <div class="card1">
-                <img class="user" src="../static/style/imagens/User.png"></img>
-                <div class="nome">
-                    <font size="6" color="#4E5056"><b>Leonardo Queiróz Machado</b></font>
+                <div class="user">
+                    <span class="material-icons">account_circle</span>
                 </div>
-                <div class="funcao">
-                    <font size="5" color="#898C94">Aluno de Desenvolvimento de Sistemas</font>
+                <div class="user-info">
+                    <div>
+                        <font size="6" color="#4E5056"><b>Leonardo Queiróz Machado</b></font>
+                    </div>
+                    <div>
+                        <font size="4" color="#898C94">Aluno de Desenvolvimento de Sistemas</font>
+                    </div>
+                    <div>
+                        <font size="3" color="#898C94">25/10/2002</font>
+                    </div>
+                    <div>
+                        <font size="3" color="#4E5056">Em linguística, a noção de texto é ampla e ainda aberta a uma
+                            definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das
+                            ideias
+                            de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos
+                            linguísticos e
+                            culturais.</font>
+                    </div>
+                    <button class="btn-edita">
+                        <font size="4" color="#C62F45"><b>Editar perfil</b></font>
+                    </button>
                 </div>
-                <div class="data">
-                    <font size="5" color="#898C94">25/10/2002</font>
-                </div>
-                <div class="texto">
-                    <font size="4" color="#4E5056">Em linguística, a noção de texto é ampla e ainda aberta a uma
-                        definição mais precisa. Grosso modo, pode ser entendido como manifestação linguística das ideias
-                        de um autor, que serão interpretadas pelo leitor de acordo com seus conhecimentos linguísticos e
-                        culturais.</font>
-                </div>
-                <button class="botao1">
-                    <font size="4" color="#C62F45"><b>Editar perfil</b></font>
-                </button>
             </div>
             <div class="card2">
                 <div class="titulo">
@@ -83,52 +115,51 @@
         </div>
     </div>
     <div class="right">
-        <div class="topico2">
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="6"><b>Filtros</b></font>
-            <hr width="80%" align="center" color="#BFC0C5">
-        </div>
-        <div class="filtro1">
+        <div class="filtro-section">
+            <div class="topico2">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="6"><b>Filtros</b></font>
+                <hr align="center" color="#BFC0C5">
+            </div>
             <input class="input1" type="text" placeholder="🔍 Buscar">
-        </div>
-        <div class="filtro2">
-            <input class="input2" type="text" placeholder="🕒 HH:MM">
-        </div>
-        <button class="filtro3">
-            <font><b>📎 ANEXO</b></font>
-        </button>
-        <div class="filtro4">
+            <div class="hora-anexo">
+                <input class="input2" type="text" placeholder="🕒 HH:MM">
+                <button class="filtro3">
+                    <font>📎 ANEXO</font>
+                </button>
+            </div>
             <input class="input3" type="date">
+            <div class="select-wrapper">
+                <select id="remetente">
+                    <option value="Remetente" selected>Remetente</option>
+                    <option value="valor3">Valor 3</option>
+                </select>
+                <select id="ordem">
+                    <option value="Ordem" selected>Ordem</option>
+                    <option value="valor3">Valor 3</option>
+                </select>
+            </div>
         </div>
-        <div class="filtro5">
-            <select class="select1" id="remetente">
-                <option value="Remetente" selected>Remetente</option>
-                <option value="valor3">Valor 3</option>
-            </select>
-        </div>
-        <div class="filtro6">
-            <select class="select2" id="remetente">
-                <option value="Remetente" selected>Ordem</option>
-                <option value="valor3">Valor 3</option>
-            </select>
-        </div>
-        <div class="topico3">
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="6"><b>Notificações</b></font>
-            <hr width="80%" align="center" color="#BFC0C5">
-        </div>
-        <span class="material-icons md-64 icon7">notifications_active</span>
-        <div class="texto2">
-            <font size="3" color="#4E5056">Notificações por email:</font>
-        </div>
-        <div class="texto3">
-            <font size="4" color="#4E5056">ATIVADO</font>
-        </div>
-        <div class="Check">
-            <div class="toggle">
-                <input type="checkbox" id="foo">
-                <label for="foo"></label>
+        <div class="notificacao-section">
+            <div class="topico3">
+                <h1>Notificações</h1>
+                <hr align="center" color="#BFC0C5">
+            </div>
+            <div class="notification-toggle">
+                <span class="material-icons md-64">notifications_active</span>
+                <div class="textos">
+                    <font size="3" color="#4E5056">Notificações por email:</font>
+                    <font size="4" color="#4E5056">ATIVADO</font>
+                </div>
+                <div class="Check">
+                    <div class="toggle">
+                        <input type="checkbox" id="foo">
+                        <label for="foo"></label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
+<script src="../static/js/main.js"></script>
 
 </html>

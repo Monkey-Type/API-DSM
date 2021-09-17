@@ -5,28 +5,55 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/style/main.css">
     <link rel="stylesheet" type="text/css" href="../static/style/arquivos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Arquivos</title>
+    <title>ARQUIVOS</title>
 </head>
 
 <body>
 
     <div class="left">
-        <div>
+        <div id="nav" class="">
             <span class="material-icons md-36 icon2">menu</span>
         </div>
         <div>
             <a href="main.html"><span class="material-icons md-36">warning</span></a>
             <a href="arquivos.html"><span class="material-icons md-36">archive</span></a>
-            <a href=""><span class="material-icons md-36">edit</span></a>
+            <a href="enviar.html"><span class="material-icons md-36">edit</span></a>
         </div>
         <div>
             <a href="config.html"><span class="material-icons md-36">settings</span></a>
             <a href="login.html"><span class="material-icons md-36">logout</span></a>
+        </div>
+    </div>
+    <div id="menu" class="left-expanded">
+        <div>
+            <a href="main.html">
+                <p>FatecSJC</p>
+            </a>
+        </div>
+        <div>
+            <a href="main.html">
+                <p>Informativos</p>
+            </a>
+            <a href="arquivos.html">
+                <p>Arquivos</p>
+            </a>
+            <a href="enviar.html">
+                <p>Edit</p>
+            </a>
+        </div>
+        <div>
+            <a href="config.html">
+                <p>Configurações</p>
+            </a>
+            <a href="login.html">
+                <p>Sair</p>
+            </a>
         </div>
     </div>
     <div class="center">
@@ -63,7 +90,7 @@
                     <font color="#C62F45"><b>Ler mais</b></font>
                 </button>
                 <button class="download">
-                    <font color="#C62F45" size="6"><b>⏏</b></font>
+                    <span class="material-icons md-36">download</span>
                 </button>
             </div>
             <div class='topicoTempo2'>
@@ -94,7 +121,7 @@
                     <font color="#C62F45"><b>Ler mais</b></font>
                 </button>
                 <button class="download">
-                    <font color="#C62F45" size="6"><b>⏏</b></font>
+                    <span class="material-icons md-36">download</span>
                 </button>
             </div>
             <div class='topicoTempo3'>
@@ -125,59 +152,58 @@
                     <font color="#C62F45"><b>Ler mais</b></font>
                 </button>
                 <button class="download">
-                    <font color="#C62F45" size="6"><b>⏏</b></font>
+                    <span class="material-icons md-36">download</span>
                 </button>
             </div>
         </div>
     </div>
     <div class="right">
-        <div class="topico2">
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="6"><b>Filtros</b></font>
-            <hr width="80%" align="center" color="#BFC0C5">
-        </div>
-        <div class="filtro1">
+        <div class="filtro-section">
+            <div class="topico2">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="6"><b>Filtros</b></font>
+                <hr align="center" color="#BFC0C5">
+            </div>
             <input class="input1" type="text" placeholder="🔍 Buscar">
-        </div>
-        <div class="filtro2">
-            <input class="input2" type="text" placeholder="🕒 HH:MM">
-        </div>
-        <button class="filtro3">
-            <font><b>📎 ANEXO</b></font>
-        </button>
-        <div class="filtro4">
+            <div class="hora-anexo">
+                <input class="input2" type="text" placeholder="🕒 HH:MM">
+                <button class="filtro3">
+                    <font>📎 ANEXO</font>
+                </button>
+            </div>
             <input class="input3" type="date">
+            <div class="select-wrapper">
+                <select id="remetente">
+                    <option value="Remetente" selected>Remetente</option>
+                    <option value="valor3">Valor 3</option>
+                </select>
+                <select id="ordem">
+                    <option value="Ordem" selected>Ordem</option>
+                    <option value="valor3">Valor 3</option>
+                </select>
+            </div>
         </div>
-        <div class="filtro5">
-            <select class="select1" id="remetente">
-                <option value="Remetente" selected>Remetente</option>
-                <option value="valor3">Valor 3</option>
-            </select>
-        </div>
-        <div class="filtro6">
-            <select class="select2" id="remetente">
-                <option value="Remetente" selected>Ordem</option>
-                <option value="valor3">Valor 3</option>
-            </select>
-        </div>
-        <div class="topico3">
-            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<font size="6"><b>Notificações</b></font>
-            <hr width="80%" align="center" color="#BFC0C5">
-        </div>
-        <span class="material-icons md-64 icon7">notifications_active</span>
-        <div class="texto2">
-            <font size="3" color="#4E5056">Notificações por email:</font>
-        </div>
-        <div class="texto3">
-            <font size="4" color="#4E5056">ATIVADO</font>
-        </div>
-        <div class="Check">
-            <div class="toggle">
-                <input type="checkbox" id="foo">
-                <label for="foo"></label>
+        <div class="notificacao-section">
+            <div class="topico3">
+                <h1>Notificações</h1>
+                <hr align="center" color="#BFC0C5">
+            </div>
+            <div class="notification-toggle">
+                <span class="material-icons md-64">notifications_active</span>
+                <div class="textos">
+                    <font size="3" color="#4E5056">Notificações por email:</font>
+                    <font size="4" color="#4E5056">ATIVADO</font>
+                </div>
+                <div class="Check">
+                    <div class="toggle">
+                        <input type="checkbox" id="foo">
+                        <label for="foo"></label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
 </body>
+<script src="../static/js/main.js"></script>
 
 </html>
