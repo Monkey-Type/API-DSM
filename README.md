@@ -179,20 +179,20 @@
         <td></td>
         <td> Desenvolver o back end com a linguagem Python 3+ e o 
 microframework Flask</td>
-        <td></td>
+        <td>#02</td>
     </tr>
     <tr>
         <td>RNF - 5</td>
         <td></td>
         <td> Utilizar o sistema gerenciador de banco de dados 
 MariaDB/MySQL/PostGresSQL</td>
-        <td></td>
+        <td>#02 #03</td>
     </tr>
     <tr>
         <td>RNF - 6</td>
         <td></td>
         <td>  Sistema responsivo</td>
-        <td></td>
+        <td>#03 #04</td>
     </tr>
 </table>
 
@@ -392,10 +392,29 @@ MariaDB/MySQL/PostGresSQL</td>
 ## :movie_camera: Protótipo Navegável
 <br>
 
-> Demonstração 
-<br><br>
+- ### Registro de Conta > Mudança de Senha 
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/58151594/132951486-b8fd293c-1afe-4b3f-a238-0f674d0a1b9c.gif)
+![LoginCadastroEsqueciSenha1](https://user-images.githubusercontent.com/58151594/133909179-9d5d40db-50fc-41d4-9226-c6506f8ff823.gif)
+<br>
+
+- ### Entrar (login) > Tela "Informativos" (tela principal)
+
+![LoginTelaPrincipal2](https://user-images.githubusercontent.com/58151594/133909275-d41debd0-8f50-4e67-a517-58925f385567.gif)
+<br>
+
+- ### Tela "Informativos" > Filtros > Opções de Notificações
+
+![TelePrincipalFiltros3](https://user-images.githubusercontent.com/58151594/133909325-b8b94228-18c3-404c-bb40-25f274a700b4.gif)
+<br>
+
+- ### Menu Lateral > Arquivos > Editar (Novo Informe)
+
+![MenuLateralAquivadosEditarNovaMsgm4](https://user-images.githubusercontent.com/58151594/133909381-3281a543-8e0f-4d27-a953-756902c4a06a.gif)
+<br>
+
+- ### Configurações > Sair (logout)
+
+![ConfiguracoesSair5](https://user-images.githubusercontent.com/58151594/133909598-1a021f01-e7bf-4026-8f41-91ec9565d27e.gif)
 <br>
 
 > [Voltar ao Topo](#topo) ☝️
