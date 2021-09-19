@@ -390,6 +390,39 @@ MariaDB/MySQL/PostGresSQL</td>
 <span id="prototipo">
 
 ## :movie_camera: Protótipo Navegável
+
+## Quick Start 
+<br>
+
+### Como acessar o projeto:
+
+
+ Metodo 1:
+
+- Clique neste link para o GitPages: https://bit.ly/3EAYgWG
+
+Metodo 2:
+
+Tendo a ferramenta Git instalada em seu computador:
+- Em uma pasta vazia abra o prompt de comando do seu sistema e digite o código:
+
+        git clone https://github.com/Monkey-Type/API-DSM-Prototipo 
+
+- Então acesse a pasta extraida, siga o caminho src/template e acesse o arquivo  "login.html"
+
+Metodo 3:
+
+- Acesse a nossa página no github: [GitHub Monkey Type](https://github.com/Monkey-Type/API-DSM);
+- clique no botão verde "Code" a direita e ele abrirá uma caixa com opções;
+- Clique na última opção em "Download ZIP";
+- Extraia os arquivos presente no arquivo .zip baixado em um local de sua escolha;
+- Então acesse a pasta extraida, siga o caminho src/template e acesse o arquivo  "login.html"
+
+<br>
+
+> ##  Preview de Navegação da Aplicação
+
+
 <br>
 
 - ### Registro de Conta > Mudança de Senha 
@@ -512,7 +545,7 @@ MariaDB/MySQL/PostGresSQL</td>
  Aqui se fez necessária a criação do <b>Repositório GitHub</b> para criar e manter um histórico das alterações feitas no projeto visando também a sua organização.  
  Usando o recurso das <b>Histórias dos Usuários</b> junto aos requisitos levantados, conseguimos explicitar melhor qual era a necessidade do cliente e o foco principal do nosso produto. Com as <b>Histórias dos Usuários</b> prontas, criamos o <b>Backlog da Sprint 01</b>.
  Para o <b>Esboço (Sketch)</b> da nossa aplicação, utilizamos o espaço de trabalho visual colaborativo <b>Whimsical</b>. Então geramos as <b>Tarefas</b> que cada um dos membros da equipe iriam executar. A partir da criação das Tarefas foi possível estimar o tempo de entrega de cada tarefa e assim a criação da nossa ferramenta visual do Scrum, o gráfico <b>Burndown</b>. Criado então o <b>Readme.MD</b> para apresentação do nosso projeto.
- Usando a linguagem de marcação <b>HTML5</b> e a ferramenta de estilização "Folha de Estilo em Cascatas" <b>CSS3</b> criamos nosso <b>Protótipo Navegável</b>.</p>
+ Usando a linguagem de marcação <b>HTML5</b>, a ferramenta de estilização "Folha de Estilo em Cascatas" <b>CSS3</b> e JavaScript para ajudar na experiência da navegação. Assim criamos nosso <b>Protótipo Navegável</b>.</p>
 
 <br>
 
