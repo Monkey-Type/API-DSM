@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static', filename='style/base.css')}}">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap"
+    rel="stylesheet">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="menu-wrapper">
+    <nav class="main-nav">
+      <div class="main-nav-items top-items">
+        <button class="hamburger-menu">
+          <span class="material-icons-round medium-icon ">menu</span>
+        </button>
+      </div>
+      <div class="main-nav-items middle-items">
+        <a href="">
+          <span class="material-icons-round medium-icon">warning</span>
+          <div class="selection-bar is-selected"></div>
+        </a>
+        <a href="">
+          <span class="material-icons-round medium-icon">archive</span>
+          <div class="selection-bar"></div>
+        </a>
+        <a href="">
+          <span class="material-icons-round medium-icon">edit</span>
+          <div class="selection-bar"></div>
+        </a>
+      </div>
+      <div class="main-nav-items bottom-items">
+        <a href="">
+          <span class="material-icons-round medium-icon">settings</span>
+          <div class="selection-bar"></div>
+        </a>
+        <a href="">
+          <span class="material-icons-round medium-icon">logout</span>
+          <div class="selection-bar"></div>
+        </a>
+      </div>
+      </ul>
+    </nav>
+
+    <div class="right-menu">
+      <div class="filter-section">
+        <h2 class="section-title filter-title">FILTRO</h2>
+        <form action="">
+          <div class="input-wrapper small-input">
+            <span class="material-icons-round placeholder-icon">search</span>
+            <input type="text" name="cursos" placeholder="Cursos">
+          </div>
+          <div class="dropdown-wrapper">
+            <div class="input-wrapper small-input">
+              <span class="material-icons-round placeholder-icon">expand_more</span>
+              <select name="ordenar" id="ordenar">
+                <option value="" disabled selected>Ordenar</option>
+                <option value="recentes">Mais recentes</option>
+                <option value="antigos">Mais antigos</option>
+                <option value="prioridade">Prioridade de cargo</option>
+              </select>
+            </div>
+            <div class="input-wrapper small-input">
+              <span class="material-icons-round placeholder-icon">expand_more</span>
+              <select name="remetente" id="remetente">
+                <option value="" disabled selected>Remetente</option>
+                <option value="diretor">Diretor</option>
+                <option value="secretaria">Secretaria</option>
+                <option value="professor">Professor</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-wrapper small-input">
+            <span class="material-icons-round placeholder-icon">date_range</span>
+            <input type="date" name="data" placeholder="Dia/Mes/Ano">
+          </div>
+          <div class="input-wrapper small-input">
+            <span class="material-icons-round placeholder-icon">expand_more</span>
+            <select name="anexos" id="anexos">
+              <option value="" disabled selected>Anexos</option>
+              <option value="foto">Foto</option>
+              <option value="video">Video</option>
+              <option value="documento">Documentos</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="notifications-section">
+        <h2 class="section-title notifications-title">Notificações</h2>
+        <div class="notifications-wrapper">
+          <span class="material-icons-round big-icon">notifications_active</span>
+          <div class="notifications-text">
+            <h3>Notificações via app:</h3>
+            <p>Desativado</p>
+          </div>
+          <div class="redondinho">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+
+  </div>
+
+</body>
+
+</html>
