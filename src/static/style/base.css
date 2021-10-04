@@ -23,6 +23,7 @@
   --h3-font-size:1.25rem;
   --p-font-size:1rem;
   --menu-font-size:1.75rem;
+  --search-font-size:1.625rem;
 
   /*font-weight*/
   --regular:500;
@@ -34,7 +35,7 @@
   --small-icon:1.5rem;
   --medium-icon:2rem;
   --big-icon:3.5rem;
-  --placeholder-icon:1.5rem;
+  --search-icon:1.75rem;
 
   /* border-radius */
   --main-border-radius:10px;
@@ -160,7 +161,6 @@ a:link, a:visited{
   border-radius: var(--main-border-radius);
 }
 
-
 /* icones do input */
 
 .input-wrapper span{
@@ -188,9 +188,6 @@ a:link, a:visited{
 body{
   background-color: var(--primary-bg-color);
 }
-
-
-
 
 /* navbar principal */
 .menu-wrapper{
@@ -262,8 +259,6 @@ body{
   width: 520px;
 }
 
-
-
 /* Menu de filtros */
 
 .filter-section form{
@@ -299,7 +294,6 @@ body{
 .notifications-wrapper h3{
   color:var(--secondary-text-color);
   font-weight: var(--bold);
-  
 }
 
 .notifications-wrapper p{
@@ -309,4 +303,28 @@ body{
 
 .notifications-text{
   flex:auto;
+}
+
+.middle-box{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 1150px;
+  float: left;
+  margin: 0px 60px;
+  padding: 30px 2%;
+}
+
+.search-box{
+  height: 65px;
+}
+
+.search-box input{
+  background-color: var(--secondary-bg-color);
+  font-size: var(--search-font-size);
+  padding: 0px 1em 0px calc(var(--search-icon)*2);
+}
+
+.search-box span{
+  font-size: var(--search-icon);
 }
