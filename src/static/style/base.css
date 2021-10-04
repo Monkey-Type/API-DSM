@@ -191,24 +191,27 @@ body{
 
 /* navbar principal */
 .menu-wrapper{
-  position: fixed;
-  height: 100vh;
   width: 100%;
   padding: 30px;
 }
 
+.menu-wrapper .flex-nowrap{
+  display: flex;
+  flex-wrap: nowrap;
+}
 
 .main-nav{
   background-color: var(--card-bg-color);
   width: 70px;
-  height: 100%;
+  height: calc(100vh - 60px);
   border-radius: var(--main-border-radius);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: var(--medium-icon) 0px;
-  float:left;
+  position: sticky;
+  top: 30px;
 }
 
 .main-nav-items{
@@ -246,17 +249,17 @@ body{
 }
 
 .right-menu{
-  position: relative;
-  right: 0;
-  float:right;
+  width: 520px;
+  height: calc(100vh - 60px);
+  position: sticky;
+  top: 30px;
   background-color: var(--card-bg-color);
   padding: 55px;
-  height: 100%;
   border-radius: var(--main-border-radius);
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 520px;
+
 }
 
 /* Menu de filtros */
@@ -308,11 +311,9 @@ body{
 .middle-box{
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 1150px;
-  float: left;
-  margin: 0px 60px;
+  height: 3000px;
   padding: 30px 2%;
+  flex: 1 1 0;
 }
 
 .search-box{
@@ -327,4 +328,8 @@ body{
 
 .search-box span{
   font-size: var(--search-icon);
+}
+
+.search-box input:focus{
+  background-color: var(--card-bg-color);
 }

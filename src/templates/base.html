@@ -15,105 +15,107 @@
 
 <body>
   <div class="menu-wrapper">
-    <nav class="main-nav">
-      <div class="main-nav-items top-items">
-        <button class="hamburger-menu">
-          <span class="material-icons-round medium-icon ">menu</span>
-        </button>
-      </div>
-      <div class="main-nav-items middle-items">
-        <a href="">
-          <span class="material-icons-round medium-icon">warning</span>
-          <div class="selection-bar is-selected"></div>
-        </a>
-        <a href="">
-          <span class="material-icons-round medium-icon">archive</span>
-          <div class="selection-bar"></div>
-        </a>
-        <a href="">
-          <span class="material-icons-round medium-icon">edit</span>
-          <div class="selection-bar"></div>
-        </a>
-      </div>
-      <div class="main-nav-items bottom-items">
-        <a href="">
-          <span class="material-icons-round medium-icon">settings</span>
-          <div class="selection-bar"></div>
-        </a>
-        <a href="">
-          <span class="material-icons-round medium-icon">logout</span>
-          <div class="selection-bar"></div>
-        </a>
-      </div>
-      </ul>
-    </nav>
+    <div class="flex-nowrap">
+      <nav class="main-nav">
+        <div class="main-nav-items top-items">
+          <button class="hamburger-menu">
+            <span class="material-icons-round medium-icon ">menu</span>
+          </button>
+        </div>
+        <div class="main-nav-items middle-items">
+          <a href="">
+            <span class="material-icons-round medium-icon">warning</span>
+            <div class="selection-bar is-selected"></div>
+          </a>
+          <a href="">
+            <span class="material-icons-round medium-icon">archive</span>
+            <div class="selection-bar"></div>
+          </a>
+          <a href="">
+            <span class="material-icons-round medium-icon">edit</span>
+            <div class="selection-bar"></div>
+          </a>
+        </div>
+        <div class="main-nav-items bottom-items">
+          <a href="">
+            <span class="material-icons-round medium-icon">settings</span>
+            <div class="selection-bar"></div>
+          </a>
+          <a href="">
+            <span class="material-icons-round medium-icon">logout</span>
+            <div class="selection-bar"></div>
+          </a>
+        </div>
+        </ul>
+      </nav>
 
-    <div class="middle-box">
-      <div class="input-wrapper search-box">
-        <input type="search" name="busca" placeholder="Busca">
-        <span class="material-icons-round">search</span>
+      <div class="middle-box">
+        <div class="input-wrapper search-box">
+          <input type="search" name="busca" placeholder="Busca">
+          <span class="material-icons-round">search</span>
+        </div>
       </div>
-    </div>
 
-    <div class="right-menu">
-      <div class="filter-section">
-        <h2 class="section-title filter-title">FILTRO</h2>
-        <form action="">
-          <div class="input-wrapper small-input">
-            <input type="search" name="cursos" placeholder="Cursos">
-            <span class="material-icons-round">search</span>
-          </div>
-          <div class="dropdown-wrapper">
+      <div class="right-menu">
+        <div class="filter-section">
+          <h2 class="section-title filter-title">FILTRO</h2>
+          <form action="">
             <div class="input-wrapper small-input">
-              <select name="ordenar" id="ordenar">
-                <option value="" disabled selected>Ordenar</option>
-                <option value="recentes">Mais recentes</option>
-                <option value="antigos">Mais antigos</option>
-                <option value="prioridade">Prioridade</option>
+              <input type="search" name="cursos" placeholder="Cursos">
+              <span class="material-icons-round">search</span>
+            </div>
+            <div class="dropdown-wrapper">
+              <div class="input-wrapper small-input">
+                <select name="ordenar" id="ordenar">
+                  <option value="" disabled selected>Ordenar</option>
+                  <option value="recentes">Mais recentes</option>
+                  <option value="antigos">Mais antigos</option>
+                  <option value="prioridade">Prioridade</option>
+                </select>
+                <span class="material-icons-round">expand_more</span>
+              </div>
+              <div class="input-wrapper small-input">
+                <select name="remetente" id="remetente">
+                  <option value="" disabled selected>Remetente</option>
+                  <option value="diretor">Diretor</option>
+                  <option value="secretaria">Secretaria</option>
+                  <option value="professor">Professor</option>
+                </select>
+                <span class="material-icons-round">expand_more</span>
+              </div>
+            </div>
+            <div class="input-wrapper small-input">
+              <input type="date" name="data" placeholder="Dia/Mes/Ano">
+              <span class="material-icons-round">today</span>
+            </div>
+            <div class="input-wrapper small-input">
+              <select name="anexos" id="anexos">
+                <option value="" disabled selected>Anexos</option>
+                <option value="foto">Foto</option>
+                <option value="video">Video</option>
+                <option value="documento">Documentos</option>
               </select>
               <span class="material-icons-round">expand_more</span>
             </div>
-            <div class="input-wrapper small-input">
-              <select name="remetente" id="remetente">
-                <option value="" disabled selected>Remetente</option>
-                <option value="diretor">Diretor</option>
-                <option value="secretaria">Secretaria</option>
-                <option value="professor">Professor</option>
-              </select>
-              <span class="material-icons-round">expand_more</span>
-            </div>
-          </div>
-          <div class="input-wrapper small-input">
-            <input type="date" name="data" placeholder="Dia/Mes/Ano">
-            <span class="material-icons-round">today</span>
-          </div>
-          <div class="input-wrapper small-input">
-            <select name="anexos" id="anexos">
-              <option value="" disabled selected>Anexos</option>
-              <option value="foto">Foto</option>
-              <option value="video">Video</option>
-              <option value="documento">Documentos</option>
-            </select>
-            <span class="material-icons-round">expand_more</span>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      <div class="notifications-section">
-        <h2 class="section-title notifications-title">Notificações</h2>
-        <div class="notifications-wrapper">
-          <span class="material-icons-round big-icon">notifications_active</span>
-          <div class="notifications-text">
-            <h3>Notificações via app:</h3>
-            <p>Desativado</p>
-          </div>
-          <div class="redondinho">
-            <div class="circle"></div>
+        <div class="notifications-section">
+          <h2 class="section-title notifications-title">Notificações</h2>
+          <div class="notifications-wrapper">
+            <span class="material-icons-round big-icon">notifications_active</span>
+            <div class="notifications-text">
+              <h3>Notificações via app:</h3>
+              <p>Desativado</p>
+            </div>
+            <div class="redondinho">
+              <div class="circle"></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </body>
+</body>
 
 </html>
