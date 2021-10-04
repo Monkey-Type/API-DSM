@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap"
     rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
 
@@ -50,26 +51,51 @@
       </nav>
 
       <div class="middle-box">
-        <div class="input-wrapper search-box">
-          <input type="search" name="busca" placeholder="Busca">
-          <span class="material-icons-round">search</span>
-        </div>
-        <main>
-          <div class="main-text">INFORMATIVOS</div>
-          <div class="card-box">
-            <div class="text-title-area">
-              <div class="title-text">Comunicado</div>
-              <div class="sender-card">Secretaria</div>
-            </div>
-            <div class="text-area"><p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel deserunt dolor nisi error perspiciatis molestiae, omnis officiis itaque, saepe necessitatibus quam exercitationem, similique laboriosam quo. Pariatur hic tenetur excepturi obcaecati? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet corrupti omnis quod impedit blanditiis atque provident laboriosam quidem error sapiente. Necessitatibus corrupti, eius recusandae architecto soluta laborum quis est id? Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea, dolore reprehenderit. Ea optio excepturi hic est modi temporibus, fuga alias incidunt, dolorem iure totam repudiandae dolores deleniti quae unde maiores.</p></div>
-            <button class="read-more-button">
-              <p>Ler mais</p>
-            </button>
-            <button class="to-file-button">
-              <p>Arquivar</p>
-            </button>
+        <div class="middle-box-wrapper">
+          {% block search %}
+          <div class="input-wrapper search-box">
+            <input type="search" name="busca" placeholder="Busca">
+            <span class="material-icons-round">search</span>
           </div>
-        </main>
+          {% endblock %}
+          <main class="base-main">
+            {% block main %}
+            <div class="main-text">INFORMATIVOS</div>
+            <div class="card-box">
+              <div class="text-title-area">
+                <h2 class="title-text">Comunicado</h2>
+                <h3 class="sender-name">- Secretaria</h3>
+                <p class="send-date">29.09.2021</p>
+              </div>
+              <div class="text-area">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel deserunt dolor nisi error perspiciatis
+                  molestiae, omnis officiis itaque, saepe necessitatibus quam exercitationem, similique laboriosam quo.
+                  Pariatur hic tenetur excepturi obcaecati? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Amet
+                  corrupti omnis quod impedit blanditiis atque provident laboriosam quidem error sapiente.
+                  Necessitatibus
+                  corrupti, eius recusandae architecto soluta laborum quis est id? Lorem ipsum dolor sit amet
+                  consectetur
+                  adipisicing elit. Ea, dolore reprehenderit. Ea optio excepturi hic est modi temporibus, fuga alias
+                  incidunt, dolorem iure totam repudiandae dolores deleniti quae unde maiores.</p>
+              </div>
+              <div class="bottom-buttons">
+                <button class="btn btn-full">
+                  <span class="material-icons-round">more_horiz</span>
+                  <p>Ler mais</p>
+                </button>
+                <button class="btn btn-empty">
+                  <span class="material-icons-round">archive</span>
+                  <p>Arquivar</p>
+                </button>
+                <span class="material-icons-round card-icon">
+                  attach_file
+                </span>
+              </div>
+            </div>
+            {% endblock %}
+          </main>
+        </div>
       </div>
 
       <div class="right-menu">
