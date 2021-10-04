@@ -31,7 +31,7 @@
   --extra-bold:900;
 
   /* icon size */
-  --small-icon:1.25rem;
+  --small-icon:1.5rem;
   --medium-icon:2rem;
   --big-icon:3.5rem;
   --placeholder-icon:1.5rem;
@@ -52,9 +52,15 @@ body{
   font-family: 'Open Sans', sans-serif;
 }
 
-input, input::placeholder, input::-moz-placeholder, input::-webkit-input-placeholder{
+input, select, input::placeholder, input::-moz-placeholder, input::-webkit-input-placeholder{
   font-family: 'Open Sans', sans-serif;
   opacity: 1;
+}
+
+@-moz-document url-prefix() {
+  select {
+     text-indent: -2px;
+  }
 }
 
 
@@ -72,7 +78,7 @@ input, input::placeholder, input::-moz-placeholder, input::-webkit-input-placeho
 }
 
 .material-icons-round.placeholder-icon{
-  font-size: var(--placeholder-icon);
+  font-size: var(--searchbar-icon);
 }
 
 /* estilos dos botões */
@@ -94,39 +100,66 @@ a:link, a:visited{
 /* estilos dos inputs */
 
 .input-wrapper{
+  position: relative;
   display: flex;
-  padding: 10px 15px;
-  background-color: var(--primary-bg-color);
-  border-radius: var(--main-border-radius);
+  padding: 0;
   height: 55px;
 }
 
-.input-wrapper input, .input-wrapper select{
+.input-wrapper :is(input, select){
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   border:none;
   background-color: var(--primary-bg-color);
   width: 100%;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-   appearance: none;
   font-weight: var(--bold);
-  color:var(--secondary-text-color)
+  color:var(--secondary-text-color);
+  border-radius: var(--main-border-radius);
+  padding: 0px 1em 0px calc(var(--small-icon)*2);
+}
+.input-wrapper.no-icon :is(input, select){
+  padding: 0px 1em 0px 1em;
 }
 
-.input-wrapper input{
-  text-indent: 0.5rem;
-}
-
-.input-wrapper select{
-  text-indent: 0.25rem;
-}
-
-.input-wrapper.small-input input, .input-wrapper.small-input select{
+.input-wrapper.small-input :is(input, select){
   font-size: var(--h3-font-size);
 }
 
-.input-wrapper.large-input input, .input-wrapper.large-input select{
+.input-wrapper.large-input :is(input, select){
   font-size: var(--h2-font-size);
 }
+
+.input-wrapper :is(input, select):focus{
+  outline: 2px solid var(--primary-text-color);
+  background-color: transparent;
+  color:var(--primary-text-color);
+}
+
+:is(input,select):focus + span{
+  color:var(--primary-text-color);
+}
+
+
+.input-wrapper input:focus::placeholder{
+  opacity: 0;
+}
+
+.input-wrapper span{
+  font-family: 'Material Icons Round';
+  font-size: var(--small-icon);
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 2em;
+  pointer-events: none;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--main-border-radius);
+}
+
 
 /* icones do input */
 
