@@ -10,3 +10,11 @@ def main():
 @routes.route('/config')
 def config():
     return render_template('config.html')
+
+@routes.route('/editar')
+def edit():
+    return render_template('editar.html')
+
+@routes.route('/arquivos')
+def archive():
+    return render_template('arquivos.html')

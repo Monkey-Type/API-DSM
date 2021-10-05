@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='style/editar.css')}}">
+{% endblock %}
+
+{% block btn_criar %}
+
+<div class="create-btn-box">
+    <button class="btn btn-full">
+        <span class="material-icons-round">add</span>
+        <p>Criar novo informativo</p>
+    </button>
+</div>
+
+{% endblock %}
+
+{% block main_text %}SEUS INFORMATIVOS{% endblock %}
+
+{% block btn_empty %}
+
+<button class="btn btn-empty">
+    <span class="material-icons-round">delete</span>
+    <p>Excluir</p>
+</button>
+{% endblock %}
+

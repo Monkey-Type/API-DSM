@@ -1,0 +1,11 @@
+.create-btn-box{
+    display: flex;
+    margin-top: 1.2em;
+    margin-bottom: 4em;
+    align-items: center;
+}
+
+.create-btn-box button{
+    width: 100%;
+    justify-content: center;
+}
