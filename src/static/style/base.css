@@ -22,6 +22,7 @@
   --h1-font-size:3rem;
   --h2-font-size:2.25rem;
   --h3-font-size:1.25rem;
+  --h4-font-size:0.70rem;
   --p-font-size:1rem;
   --menu-font-size:1.75rem;
   --search-font-size:1.625rem;
@@ -36,6 +37,7 @@
   --small-icon:1.5rem;
   --medium-icon:2rem;
   --big-icon:3.5rem;
+  --extra-big-icon:15rem;
   --search-icon:1.75rem;
 
   /* border-radius */
@@ -44,7 +46,6 @@
 
   /* gap */
   --default-gap: 30px;
-  
 }
 
 /* estilos base */
@@ -64,7 +65,6 @@ input, select, input::placeholder, input::-moz-placeholder, input::-webkit-input
      text-indent: -2px;
   }
 }
-
 
 /* tamanho dos icons */
 .material-icons-round.small-icon{
@@ -97,7 +97,6 @@ a{
 a:link, a:visited{
   color:var(--primary-text-color);
 }
-
 
 /* estilos dos inputs */
 
@@ -190,7 +189,6 @@ a:link, a:visited{
   font-size: var(--small-icon)
 }
 
-
 /* btn-full */
 
 .btn-full{
@@ -204,10 +202,6 @@ a:link, a:visited{
   outline: 3px solid var(--primary-accent-color);
   outline-offset: -3px;
 }
-
-
-
-
 
 /* outros */
 
@@ -283,6 +277,7 @@ body{
 /* navbar da direita */
 
 /* Menu title */
+
 .section-title{
   margin-bottom: 1em;
   font-size: var(--h2-font-size);
@@ -323,7 +318,6 @@ body{
 
 /* Menu de notificação */
 
-
 .notifications-wrapper{
   display: flex;
   gap: 10px;
@@ -349,9 +343,7 @@ body{
   flex:auto;
 }
 
-
 /* Meio da página */
-
 
 .middle-box{
   display: flex;
@@ -365,8 +357,8 @@ body{
   max-width: 675px;
 }
 
-
 /* Serch box */
+
 .search-box{
   height: 65px;
 }
@@ -385,8 +377,8 @@ body{
   background-color: var(--card-bg-color);
 }
 
-
 /* Conteudo principal (Cards) */
+
 main{
   display: flex;
   flex-direction: column;
@@ -415,7 +407,6 @@ main{
   align-items: flex-end;
   justify-content: space-between;
 }
-
 
 .title-text{
   font-size: var(--h2-font-size);
@@ -472,4 +463,3 @@ main{
   text-align: end;
   color: var(--faded-icon-color);
 }
-
