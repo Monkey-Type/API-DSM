@@ -1,18 +1,26 @@
 .card-box-profile, .card-box-password{
-    width: 615px;
+    max-width: 675px;
     margin-top: 50px;
 }
 
-.card-img span{
+.card-box-profile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 50px;
+    gap: 1.5em;
+}
+
+.card-img{
     float: left;
     font-size: var(--extra-big-icon);
 }
 
+
 .card-div-right{
     display: flex;
     flex-direction: column;
-    margin-top: 1.7em;
-    padding-left: 1em;
+    gap: 1.7em;
 }
 
 .texts p{
@@ -26,7 +34,6 @@
     font-size: var(--h3-font-size);
     color: var(--primary-text-color);
     font-weight: var(--bold);
-    white-space: nowrap;
 }
 
 .texts h4{
@@ -37,13 +44,6 @@
     white-space: nowrap;
 }
 
-.button-img{
-    display: flex;
-    gap:1.5em;
-    margin-top: 2em;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .text-password h1{
     font-size: var(--h2-font-size);
@@ -64,4 +64,11 @@
     margin-top: 2em;
     align-items: center;
     justify-content: flex-end;
+}
+
+@media screen and (max-width: 1200px){
+    .card-box-profile{
+        gap:0;
+    }
+    
 }

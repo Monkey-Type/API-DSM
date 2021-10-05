@@ -178,7 +178,8 @@ a:link, a:visited{
   align-items: center;
   gap: .2em;
   border-radius: var(--button-border-radius);
-  cursor:pointer
+  cursor:pointer;
+  white-space: nowrap;
 }
 .btn p{
   float: left;
@@ -211,6 +212,7 @@ a:link, a:visited{
   border-radius: 58px;
   background-color: var(--faded-icon-color);
   padding: 3px;
+  flex: 0 0 auto;
 }
 
 .redondinho .circle{
@@ -247,6 +249,7 @@ body{
   padding: var(--medium-icon) 0px;
   position: sticky;
   top: 30px;
+  flex: 0 0 auto;
 }
 
 .main-nav-items{
@@ -310,6 +313,7 @@ body{
   display: flex;
   justify-content: space-evenly;
   gap:var(--default-gap);
+  
 }
 
 .dropdown-wrapper div{
@@ -351,6 +355,7 @@ body{
   padding: 30px 4%;
   flex: 1 1 0;
   align-items: center;
+  margin-right: 13%;
 }
 
 .middle-box-wrapper{
@@ -449,6 +454,10 @@ main{
   border-radius: 3em;
 }
 
+.text-area p::after{
+  content: '...';
+}
+
 .bottom-buttons{
   display: flex;
   gap:1.5em;
@@ -462,4 +471,53 @@ main{
   flex: auto;
   text-align: end;
   color: var(--faded-icon-color);
+}
+
+
+@media only screen and (max-width: 1670px) {
+
+  .middle-box{
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width:1400px),
+        screen and (max-height:650px) {
+  /* menus */
+  .menu-wrapper{
+    padding: 0;
+  }
+
+  .main-nav, .right-menu{
+    height: 100vh;
+    top:0;
+  }
+
+  .main-nav{
+    border-radius: 0px var(--main-border-radius) var(--main-border-radius) 0px ;
+  }
+  
+  .right-menu{
+    border-radius: var(--main-border-radius) 0px 0px var(--main-border-radius);
+    padding: 30px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  /* responsividade dos filtros */
+
+  .filter-section .dropdown-wrapper{
+    flex-direction: column;
+  }
+
+  .dropdown-wrapper div{
+    flex: 0 0 auto;
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  :root{
+    --extra-big-icon: 10em;
+  }
 }
