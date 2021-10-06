@@ -51,11 +51,11 @@
 /* estilos base */
 
 /* font family */
-body, textarea{
+body{
   font-family: 'Open Sans', sans-serif;
 }
 
-input, select, input::placeholder, input::-moz-placeholder, input::-webkit-input-placeholder{
+textarea, input, select, :is(input, textarea)::placeholder, :is(input, textarea)::-moz-placeholder, :is(input, textarea)::-webkit-input-placeholder{
   font-family: 'Open Sans', sans-serif;
   opacity: 1;
 }
@@ -131,7 +131,7 @@ a:link, a:visited{
   font-size: var(--h2-font-size);
 }
 
-.input-wrapper :is(input, select):focus{
+.input-wrapper :is(input, select, textarea):focus{
   outline: 2px solid var(--primary-text-color);
   background-color: transparent;
 }
@@ -141,7 +141,7 @@ a:link, a:visited{
 }
 
 
-.input-wrapper input:focus::placeholder{
+.input-wrapper :is(input, textarea):focus::placeholder{
   opacity: 0;
 }
 
@@ -220,7 +220,6 @@ textarea{
 }
 
 /* Pop-up */
-
 .page-wrapper{
   top: 0px;
   left: 0px;
@@ -228,15 +227,30 @@ textarea{
   width: 100vw;
   height: 100vh;
   position: absolute;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+
+}
+
+.popup-bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
   background-color: rgba(0, 0, 0, 0.5);
+  cursor:pointer;
 }
 
 .popup{
   background-color: white;
   border-radius: var(--main-border-radius);
+  z-index: 1000;
+  
+}
+
+.popup-active{
+  display: flex;
 }
 
 /* outros */

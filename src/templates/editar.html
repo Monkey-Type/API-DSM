@@ -7,12 +7,13 @@
 {% block btn_criar %}
 
 <div class="create-btn-box">
-    <button class="btn btn-full">
+    <button class="btn btn-full btn-popup" id="btnpop">
         <span class="material-icons-round">add</span>
         <p>Criar novo informativo</p>
     </button>
 </div>
-<div class="page-wrapper">
+<div class="page-wrapper" id="popup">
+    <div class="popup-bg" id="popupBg"></div>
     <div class="popup popup-editar">
         <form action="">
             <div class="content-popup-editar">
@@ -62,4 +63,3 @@
     <p>Excluir</p>
 </button>
 {% endblock %}
-
