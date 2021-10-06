@@ -12,7 +12,45 @@
         <p>Criar novo informativo</p>
     </button>
 </div>
-
+<div class="page-wrapper">
+    <div class="popup popup-editar">
+        <form action="">
+            <div class="content-popup-editar">
+                <h2>Novo Informativo</h2>
+                <p>Enviar para:</p>
+                <div class="input-wrapper small-input">
+                    <input type="text" name="para" placeholder="Aluno, Professor...">
+                    <span class="material-icons-round">person_add</span>
+                </div>
+                <p>Assunto:</p>
+                <div class="input-wrapper small-input">
+                    <input type="text" name="assunto" placeholder="Título da menssagem">
+                    <span class="material-icons-round">subtitles</span>
+                </div>
+                <p>Corpo da menssagem:</p>
+                <div class="input-wrapper small-input textarea-wrapper">
+                    <textarea type="text" name="text" placeholder="Título da menssagem"></textarea>
+                    <span class="material-icons-round">subtitles</span>
+                </div>
+            </div>
+            <div class="bottom-popup">
+                <div class="icons-popup">
+                    <button><span class="material-icons-round">format_bold</span></button>
+                    <button><span class="material-icons-round">format_underlined</span></button>
+                    <button><span class="material-icons-round">format_italic</span></button>
+                    <div class="separator"></div>
+                    <button><span class="material-icons-round">attach_file</span></button>
+                    <button><span class="material-icons-round">image</span></button>
+                    <button><span class="material-icons-round">folder</span></button>
+                </div>
+                <button class="btn btn-full">
+                    <span class="material-icons-round">send</span>
+                    <p>Enviar</p>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock %}
 
 {% block main_text %}SEUS INFORMATIVOS{% endblock %}

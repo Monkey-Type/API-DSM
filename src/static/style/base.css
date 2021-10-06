@@ -51,7 +51,7 @@
 /* estilos base */
 
 /* font family */
-body{
+body, textarea{
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -107,7 +107,7 @@ a:link, a:visited{
   height: 55px;
 }
 
-.input-wrapper :is(input, select){
+.input-wrapper :is(input, select, textarea){
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -160,6 +160,21 @@ a:link, a:visited{
   border-radius: var(--main-border-radius);
 }
 
+/* text area */
+textarea{
+  padding-top: 0.7em !important;
+  font-size: var(--h3-font-size);
+}
+
+.textarea-wrapper{
+  height: auto;
+}
+
+.textarea-wrapper span{
+  height: auto;
+  margin-top: 0.7em !important;
+}
+
 /* icones do input */
 
 .input-wrapper span{
@@ -202,6 +217,26 @@ a:link, a:visited{
   color:var(--primary-accent-color);
   outline: 3px solid var(--primary-accent-color);
   outline-offset: -3px;
+}
+
+/* Pop-up */
+
+.page-wrapper{
+  top: 0px;
+  left: 0px;
+  z-index: 999;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup{
+  background-color: white;
+  border-radius: var(--main-border-radius);
 }
 
 /* outros */

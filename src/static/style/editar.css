@@ -9,3 +9,50 @@
     width: 100%;
     justify-content: center;
 }
+
+.popup-editar{
+    padding: 40px;
+    width: 938px;
+}
+
+.content-popup-editar h2{
+    font-size: var(--h2-font-size);
+    font-weight: var(--bold);
+}
+
+.content-popup-editar p{
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-size: var(--h3-font-size);
+    color: var(--primary-text-color);
+    font-weight: var(--semi-bold);
+}
+
+.content-popup-editar textarea{
+    width: 100%;
+    min-height: 300px;
+    resize: none;
+}
+
+.bottom-popup{
+    padding-top: 2em;
+    display: flex;
+    justify-content: space-between;
+}
+
+.icons-popup{
+    gap: 0.5em;
+    display: flex;
+    align-items: center;
+}
+
+.icons-popup span{
+    font-size: var(--medium-icon);
+    color: var(--faded-icon-color);
+}
+
+.separator{
+    width: 3px;
+    height: 75%;
+    background-color: var(--faded-icon-color);
+}
