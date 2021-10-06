@@ -6,12 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
-  <link rel="stylesheet" href="{{url_for('static', filename='style/base.css')}}">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static', filename='style/base.css')}}">
   {% block head %}{% endblock %}
+  <title>{% block title %}Base{% endblock %}</title>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
           </button>
         </div>
         <div class="main-nav-items middle-items">
-          <a href="/">
+          <a href="/home">
             <span class="material-icons-round medium-icon">warning</span>
             <div class="selection-bar is-selected"></div>
           </a>
@@ -42,7 +42,7 @@
             <span class="material-icons-round medium-icon">settings</span>
             <div class="selection-bar"></div>
           </a>
-          <a href="">
+          <a href="/">
             <span class="material-icons-round medium-icon">logout</span>
             <div class="selection-bar"></div>
           </a>
@@ -78,7 +78,7 @@
                   corrupti, eius recusandae architecto soluta laborum quis est id? Lorem ipsum dolor sit amet
                   consectetur
                   adipisicing elit. Ea, dolore reprehenderit. Ea optio excepturi hic est modi temporibus, fuga alias
-                  incidunt, dolorem iure totam repudiandae dolores deleniti quae unde maiores.</p>
+                  incidunt, dolorem iure totam repudiandae dolores deleniti quae unde maiores</p>
               </div>
               <div class="bottom-buttons">
                 <button class="btn btn-full">

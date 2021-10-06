@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="{{url_for('static', filename='style/base.css')}}">
+  <link rel="stylesheet" href="{{url_for('static', filename='style/base-login.css')}}">
+  <title>{% block title %}Base-Login{% endblock %}</title>
+  {% block head %}
+  {% endblock %}
+</head>
+
+<body>
+  <header class="login-main-header">
+    <div class="login-header-wrapper">
+      <div class="main-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="99" height="56" viewBox="0 0 99 56">
+          <text id="SJC" transform="translate(99 49)" fill="#c62f45" font-size="24"
+            font-family="SourceSansPro-Bold, Source Sans Pro" font-weight="700">
+            <tspan x="-39.096" y="0">SJC</tspan>
+          </text>
+          <text id="FATEC" transform="translate(87 31)" font-size="32"
+            font-family="SourceSansPro-Black, Source Sans Pro" font-weight="800">
+            <tspan x="-86.592" y="0">FATEC</tspan>
+          </text>
+        </svg>
+      </div>
+      <nav class="login-header-nav">
+        <button class="btn btn-empty btn-header">
+          <span class="material-icons-round">
+            account_circle
+          </span>
+          <p>Criar conta</p>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main class="main-login">
+    <div class="login-area">
+      <div class="login-wrapper">
+        <form action="">
+          <h1 class="login-title">{%block loginTitle %}Bem vindo{% endblock %}</h1>
+          <h3 class="login-subtitle">{%block loginSub %}Entre com seu email da fatec{% endblock %}</h3>
+          {% block login %}
+          {% endblock %}
+          <button class="btn btn-full btn-login">
+            <p>{% block btnTitle %}Entrar{% endblock %}</p>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+  <footer class="footer-login">
+    <div class="login-footer-wrapper">
+      <div class="copyright">
+        <p>@2021 - FatecSJC - Todos os direitos reservados</p>
+      </div>
+      <nav class="footer-nav">
+        <p>Termos</p>
+        <p>Política de privacidade</p>
+        <p>Contato</p>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+
+</html>

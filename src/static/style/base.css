@@ -28,7 +28,8 @@
   --search-font-size:1.625rem;
 
   /*font-weight*/
-  --regular:500;
+  --regular:400;
+  --medium:500;
   --semi-bold:600;
   --bold:700;
   --extra-bold:900;
@@ -437,7 +438,7 @@ body{
 
 /* Conteudo principal (Cards) */
 
-main{
+.base-main{
   display: flex;
   flex-direction: column;
   margin-top: 50px;
@@ -494,6 +495,7 @@ main{
 .text-area p{
   position: relative;
   padding-left: 1em;
+  font-weight: var(--regular);
 }
 
 .text-area p::before{
