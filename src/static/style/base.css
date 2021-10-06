@@ -205,6 +205,10 @@ textarea{
   font-size: var(--small-icon)
 }
 
+button{
+  cursor: pointer;
+}
+
 /* btn-full */
 
 .btn-full{
