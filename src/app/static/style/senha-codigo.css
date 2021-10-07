@@ -1,0 +1,13 @@
+.code-line{
+    width: 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input-wrapper :is(input){
+    width: 80%;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+}

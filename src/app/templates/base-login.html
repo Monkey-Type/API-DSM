@@ -49,7 +49,9 @@
           {% block login %}
           {% endblock %}
           <button class="btn btn-full btn-login">
+            {% block btnlink %}
             <p>{% block btnTitle %}Entrar{% endblock %}</p>
+            {% endblock %}
           </button>
         </form>
       </div>

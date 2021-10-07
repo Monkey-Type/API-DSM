@@ -34,3 +34,23 @@ def inicio():
 @routes.route('/arquivos')
 def archive():
     return render_template('arquivos.html')
+
+@routes.route('/login')
+def login():
+    return render_template('login.html')
+
+@routes.route('/esqueceu-senha')
+def password():
+    return render_template('esqueceu-senha.html')
+
+@routes.route('/senha-codigo')
+def password_code():
+    return render_template('senha-codigo.html')
+
+@routes.route('/codigo-correto')
+def right_code():
+    return render_template('codigo-correto.html')
+
+@routes.route('/sucesso')
+def success():
+    return render_template('sucesso.html')

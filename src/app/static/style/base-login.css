@@ -8,6 +8,10 @@ body{
   align-items:stretch
 }
 
+tspan{
+  font-family: 'Open Sans', sans-serif;
+}
+
 /* login-header */
 
 .login-header-wrapper{
@@ -25,6 +29,23 @@ body{
   height: 45px;
   padding-left: 1em;
   padding-right: 1em;
+}
+
+.btn a{
+  width: 100%;
+  height: 30px;
+  padding: 0px 0px 0px 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: var(--h3-font-size);
+  font-weight: var(--bold);
+  gap: .2em;
+  color: var(--btn-text-color);
+  border-radius: var(--button-border-radius);
+  cursor:pointer;
+  white-space: nowrap;
 }
 
 /* login main */
@@ -55,7 +76,7 @@ body{
 
 .login-input{
   margin-top: 1.5em;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
 }
 
 .login-input h3{

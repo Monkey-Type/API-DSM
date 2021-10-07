@@ -1,0 +1,44 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{url_for('static', filename='style/senha-codigo.css')}}">
+{% endblock %}
+
+{% block title %}Digite o código{% endblock %}
+
+{%block loginTitle %}Digite o código{% endblock %}
+{%block loginSub %}Entre com o código recebido no email{% endblock %}
+
+{% block login %}
+
+<div class="login-input">
+  <h3>Código:</h3>
+  <div class="code-line">
+    <div class="input-wrapper small-input input-code">
+        <input type="text" name="code" placeholder="0">
+    </div>
+    <div class="input-wrapper small-input input-code">
+        <input type="text" name="code" placeholder="0">
+    </div>
+    <div class="input-wrapper small-input input-code">
+        <input type="text" name="code" placeholder="0">
+    </div>
+    <div class="input-wrapper small-input input-code">
+        <input type="text" name="code" placeholder="0">
+    </div>
+    <div class="input-wrapper small-input input-code">
+        <input type="text" name="code" placeholder="0">
+    </div>
+    <div class="input-wrapper small-input input-code">
+        <input type="text" name="code" placeholder="0">
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block btnlink %}
+
+<a href="/codigo-correto">Enviar o código</a>
+
+{% endblock %}
