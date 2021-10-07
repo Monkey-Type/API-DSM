@@ -1,0 +1,26 @@
+{% extends 'base-login.html' %}
+
+{% block title %} Codigo Correto {% endblock %}
+
+{%block loginTitle %}Código Correto{% endblock %}
+{%block loginSub %}Digite a sua nova senha{% endblock %}
+
+{% block login %}
+
+<div class="login-input">
+    <h3>Nova senha:</h3>
+    <div class="input-wrapper small-input">
+      <input type="password" name="senha" placeholder="mínimo de 5 caracteres">
+      <span class="material-icons-round">lock</span>
+    </div>
+      <h3>Confirmar nova senha:</h3>
+    <div class="input-wrapper small-input">
+      <input type="password" name="senha" placeholder="Mínimo de 5 caracteres">
+      <span class="material-icons-round">lock</span>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+{% block btnTitle %} Enviar Código {% endblock %}

@@ -28,3 +28,15 @@ def archive():
 @routes.route('/')
 def login():
     return render_template('login.html')
+    
+
+#sucesso e codigo correto
+
+@routes.route('/sucesso')
+def sucesso():
+    return render_template('sucesso.html')
+
+
+@routes.route('/codigo-correto')
+def codigo_correto():
+    return render_template('codigo-correto.html')

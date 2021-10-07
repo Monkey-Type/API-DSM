@@ -45,6 +45,7 @@ body{
 .login-subtitle{
   font-size: var(--h3-font-size);
   color:var(--secondary-text-color);
+  margin-bottom: 1em;
 }
 
 .btn-login{
