@@ -17,12 +17,12 @@
 <div class="page-wrapper" id="popup">
     <div class="popup-bg" id="popupBg"></div>
     <div class="popup popup-editar">
-        <form action="">
+        <form action="{{ url_for('main.edit') }}" method="POST">
             <div class="content-popup-editar">
                 <h2>Novo Informativo</h2>
                 <p>Enviar para:</p>
                 <div class="input-wrapper small-input">
-                    <input type="text" name="para" placeholder="Aluno, Professor...">
+                    <input type="text" name="remetente" placeholder="Aluno, Professor...">
                     <span class="material-icons-round">person_add</span>
                 </div>
                 <p>Assunto:</p>
@@ -32,7 +32,7 @@
                 </div>
                 <p>Corpo da menssagem:</p>
                 <div class="input-wrapper small-input textarea-wrapper">
-                    <textarea type="text" name="text" placeholder="Título da menssagem"></textarea>
+                    <textarea name="texto" placeholder="Título da menssagem"></textarea>
                     <span class="material-icons-round">subtitles</span>
                 </div>
             </div>
