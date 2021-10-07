@@ -1,5 +1,6 @@
-from fatec import db
+from app import db
 from datetime import datetime
+
 
 class Postagem(db.Model):
     __tablename__ = "Postagem"

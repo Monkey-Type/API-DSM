@@ -5,7 +5,6 @@ from .database.models import Postagem
 
 routes = Blueprint('main', __name__)
 
-
 @routes.route('/informativos')
 def main():
     return render_template('home.html')
@@ -23,20 +22,16 @@ def edit():
         remetente = request.form.get('remetente')
         assunto = request.form.get('assunto')
         texto = request.form.get('texto')
-        informativo = Postagem(
-            texto=texto, assunto=assunto, remetente=remetente)
+        informativo = Postagem(texto=texto, assunto=assunto, remetente=remetente)
         db.session.add(informativo)
         db.session.commit()
         return redirect('/')
     return render_template('editar.html')
-
-
 @routes.route('/')
 def inicio():
     posts = Postagem.query.order_by(Postagem.data.desc()).all()
-    return render_template("client/home.html", posts=posts)
+    return render_template("home.html", posts=posts )
 
-
-@routes.route('/arquivos')
+@routes.route('/base.html')
 def archive():
     return render_template('arquivos.html')
