@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <!--Fontes-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="../static/style/login.css">
     <title>Login Fatec</title>
 </head>
+
 <body>
     <header class="header">
         <div class="fatec_logo">
@@ -19,11 +21,13 @@
         </div>
         <div class="fatec_newuser">
             <form action="">
-                <p>Novo aqui? <input type="submit" formaction="http://127.0.0.1:8000/registrar" value="Crie Uma conta"></p>
+                <p>Novo aqui? <input type="submit" formaction="http://127.0.0.1:8000/registrar" value="Crie Uma conta">
+                </p>
             </form>
         </div>
     </header>
     <!--Adicionar formaction="" para as outras paginas-->
+    {% block content %}
     <main>
         <div class="central-div-controll">
             <div class="login-div">
@@ -33,25 +37,33 @@
                         <input type="button" value="Entrar com Siga">
                         <h3>———Ou logue-se com o e-mail———</h3>
                         <p>E-mail:</p>
-                        <input name='email' type="email" name="" id=""placeholder="exemple@fatec.sp.gov.br">
+                        <input type="email" name="email" placeholder="Seu E-mail" autofocus="">
                         <div class="senha-div">
                             <p>Senha:</p>
-                            <p><a href="http://127.0.0.1:8000/esqueceupass">Esqueci a senha</a></p>
+                            <input type="password" name="password" placeholder="Sua Senha">
                         </div>
-                        <input name='senha' type="password" name="" id="" placeholder="digite sua senha" >
+                        <input name='senha' type="password" name="" id="" placeholder="digite sua senha">
                         <button>Enviar</button>
                     </form>
                 </div>
             </div>
         </div>
     </main>
+    {% endblock %}
     <footer>
         <h3>@2021 - Fatec-SJC - Todos os direitos reservados</h3>
         <div class="links">
-            <a href=""><p>Termos</p></a>
-            <a href=""><p>Politica de Privacidade</p></a>
-            <a href=""><p>Contatos</p></a>
+            <a href="">
+                <p>Termos</p>
+            </a>
+            <a href="">
+                <p>Politica de Privacidade</p>
+            </a>
+            <a href="">
+                <p>Contatos</p>
+            </a>
         </div>
     </footer>
 </body>
+
 </html>

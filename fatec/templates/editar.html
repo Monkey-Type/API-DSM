@@ -7,7 +7,7 @@
 {% block title %}Editar{% endblock %}
 
 {% block btn_criar %}
-
+{% block body %}
 <div class="create-btn-box">
     <button class="btn btn-full btn-popup" id="btnpop">
         <span class="material-icons-round">add</span>
@@ -17,22 +17,22 @@
 <div class="page-wrapper" id="popup">
     <div class="popup-bg" id="popupBg"></div>
     <div class="popup popup-editar">
-        <form action="">
+        <form action="{{ url_for('main.edit') }}" method="POST">
             <div class="content-popup-editar">
                 <h2>Novo Informativo</h2>
                 <p>Enviar para:</p>
                 <div class="input-wrapper small-input">
-                    <input type="text" name="para" placeholder="Aluno, Professor...">
+                    <input type="text" name="remetente" placeholder="Aluno, Professor...">
                     <span class="material-icons-round">person_add</span>
                 </div>
                 <p>Assunto:</p>
                 <div class="input-wrapper small-input">
-                    <input type="text" name="assunto" placeholder="Título da menssagem">
+                    <input type="text" name="assunto" placeholder="Titulo da menssagem">
                     <span class="material-icons-round">subtitles</span>
                 </div>
                 <p>Corpo da menssagem:</p>
                 <div class="input-wrapper small-input textarea-wrapper">
-                    <textarea type="text" name="text" placeholder="Título da menssagem"></textarea>
+                    <textarea name="texto" cols="30" rows="10"></textarea>
                     <span class="material-icons-round">subtitles</span>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                     <button><span class="material-icons-round">image</span></button>
                     <button><span class="material-icons-round">folder</span></button>
                 </div>
-                <button class="btn btn-full">
+                <button type="submit"  name="submit" class="btn btn-full">
                     <span class="material-icons-round">send</span>
                     <p>Enviar</p>
                 </button>
@@ -54,6 +54,7 @@
         </form>
     </div>
 </div>
+{% endblock %}
 {% endblock %}
 
 {% block main_text %}SEUS INFORMATIVOS{% endblock %}

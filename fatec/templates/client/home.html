@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block main %}
+
+<div class="main-text">{% block main_text %}INFORMATIVOS{% endblock %}</div>
+<div class="card-box">
+    <div class="text-title-area">
+      {% for post in posts %}
+      <h2 class="title-text">{{ post.assunto }}</h2>
+        <h3 class="sender-name">- Secretaria</h3>
+        <p class="send-date ">Publicado em {{ post.data.strftime('%m/%d/%Y') }}</p>
+    </div>
+    <div class="text-area">
+      <p>{{ post.texto }}</p>
+    </div>
+    <div class="bottom-buttons">
+      <button class="btn btn-full">
+        <span class="material-icons-round">more_horiz</span>
+        <p>Ler mais</p>
+      </button>
+      {% block btn_empty %}
+      <button class="btn btn-empty">
+        <span class="material-icons-round">archive</span>
+        <p>Arquivar</p>
+      </button>
+      {% endblock %}
+      {% endfor %}
+      <span class="material-icons-round card-icon">
+        attach_file
+      </span>
+</div>
+</div>
+{% endblock %}
