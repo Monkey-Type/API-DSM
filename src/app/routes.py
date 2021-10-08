@@ -5,6 +5,7 @@ from .database.models import Postagem
 
 routes = Blueprint('main', __name__)
 
+
 @routes.route('/config')
 def config():
     return render_template('config.html')
@@ -14,11 +15,11 @@ def config():
 def edit():
     if request.method == 'POST':
 
-        remetente = request.form.get('remetente')
+        recebido = request.form.get('recebido')
         assunto = request.form.get('assunto')
         texto = request.form.get('texto')
         informativo = Postagem(
-            texto=texto, assunto=assunto, remetente=remetente)
+            texto=texto, assunto=assunto, recebido=recebido)
         db.session.add(informativo)
         db.session.commit()
         return redirect('/')
@@ -35,22 +36,32 @@ def inicio():
 def archive():
     return render_template('arquivos.html')
 
+
 @routes.route('/login')
 def login():
     return render_template('login.html')
+
 
 @routes.route('/esqueceu-senha')
 def password():
     return render_template('esqueceu-senha.html')
 
+
 @routes.route('/senha-codigo')
 def password_code():
     return render_template('senha-codigo.html')
+
 
 @routes.route('/codigo-correto')
 def right_code():
     return render_template('codigo-correto.html')
 
+
 @routes.route('/sucesso')
 def success():
     return render_template('sucesso.html')
+
+
+@routes.route('/register')
+def register():
+    return render_template('registrar.html')
