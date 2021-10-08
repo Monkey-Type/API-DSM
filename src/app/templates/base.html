@@ -32,10 +32,12 @@
             <span class="material-icons-round medium-icon">archive</span>
             <div class="selection-bar"></div>
           </a>
+          {% if user.cargo %}
           <a href="/editar">
             <span class="material-icons-round medium-icon">edit</span>
             <div class="selection-bar"></div>
           </a>
+          {% endif %}
         </div>
         <div class="main-nav-items bottom-items">
           <a href="/config">
@@ -62,23 +64,18 @@
           <main class="base-main">
             {% block main %}
             <div class="main-text">{% block main_text %}INFORMATIVOS{% endblock %}</div>
+            {% for post in posts %}
             <div class="card-box">
+              <h2 class="title-text">{{ post.assunto }}</h2>
               <div class="text-title-area">
-                <h2 class="title-text">Comunicado</h2>
-                <h3 class="sender-name">- Secretaria</h3>
-                <p class="send-date">29.09.2021</p>
+                <h3 class="sender-name">{{ post.remetente }}</h3>
+                <div class="send-date">
+                  <p class="hour">{{ post.data.strftime('%H:%M') }}</p>
+                  <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
+                </div>
               </div>
               <div class="text-area">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel deserunt dolor nisi error perspiciatis
-                  molestiae, omnis officiis itaque, saepe necessitatibus quam exercitationem, similique laboriosam quo.
-                  Pariatur hic tenetur excepturi obcaecati? Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Amet
-                  corrupti omnis quod impedit blanditiis atque provident laboriosam quidem error sapiente.
-                  Necessitatibus
-                  corrupti, eius recusandae architecto soluta laborum quis est id? Lorem ipsum dolor sit amet
-                  consectetur
-                  adipisicing elit. Ea, dolore reprehenderit. Ea optio excepturi hic est modi temporibus, fuga alias
-                  incidunt, dolorem iure totam repudiandae dolores deleniti quae unde maiores</p>
+                <p>{{ post.texto }}</p>
               </div>
               <div class="bottom-buttons">
                 <button class="btn btn-full">
@@ -87,8 +84,8 @@
                 </button>
                 {% block btn_empty %}
                 <button class="btn btn-empty">
-                  <span class="material-icons-round">archive</span>
-                  <p>Arquivar</p>
+                  <span class="material-icons-round">delete</span>
+                  <p>Excluir</p>
                 </button>
                 {% endblock %}
                 <span class="material-icons-round card-icon">
@@ -96,6 +93,7 @@
                 </span>
               </div>
             </div>
+            {% endfor %}
             {% endblock %}
           </main>
         </div>
@@ -105,17 +103,19 @@
         <div class="filter-section">
           <h2 class="section-title filter-title">FILTRO</h2>
           <form action="">
+            {% if user.cargo==1 %}
             <div class="input-wrapper small-input">
               <input type="search" name="cursos" placeholder="Cursos">
               <span class="material-icons-round">search</span>
             </div>
+            {% endif %}
             <div class="dropdown-wrapper">
               <div class="input-wrapper small-input">
-                <select name="ordenar" id="ordenar">
-                  <option value="" disabled selected>Ordenar</option>
-                  <option value="recentes">Mais recentes</option>
-                  <option value="antigos">Mais antigos</option>
-                  <option value="prioridade">Prioridade</option>
+                <select name="anexos" id="anexos">
+                  <option value="" disabled selected>Anexos</option>
+                  <option value="foto">Foto</option>
+                  <option value="video">Video</option>
+                  <option value="documento">Documentos</option>
                 </select>
                 <span class="material-icons-round">expand_more</span>
               </div>
@@ -133,15 +133,17 @@
               <input type="date" name="data" placeholder="Dia/Mes/Ano">
               <span class="material-icons-round">today</span>
             </div>
-            <div class="input-wrapper small-input">
-              <select name="anexos" id="anexos">
-                <option value="" disabled selected>Anexos</option>
-                <option value="foto">Foto</option>
-                <option value="video">Video</option>
-                <option value="documento">Documentos</option>
+            <!-- <div class="input-wrapper small-input">
+              <select name="envio" id="envio">
+                <option value="" disabled selected>Data de envio</option>
+                <option value="foto">Última hora</option>
+                <option value="video">Hoje</option>
+                <option value="documento">Esta semana</option>
+                <option value="documento">Este mês</option>
+                <option value="documento">Este ano</option>
               </select>
               <span class="material-icons-round">expand_more</span>
-            </div>
+            </div> -->
           </form>
         </div>
 

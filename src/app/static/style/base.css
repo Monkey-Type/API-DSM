@@ -485,13 +485,21 @@ body{
 
 .sender-name{
   line-height: 1.9em;
-  margin-left: .2em;
   font-size: var(--h3-font-size);
   font-weight: var(--semi-bold);
   flex: auto;
   color: var(--faded-text-color);
 }
 .send-date{
+  display: flex;
+}
+
+.send-date .hour::after{
+  content: '-';
+  margin: 0 .5em;
+}
+
+.send-date p{
   font-weight: var(--regular);
   line-height: 2em;
   color: var(--secondary-text-color);
