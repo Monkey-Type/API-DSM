@@ -60,11 +60,9 @@ class Postagem(db.Model):
     recebido = db.Column(db.String, nullable=False)
 
     # Professor
-    id_professor = db.Column(db.Integer, db.ForeignKey(
-        'professor.id'))  # Adicionar o nullable=False dps
+    # id_professor = db.Column(db.Integer, db.ForeignKey('professor.id'))  # Adicionar o nullable=False dps
     # Coordenador
-    id_coordenador = db.Column(db.Integer, db.ForeignKey(
-        'coordenador.id'))  # Adicionar o nullable=False dps
+    # id_coordenador = db.Column(db.Integer, db.ForeignKey('coordenador.id'))  # Adicionar o nullable=False dps
     # obtem
     obtems = db.relationship(
         'Curso', secondary=obtem, backref=db.backref('obtem', lazy='dynamic'))
@@ -116,7 +114,7 @@ class Professor(db.Model):
     senha = db.Column(db.String(100), nullable=False)
 
     # Postagem
-    postagem = db.relationship('Postagem', backref='professor')
+    #postagem=db.relationship('Postagem', backref='professor')
     # Funcionario
     id_funcionario = db.Column(db.Integer, db.ForeignKey(
         'funcionario.id'), nullable=False)
@@ -170,7 +168,7 @@ class Coordenador(db.Model):
     # Curso
     id_curso = db.Column(db.Integer, db.ForeignKey('curso.id'), nullable=False)
     # Postagem
-    postagem = db.relationship('Postagem', backref='coordenador')
+    #postagem=db.relationship('Postagem', backref='coordenador')
 
 
 db.create_all()

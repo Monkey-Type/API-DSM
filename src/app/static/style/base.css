@@ -507,6 +507,7 @@ body{
   position: relative;
   padding-left: 1em;
   font-weight: var(--regular);
+  word-wrap: break-word;
 }
 
 .text-area p::before{

@@ -13,6 +13,7 @@ def config():
 
 @routes.route('/editar', methods=['POST', 'GET'])
 def edit():
+    posts = Postagem.query.order_by(Postagem.data.desc()).all()
     if request.method == 'POST':
 
         recebido = request.form.get('recebido')
@@ -23,7 +24,7 @@ def edit():
         db.session.add(informativo)
         db.session.commit()
         return redirect('/')
-    return render_template('editar.html')
+    return render_template('editar.html', posts=posts)
 
 
 @routes.route('/')

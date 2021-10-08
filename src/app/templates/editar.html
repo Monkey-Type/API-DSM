@@ -56,12 +56,34 @@
 </div>
 {% endblock %}
 
-{% block main_text %}SEUS INFORMATIVOS{% endblock %}
 
-{% block btn_empty %}
-
-<button class="btn btn-empty">
-    <span class="material-icons-round">delete</span>
-    <p>Excluir</p>
-</button>
+{% block main %}
+<div class="main-text">{% block main_text %}INFORMATIVOS{% endblock %}</div>
+{% for post in posts %}
+<div class="card-box">
+    <div class="text-title-area">
+        <h2 class="title-text">{{ post.assunto }}</h2>
+        <h3 class="sender-name">- Secretaria</h3>
+        <p class="send-date ">{{ post.data.strftime('%m/%d/%Y') }}</p>
+    </div>
+    <div class="text-area">
+        <p>{{ post.texto }}</p>
+    </div>
+    <div class="bottom-buttons">
+        <button class="btn btn-full">
+            <span class="material-icons-round">more_horiz</span>
+            <p>Ler mais</p>
+        </button>
+        {% block btn_empty %}
+        <button class="btn btn-empty">
+            <span class="material-icons-round">delete</span>
+            <p>Excluir</p>
+        </button>
+        {% endblock %}
+        <span class="material-icons-round card-icon">
+            attach_file
+        </span>
+    </div>
+</div>
+{% endfor %}
 {% endblock %}
