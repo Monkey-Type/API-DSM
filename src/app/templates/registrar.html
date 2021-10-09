@@ -6,34 +6,40 @@
 {%block loginSub %}Crie uma conta com seu email fatec{% endblock %}
 
 {% block login %}
-<div class="login-input registrar-input">
-  <h3>Email:</h3>
-  <div class="input-wrapper small-input">
-    <input type="email" name="email" id="email" placeholder="exemple@fatec.sp.gov.br">
-    <span class="material-icons-round">email</span>
+<form action="{{ url_for('main.register') }}" method="POST">
+  <div class="login-input registrar-input">
+    <h3>Email:</h3>
+    <div class="input-wrapper small-input">
+      {{ form.email }}
+      <span class="material-icons-round">email</span>
+    </div>
+    <h3>RA / Matricula:</h3>
+    <div class="input-wrapper small-input">
+      {{ form.ra }}
+      <span class="material-icons-round">lock</span>
+    </div>
+    <h3>Cpf:</h3>
+    <div class="input-wrapper small-input">
+      {{ form.cpf }}
+      <span class="material-icons-round">lock</span>
+    </div>
+    <h3>Nome completo: </h3>
+    <div class="input-wrapper small-input">
+      {{ form.nome }}
+      <span class="material-icons-round">lock</span>
+    </div>
+    <h3>Senha:</h3>
+    <div class="input-wrapper small-input">
+      {{ form.senha }}
+      <span class="material-icons-round">lock</span>
+    </div>
+    <h3>Confirmar senha:</h3>
+    <div class="input-wrapper small-input">
+      {{ form.confirm }}
+      <span class="material-icons-round">lock</span>
+    </div>
+    <input type="submit" value="enviar" class="btn btn-full btn-login">
   </div>
-  <h3>RA / Matricula</h3>
-  <div class="input-wrapper small-input">
-    <input type="email" name="ra" id="ra" placeholder="0000000000000">
-    <span class="material-icons-round">lock</span>
-  </div>
-  <h3>Nome completo: </h3>
-  <div class="input-wrapper small-input">
-    <input type="text" name="nome" id="nome" placeholder="Fulano do Fulano do Ciclano">
-    <span class="material-icons-round">lock</span>
-  </div>
-  <h3>Senha:</h3>
-  <div class="input-wrapper small-input">
-    <input type="password" name="senha" placeholder="Mínimo de 5 caracteres">
-    <span class="material-icons-round">lock</span>
-  </div>
-  <h3>Confirmar senha:</h3>
-  <div class="input-wrapper small-input">
-    <input type="password" name="csenha" placeholder="Mínimo de 5 caracteres">
-    <span class="material-icons-round">lock</span>
-  </div>
-</div>
+</form>
 
 {% endblock %}
-
-{% block btnTitle %}Entrar{% endblock %}

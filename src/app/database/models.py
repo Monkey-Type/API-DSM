@@ -1,6 +1,7 @@
 from sqlalchemy.orm import backref
 from app import db
 from datetime import datetime
+from flask_login import UserMixin
 
 
 class Postagem(db.Model):
@@ -14,16 +15,23 @@ class Postagem(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     cpf = db.Column(db.Integer, nullable=False)
     nome = db.Column(db.String(100), nullable=False)
     senha = db.Column(db.String(100), nullable=False)
     ra = db.Column(db.Integer, nullable=False)
+    email = db.Column(db.String, nullable=False)
     cargo = db.Column(db.Boolean)
     area = db.Column(db.String(100), nullable=True)
 
     postagem = db.relationship('Postagem', backref='user')
 
+    def __init__(self, nome, email, cpf, ra, senha ):
+        self.nome = nome
+        self.ra = ra 
+        self.cpf = cpf
+        self.email = email
+        self.senha = senha
 
 db.create_all()
