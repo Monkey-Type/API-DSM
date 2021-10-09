@@ -35,7 +35,7 @@ admin.add_view(ModelView(User, db.session))
 #Login Maneger
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "login"
+login_manager.login_view = "main.login"
 '''
 admin.add_view(ModelView(Turma, db.session))
 admin.add_view(ModelView(Curso, db.session))

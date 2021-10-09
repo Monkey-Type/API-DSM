@@ -5,25 +5,26 @@
 {%block loginTitle %}Bem vindo{% endblock %}
 {%block loginSub %}Entre com seu email da fatec{% endblock %}
 
+{% block form %}{{ url_for('main.login') }} {% endblock %}
+
 {% block login %}
-<form action="{{ url_for('main.login') }}" method="POST">
-  <div class="login-input">
-    <h3>Email:</h3>
-    <div class="input-wrapper small-input">
-      <input type="email" name="email" placeholder="exemple@fatec.sp.gov.br">
-      <span class="material-icons-round">lock</span>
-    </div>
-    <div class="password-label">
-      <h3>Senha:</h3>
-      <a href="/esqueceu-senha">esqueceu a senha?</a>
-    </div>
-    <div class="input-wrapper small-input">
-      <input type="password" name="senha" placeholder="Mínimo de 5 caracteres">
-      <span class="material-icons-round">lock</span>
-    </div>
-    <input type="submit" value="enviar" class="btn btn-full btn-login">
+<div class="login-input">
+  <h3>Email:</h3>
+  <div class="input-wrapper small-input">
+    {{ form.email }}
+    <!-- <input type="email" name="email" placeholder="exemple@fatec.sp.gov.br"> -->
+    <span class="material-icons-round">lock</span>
   </div>
-</form>
+  <div class="password-label">
+    <h3>Senha:</h3>
+    <a href="/esqueceu-senha">esqueceu a senha?</a>
+  </div>
+  <div class="input-wrapper small-input">
+    {{ form.senha }}
+    <!-- <input type="password" name="senha" placeholder="Mínimo de 5 caracteres"> -->
+    <span class="material-icons-round">lock</span>
+  </div>
+</div>
 {% endblock %}
 
 {% block btnTitle %}Entrar{% endblock %}
