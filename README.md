@@ -711,12 +711,6 @@ MariaDB/MySQL/PostGresSQL</td>
         <td align="center">✔</td>
     </tr>
     <tr>
-        <td>RF - 5</td>
-        <td>Filtro por data</td>
-        <td align="center">✔</td>
-        <td align="center">✔</td>
-    </tr>
-    <tr>
         <td>RF - 6</td>
         <td> Funcionalidade de registro e armazenamento de novos usuários na aplicação</td>
         <td align="center">✔</td>
@@ -741,12 +735,6 @@ MariaDB/MySQL/PostGresSQL</td>
         <td align="center">✔</td>
     </tr>
     <tr>
-        <td>RF - 7</td>
-        <td> Apenas o usuário que criou o informativo, terá a liberdade de excluí-lo</td>
-        <td align="center">✔</td>
-        <td align="center">✔</td>
-    </tr>
-    <tr>
         <td>RF - 8</td>
         <td> Criar lógica que permita que o direcionamento dos informativos criados pelo novo Usuário seja feito de acordo com as hierarquias</td>
         <td align="center">✔</td>
@@ -761,7 +749,13 @@ MariaDB/MySQL/PostGresSQL</td>
     <tr><td></td><td></td><td></td><td></td></tr>
     <tr>
         <td>RNF - 4</td>
-        <td>Construção da API para conversação entre front e back end</td>
+        <td>Construção da API em Flask</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RNF - 4</td>
+        <td>Integração do front end com a API</td>
         <td align="center">✔</td>
         <td align="center">✔</td>
     </tr>
