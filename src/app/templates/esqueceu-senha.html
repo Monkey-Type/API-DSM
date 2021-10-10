@@ -1,0 +1,24 @@
+{% extends 'base-login.html' %}
+
+{% block title %}Esqueceu senha{% endblock %}
+
+{%block loginTitle %}Esqueceu a senha?{% endblock %}
+{%block loginSub %}Enviaremos um código para seu email{% endblock %}
+
+{% block login %}
+
+<div class="login-input">
+  <h3>Email:</h3>
+  <div class="input-wrapper small-input">
+    <input type="email" name="email" placeholder="exemple@fatec.sp.gov.br">
+    <span class="material-icons-round">email</span>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block btnlink %}
+
+<a href="/senha-codigo">Receber o código</a>
+
+{% endblock %}

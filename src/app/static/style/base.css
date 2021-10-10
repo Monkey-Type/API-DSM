@@ -49,7 +49,29 @@
   --default-gap: 30px;
 }
 
+@media screen and (max-width:500px){
+  :root{
+    --h1-font-size:2.5rem;
+    --h2-font-size:2rem;
+    --h3-font-size:1rem;
+    --h4-font-size:0.70rem;
+    --p-font-size:1rem;
+    --menu-font-size:1.75rem;
+    --search-font-size:1.625rem;
+  }
+}
 /* estilos base */
+
+.flashes{
+  margin-top: .5em;
+  margin-bottom: 1.5em;
+}
+
+.flashes div{
+  color: red;
+  font-weight: bold;
+  font-size: var(--h3-font-size);
+}
 
 /* font family */
 body{
@@ -474,13 +496,21 @@ body{
 
 .sender-name{
   line-height: 1.9em;
-  margin-left: .2em;
   font-size: var(--h3-font-size);
   font-weight: var(--semi-bold);
   flex: auto;
   color: var(--faded-text-color);
 }
 .send-date{
+  display: flex;
+}
+
+.send-date .hour::after{
+  content: '-';
+  margin: 0 .5em;
+}
+
+.send-date p{
   font-weight: var(--regular);
   line-height: 2em;
   color: var(--secondary-text-color);
@@ -496,6 +526,7 @@ body{
   position: relative;
   padding-left: 1em;
   font-weight: var(--regular);
+  word-wrap: break-word;
 }
 
 .text-area p::before{

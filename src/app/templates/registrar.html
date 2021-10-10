@@ -1,0 +1,61 @@
+{% extends 'base-login.html' %}
+
+{% block title %}Login{% endblock %}
+
+{%block loginTitle %}Registrar{% endblock %}
+{%block loginSub %}Crie uma conta com seu email fatec{% endblock %}
+
+{% block form %}{{ url_for('main.register') }} {% endblock %}
+
+{% block login %}
+<div class="login-input registrar-input">
+  <h3>Email:</h3>
+  <div class="input-wrapper small-input">
+    {{ form.email }}
+    <span class="material-icons-round">email</span>
+  </div>
+  <h3>RA / Matricula:</h3>
+  <div class="input-wrapper small-input">
+    {{ form.ra }}
+    <span class="material-icons-round">lock</span>
+  </div>
+  <h3>Cpf:</h3>
+  <div class="input-wrapper small-input">
+    {{ form.cpf }}
+    <span class="material-icons-round">lock</span>
+  </div>
+  <h3>Nome completo: </h3>
+  <div class="input-wrapper small-input">
+    {{ form.nome }}
+    <span class="material-icons-round">lock</span>
+  </div>
+  <h3>Senha:</h3>
+  <div class="input-wrapper small-input">
+    {{ form.senha }}
+    <span class="material-icons-round">lock</span>
+  </div>
+  <h3>Confirmar senha:</h3>
+  <div class="input-wrapper small-input">
+    {{ form.confirm }}
+    <span class="material-icons-round">lock</span>
+  </div>
+</div>
+
+<div class="flashes">
+  {% for error in form.email.errors %}
+  <div>Erro: {{ error }}</div>
+  {% endfor %}
+  {% for error in form.cpf.errors %}
+  <div>Erro: {{ error }}</div>
+  {% endfor %}
+  {% for error in form.ra.errors %}
+  <div>Erro: {{ error }}</div>
+  {% endfor %}
+  {% for error in form.senha.errors %}
+  <div>Erro: {{ error }}</div>
+  {% endfor %}
+</div>
+
+{% include '_messages.html' %}
+
+{% endblock %}
