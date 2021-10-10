@@ -60,8 +60,8 @@ def archive():
 
 @routes.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginFormulario(request.form)
-    if request.method == 'POST' and form.validate():
+    form = LoginFormulario()
+    if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             if bcrypt.check_password_hash(user.senha, form.senha.data):

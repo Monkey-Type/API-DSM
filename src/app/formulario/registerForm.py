@@ -1,12 +1,12 @@
+from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, IntegerField, validators
-from wtforms.form import Form
-from wtforms.validators import InputRequired, Length, ValidationError
+from wtforms.validators import InputRequired, Length, ValidationError, Email
 from app import *
 # from flask_wtf.form import FlaskForm
 from wtforms.fields.html5 import EmailField
 
 
-class RegisterForm(Form):
+class RegisterForm(FlaskForm):
     nome = StringField(validators=[InputRequired(), Length(
         min=4, max=100)], render_kw={"placeholder": "Nome completo"})
 
@@ -36,8 +36,9 @@ class RegisterForm(Form):
                 "Este usuario ja existe!")
 
 
-class LoginFormulario(Form):
-    email = StringField('Email', [validators.length(min=6, max=35)], render_kw={
+class LoginFormulario(FlaskForm):
+    email = StringField('Email', validators=[InputRequired(), Email(message='nao gostei do seu email')], render_kw={
                         "placeholder": "exemple@fatec.sp.gov.br"})
-    senha = PasswordField('Sua senha', [validators.DataRequired()], render_kw={
-                          "placeholder": "minimo de 5 caracteres"})
+    senha = PasswordField('Sua senha', validators=[InputRequired(), Length(
+        min=2, max=100, message='tem que ser desse tamanho')], render_kw={
+        "placeholder": "minimo de 5 caracteres"})
