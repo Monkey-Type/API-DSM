@@ -32,7 +32,7 @@
             <span class="material-icons-round medium-icon">archive</span>
             <div class="selection-bar"></div>
           </a>
-          {% if user.cargo %}
+          {% if user.envia %}
           <a href="/editar">
             <span class="material-icons-round medium-icon">edit</span>
             <div class="selection-bar"></div>
@@ -103,7 +103,7 @@
         <div class="filter-section">
           <h2 class="section-title filter-title">FILTRO</h2>
           <form action="">
-            {% if user.cargo==1 %}
+            {% if user.envia==1 %}
             <div class="input-wrapper small-input">
               <input type="search" name="cursos" placeholder="Cursos">
               <span class="material-icons-round">search</span>

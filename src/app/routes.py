@@ -1,5 +1,5 @@
 from os import remove
-from flask import Blueprint, render_template, url_for, request
+from flask import Blueprint, render_template, url_for, request, flash
 from flask_login.utils import login_user
 from sqlalchemy.orm import session
 from werkzeug.utils import redirect
@@ -22,28 +22,38 @@ def load_user(user_id):
 
 @routes.route('/register', methods=["GET", "POST"])
 def register():
-    form = RegisterForm(request.form)
-    if request.method == "POST":
-        hashed_password = bcrypt.generate_password_hash(
-            form.senha.data).decode("utf-8")
-        novoUsuario = User(email=form.email.data, ra=form.ra.data,
-                           cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)
-        db.session.add(novoUsuario)
-        db.session.commit()
-        return redirect(url_for('main.login'))
+    form = RegisterForm()
+    if form.validate_on_submit():
+        cpfExistente = User.query.filter_by(cpf=form.cpf.data).first()
+        raExistente = User.query.filter_by(ra=form.ra.data).first()
+        emailExistente = User.query.filter_by(email=form.email.data).first()
+        if cpfExistente or raExistente or emailExistente:
+            flash("Este usuario ja existe!")
+        else:
+            hashed_password = bcrypt.generate_password_hash(
+                form.senha.data).decode("utf-8")
+            novoUsuario = User(email=form.email.data, ra=form.ra.data,
+                               cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)
+            db.session.add(novoUsuario)
+            db.session.commit()
+            return redirect(url_for('main.login'))
     return render_template("registrar.html", form=form)
 
 
 @routes.route('/login', methods=['GET', 'POST'])
 def login():
-    form = LoginFormulario(request.form)
-    if request.method == "POST":
+    form = LoginFormulario()
+    if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             if bcrypt.check_password_hash(user.senha, form.senha.data):
                 login_user(user)
                 # session['email'] = form.email.data
                 return redirect(url_for('main.inicio'))
+            else:
+                flash('Senha ou email incorreto', 'danger')
+        else:
+            flash('Senha ou email incorreto', 'danger')
     return render_template('login.html', form=form, title='Logue-se')
 
 
@@ -74,7 +84,7 @@ def inicio():
     # posts = db.session.query(Postagem).filter(Postagem.recebido == area[0]).order_by(Postagem.data.desc()).all()
     # posts = Postagem.query.order_by(Postagem.data.desc()).all()
     posts = Postagem.query.filter_by(
-        recebido=user.area).order_by(Postagem.data.desc()).all()
+        recebido=user.cargo).order_by(Postagem.data.desc()).all()
     return render_template("home.html", posts=posts, user=user)
 
 
@@ -87,13 +97,13 @@ def archive():
 @routes.route('/config')
 @login_required
 def config():
-    return render_template('config.html')
+    return render_template('config.html', user=user)
 
 
 @routes.route('/editar', methods=['POST', 'GET'])
 @login_required
 def edit():
-    if not user.cargo:
+    if not user.envia:
         return redirect(url_for('main.inicio'))
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
@@ -101,9 +111,9 @@ def edit():
         recebido = request.form.get('recebido')
         assunto = request.form.get('assunto')
         texto = request.form.get('texto')
-        if user.cargo == 1:
+        if user.envia == 1:
             informativo = Postagem(
-                texto=texto, assunto=assunto, recebido=recebido, remetente=user.area, user_id=user.id)
+                texto=texto, assunto=assunto, recebido=recebido, remetente=user.cargo, user_id=user.id)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('main.edit'))

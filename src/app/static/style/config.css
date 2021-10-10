@@ -34,6 +34,7 @@
     font-size: var(--h3-font-size);
     color: var(--primary-text-color);
     font-weight: var(--bold);
+    text-transform: capitalize;
 }
 
 .texts h4{

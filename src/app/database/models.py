@@ -22,8 +22,8 @@ class User(db.Model, UserMixin):
     senha = db.Column(db.String(100), nullable=False)
     ra = db.Column(db.Integer, nullable=False)
     email = db.Column(db.String, nullable=False)
-    cargo = db.Column(db.Boolean)
-    area = db.Column(db.String(100), nullable=True, default="Aluno")
+    envia = db.Column(db.Boolean, default=0)
+    cargo = db.Column(db.String(100), nullable=True, default="Aluno")
 
     postagem = db.relationship('Postagem', backref='user')
 

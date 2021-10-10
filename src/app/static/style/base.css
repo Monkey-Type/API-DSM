@@ -49,7 +49,7 @@
   --default-gap: 30px;
 }
 
-@media screen and {
+@media screen and (max-width:500px){
   :root{
     --h1-font-size:2.5rem;
     --h2-font-size:2rem;
@@ -61,6 +61,17 @@
   }
 }
 /* estilos base */
+
+.flashes{
+  margin-top: .5em;
+  margin-bottom: 1.5em;
+}
+
+.flashes div{
+  color: red;
+  font-weight: bold;
+  font-size: var(--h3-font-size);
+}
 
 /* font family */
 body{
