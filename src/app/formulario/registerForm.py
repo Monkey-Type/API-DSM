@@ -43,6 +43,6 @@ class RegisterForm(FlaskForm):
 class LoginFormulario(FlaskForm):
     email = StringField('Email', validators=[InputRequired(), Email(message='Digite um email valido')], render_kw={
                         "placeholder": "exemple@fatec.sp.gov.br"})
-    senha = PasswordField('Sua senha', validators=[InputRequired(), Length(
+    senha = PasswordField('Senha', validators=[InputRequired(), Length(
         min=2, max=100, message='Senha deve ter pelomenos 5 caracteres')], render_kw={
         "placeholder": "Mínimo de 5 caracteres"})

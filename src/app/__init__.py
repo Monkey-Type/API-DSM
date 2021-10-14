@@ -44,5 +44,5 @@ admin.add_view(ModelView(Materia, db.session))
 admin.add_view(ModelView(Coordenador, db.session))
 admin.add_view(ModelView(Funcionario, db.session))'''
 #Importação de Rotas atraves da BluePrint
-from .routes import routes as main_blueprint
+from .views import routes as main_blueprint
 app.register_blueprint(main_blueprint)

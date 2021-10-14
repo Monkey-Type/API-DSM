@@ -80,11 +80,16 @@ tspan{
   margin-bottom: 2em;
 }
 
-.login-input h3{
+.login-input :is(h3,label){
   font-size: var(--h3-font-size);
+  font-weight: var(--bold);
   color:var(--primary-text-color);
   margin-bottom: .5em;
   margin-top: 1em;
+}
+
+.login-input label::after{
+  content: ':';
 }
 
 .login-input .password-label{
