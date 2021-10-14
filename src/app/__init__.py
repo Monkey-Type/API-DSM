@@ -35,14 +35,14 @@ admin.add_view(ModelView(User, db.session))
 #Login Maneger
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = "main.login"
-'''
-admin.add_view(ModelView(Turma, db.session))
-admin.add_view(ModelView(Curso, db.session))
-admin.add_view(ModelView(Professor, db.session))
-admin.add_view(ModelView(Materia, db.session))
-admin.add_view(ModelView(Coordenador, db.session))
-admin.add_view(ModelView(Funcionario, db.session))'''
+login_manager.login_view = "auth.login"
 #Importação de Rotas atraves da BluePrint
+<<<<<<< HEAD
 from .views import routes as main_blueprint
 app.register_blueprint(main_blueprint)
+=======
+from .auth import routes as auth_blueprint
+app.register_blueprint(auth_blueprint)
+from .view import routes as view_blueprint
+app.register_blueprint(view_blueprint)
+>>>>>>> 76f28d9bbdba9f48b6085bbca029318b47735d5f
