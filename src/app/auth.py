@@ -10,10 +10,8 @@ from .formulario.registerForm import RegisterForm, LoginFormulario
 from flask_login import login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash
 
-
-routes = Blueprint('main', __name__)
+routes = Blueprint('auth', __name__)
 user = current_user
-
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -36,9 +34,8 @@ def register():
                                cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)
             db.session.add(novoUsuario)
             db.session.commit()
-            return redirect(url_for('main.login'))
+            return redirect(url_for('auth.login'))
     return render_template("registrar.html", form=form)
-
 
 @routes.route('/login', methods=['GET', 'POST'])
 def login():
@@ -48,8 +45,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.senha, form.senha.data):
                 login_user(user)
-                # session['email'] = form.email.data
-                return redirect(url_for('main.inicio'))
+                return redirect(url_for('view.inicio'))
             else:
                 flash('Senha ou email incorreto', 'danger')
         else:
@@ -75,53 +71,3 @@ def right_code():
 @routes.route('/sucesso')
 def success():
     return render_template('sucesso.html')
-
-
-@routes.route('/', methods=["GET", "POST"])
-@login_required
-def inicio():
-    # area = db.session.query(User.area).filter(User.nome == user.nome).first()
-    # posts = db.session.query(Postagem).filter(Postagem.recebido == area[0]).order_by(Postagem.data.desc()).all()
-    # posts = Postagem.query.order_by(Postagem.data.desc()).all()
-    posts = Postagem.query.filter_by(
-        recebido=user.cargo).order_by(Postagem.data.desc()).all()
-    return render_template("home.html", posts=posts, user=user)
-
-
-@routes.route('/arquivos')
-@login_required
-def archive():
-    return render_template('arquivos.html', user=user)
-
-
-@routes.route('/config')
-@login_required
-def config():
-    return render_template('config.html', user=user)
-
-
-@routes.route('/editar', methods=['POST', 'GET'])
-@login_required
-def edit():
-    if not user.envia:
-        return redirect(url_for('main.inicio'))
-    posts = db.session.query(Postagem).filter(
-        Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
-    if request.method == 'POST':
-        recebido = request.form.get('recebido')
-        assunto = request.form.get('assunto')
-        texto = request.form.get('texto')
-        if user.envia == 1:
-            informativo = Postagem(
-                texto=texto, assunto=assunto, recebido=recebido, remetente=user.cargo, user_id=user.id)
-            db.session.add(informativo)
-            db.session.commit()
-            return redirect(url_for('main.edit'))
-    return render_template('editar.html', posts=posts, user=user)
-
-
-@routes.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('main.inicio'))
