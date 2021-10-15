@@ -121,6 +121,11 @@ a:link, a:visited{
   color:var(--primary-text-color);
 }
 
+.link{
+  color: var(--primary-accent-color) !important;
+  font-weight: var(--semi-bold)
+}
+
 /* estilos dos inputs */
 
 .input-wrapper{
@@ -128,7 +133,19 @@ a:link, a:visited{
   display: flex;
   padding: 0;
   height: 55px;
+  margin: .25em 0;
 }
+
+.field label{
+  font-size: var(--h3-font-size);
+  font-weight: var(--bold);
+  color:var(--primary-text-color);
+}
+
+.field label::after{
+  content: ':';
+}
+
 
 .input-wrapper :is(input, select, textarea){
   -webkit-appearance: none;

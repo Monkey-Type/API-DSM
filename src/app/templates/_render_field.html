@@ -1,0 +1,10 @@
+{% macro render_field(field, icon) %}
+<div class="field">
+  {{ field.label }}
+  <div class="input-wrapper small-input">
+    {{ field(**kwargs)|safe }}
+    <!-- <input type="email" name="email" placeholder="exemple@fatec.sp.gov.br"> -->
+    <span class="material-icons-round">{{ icon }}</span>
+  </div>
+</div>
+{% endmacro %}

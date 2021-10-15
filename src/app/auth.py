@@ -13,6 +13,7 @@ from werkzeug.security import generate_password_hash
 routes = Blueprint('auth', __name__)
 user = current_user
 
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -37,6 +38,7 @@ def register():
             return redirect(url_for('auth.login'))
     return render_template("registrar.html", form=form)
 
+
 @routes.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginFormulario()
@@ -55,7 +57,8 @@ def login():
 
 @routes.route('/esqueceu-senha')
 def password():
-    return render_template('esqueceu-senha.html')
+    form = LoginFormulario()
+    return render_template('esqueceu-senha.html', form=form)
 
 
 @routes.route('/senha-codigo')
