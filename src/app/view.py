@@ -1,5 +1,5 @@
 from os import remove
-from flask import Blueprint, render_template, url_for, request, flash
+from flask import Blueprint, render_template, url_for, request, flash, jsonify, json
 from flask_login.utils import login_user
 from sqlalchemy.orm import session
 from werkzeug.utils import redirect
@@ -9,7 +9,6 @@ from .database.models import User
 from .formulario.registerForm import RegisterForm, LoginFormulario
 from flask_login import login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash
-
 
 routes = Blueprint('view', __name__)
 user = current_user
@@ -46,6 +45,18 @@ def edit():
             db.session.commit()
             return redirect(url_for('view.edit'))
     return render_template('editar.html', posts=posts, user=user)
+
+
+# Deletar Post
+@routes.route('/deletar-post', methods=['POST'])
+@login_required
+def deletar_post():
+    post = json.loads(request.data)
+    postId = post['postId']
+    post = Postagem.query.get(postId)
+    db.session.delete(post)
+    db.session.commit()
+    return jsonify({})
 
 
 @routes.route('/arquivos')

@@ -36,6 +36,7 @@ admin.add_view(ModelView(User, db.session))
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "auth.login"
+login_manager.login_message = 'Você deve logar-se para acessar essa página'
 #Importação de Rotas atraves da BluePrint
 from .auth import routes as auth_blueprint
 app.register_blueprint(auth_blueprint)
