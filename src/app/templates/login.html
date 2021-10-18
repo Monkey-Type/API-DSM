@@ -10,25 +10,12 @@
 
 {% block login %}
 
-
 <div class="login-input">
   {{ render_field(form.email, 'email') }}
   {{ render_field(form.senha, 'lock') }}
   <a class="link" href="/esqueceu-senha">esqueceu a senha?</a>
 </div>
 
-{% if next != '/' %}
-<div class="flashes">
-  {% for error in form.email.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-  {% for error in form.senha.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-</div>
-{% endif %}
-
-{% include '_messages.html' %}
 {% endblock %}
 
 {% block btnTitle %}Entrar{% endblock %}

@@ -69,8 +69,25 @@
 
 .flashes div{
   color: red;
-  font-weight: bold;
-  font-size: var(--h3-font-size);
+  font-weight: var(--medium);
+  font-style: italic;
+  font-size: var(--p-font-size);
+}
+
+.error-wrapper{
+  display: flex;
+  white-space: nowrap;
+}
+
+.error-wrapper .flashes{
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.error-wrapper .flashes div::before{
+  content: '-';
+  margin: 0 .2em;
 }
 
 /* font family */
@@ -81,6 +98,7 @@ body{
 textarea, input, select, :is(input, textarea)::placeholder, :is(input, textarea)::-moz-placeholder, :is(input, textarea)::-webkit-input-placeholder{
   font-family: 'Open Sans', sans-serif;
   opacity: 1;
+  color: var(--secondary-text-color)
 }
 
 @-moz-document url-prefix() {
@@ -159,6 +177,11 @@ a:link, a:visited{
   border-radius: var(--main-border-radius);
   padding: 0px 1em 0px calc(var(--small-icon)*2);
 }
+
+.input-wrapper input{
+  color:var(--primary-text-color);
+}
+
 .input-wrapper.no-icon :is(input, select){
   padding: 0px 1em 0px 1em;
 }
@@ -173,8 +196,10 @@ a:link, a:visited{
 
 .input-wrapper :is(input, select, textarea):focus{
   outline: 2px solid var(--primary-text-color);
+  outline-offset: -2px;
   background-color: transparent;
 }
+
 
 :is(input,select):focus + span{
   color:var(--primary-text-color);
@@ -199,6 +224,18 @@ a:link, a:visited{
   justify-content: center;
   border-radius: var(--main-border-radius);
 }
+
+/* Field error */
+
+.error{
+  outline: 2px solid red;
+}
+
+.error-label label{
+  color: red;
+}
+
+
 
 /* text area */
 textarea{

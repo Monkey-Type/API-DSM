@@ -18,21 +18,5 @@
   {{ render_field(form.confirm, 'lock') }}
 </div>
 
-<div class="flashes">
-  {% for error in form.email.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-  {% for error in form.cpf.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-  {% for error in form.ra.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-  {% for error in form.senha.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-</div>
-
-{% include '_messages.html' %}
 
 {% endblock %}
