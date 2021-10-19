@@ -1,22 +1,13 @@
-from os import remove
-from flask import Blueprint, render_template, url_for, request, flash
+from flask import Blueprint, render_template, url_for, flash
 from flask_login.utils import login_user
-from sqlalchemy.orm import session
 from werkzeug.utils import redirect
-from . import db, bcrypt, login_manager
-from .database.models import Postagem
+from . import db, bcrypt
 from .database.models import User
 from .formulario.registerForm import RegisterForm, LoginFormulario
 from flask_login import login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash
 
 routes = Blueprint('auth', __name__)
 user = current_user
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 
 @routes.route('/register', methods=["GET", "POST"])
@@ -53,6 +44,13 @@ def login():
         else:
             flash('Senha ou email incorreto', 'danger')
     return render_template('login.html', form=form, title='Logue-se')
+
+
+@routes.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('auth.login'))
 
 
 @routes.route('/esqueceu-senha')

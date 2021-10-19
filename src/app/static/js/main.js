@@ -34,22 +34,4 @@ function deletarPost(postId) {
   });
 }
 
-// Mascaras de input
-
-
-
-/*
-var cpf = document.getElementById('cpf');
-var maskOptions = {
-  mask: '000.000.000-00'
-};
-var mask = IMask(cpf, maskOptions);
-mask.on('accept', function () {
-  document.getElementById('phone-complete').style.display = '';
-  document.getElementById('phone-unmasked').innerHTML = phoneMask.unmaskedValue;
-}).on('complete', function () {
-  document.getElementById('phone-complete').style.display = 'inline-block';
-});
-*/
-
 

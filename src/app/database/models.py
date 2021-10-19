@@ -1,4 +1,3 @@
-from sqlalchemy.orm import backref, defaultload
 from app import db
 from datetime import datetime
 from flask_login import UserMixin
@@ -33,6 +32,3 @@ class User(db.Model, UserMixin):
         self.cpf = cpf
         self.email = email
         self.senha = senha
-
-
-db.create_all()

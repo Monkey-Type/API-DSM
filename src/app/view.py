@@ -1,22 +1,11 @@
-from os import remove
-from flask import Blueprint, render_template, url_for, request, flash, jsonify, json
-from flask_login.utils import login_user
-from sqlalchemy.orm import session
-from werkzeug.utils import redirect
-from . import db, bcrypt, login_manager
+from flask import Blueprint, render_template, url_for, request, jsonify, json
+from flask_login import login_required, current_user
 from .database.models import Postagem
-from .database.models import User
-from .formulario.registerForm import RegisterForm, LoginFormulario
-from flask_login import login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash
+from werkzeug.utils import redirect
+from . import db
 
 routes = Blueprint('view', __name__)
 user = current_user
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
 
 
 @routes.route('/', methods=["GET", "POST"])
@@ -69,10 +58,3 @@ def archive():
 @login_required
 def config():
     return render_template('config.html', user=user)
-
-
-@routes.route("/logout")
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('auth.login'))
