@@ -43,8 +43,9 @@ def deletar_post():
     post = json.loads(request.data)
     postId = post['postId']
     post = Postagem.query.get(postId)
-    db.session.delete(post)
-    db.session.commit()
+    if user.id == post.user_id:
+        db.session.delete(post)
+        db.session.commit()
     return jsonify({})
 
 

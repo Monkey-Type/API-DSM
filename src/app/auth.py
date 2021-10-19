@@ -3,7 +3,7 @@ from flask_login.utils import login_user
 from werkzeug.utils import redirect
 from . import db, bcrypt
 from .database.models import User
-from .formulario.registerForm import RegisterForm, LoginFormulario
+from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
 
 routes = Blueprint('auth', __name__)
@@ -53,9 +53,11 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
-@routes.route('/esqueceu-senha')
+@routes.route('/esqueceu-senha',  methods=['GET', 'POST'])
 def password():
-    form = LoginFormulario()
+    form = EsqueceuFormulario()
+    if form.validate_on_submit():
+        return redirect(url_for('auth.login'))
     return render_template('esqueceu-senha.html', form=form)
 
 

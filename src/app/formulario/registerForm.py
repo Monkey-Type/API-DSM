@@ -39,5 +39,10 @@ class LoginFormulario(FlaskForm):
     email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
         "placeholder": "exemple@fatec.sp.gov.br"})
     senha = PasswordField('Senha', validators=[InputRequired(message=message), Length(
-        min=2, max=100, message='Senha deve ter pelomenos 5 caracteres')], render_kw={
+        min=5, max=100, message='Senha deve ter pelomenos 5 caracteres')], render_kw={
         "placeholder": "Mínimo de 5 caracteres"})
+
+
+class EsqueceuFormulario(FlaskForm):
+    email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
+        "placeholder": "exemple@fatec.sp.gov.br"})

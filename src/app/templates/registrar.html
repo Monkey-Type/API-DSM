@@ -1,7 +1,6 @@
-{% from '_render_field.html' import render_field %}
 {% extends 'base-login.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Registrar{% endblock %}
 
 {%block loginTitle %}Registrar{% endblock %}
 {%block loginSub %}Crie uma conta com seu email fatec{% endblock %}
@@ -17,6 +16,6 @@
   {{ render_field(form.senha, 'lock') }}
   {{ render_field(form.confirm, 'lock') }}
 </div>
-
-
 {% endblock %}
+
+{% block btnTitle %}Criar conta{% endblock %}
