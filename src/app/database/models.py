@@ -37,6 +37,12 @@ class User(db.Model, UserMixin):
                                secondary=association_table,
                                back_populates='pessoa_papel')
 
+    def __init__(self, nome, email, cpf, ra, senha):
+        self.nome = nome
+        self.ra = ra
+        self.cpf = cpf
+        self.email = email
+        self.senha = senha
     def __repr__(self):
         return self.nome
 
