@@ -1,5 +1,7 @@
 from flask import Blueprint, render_template, url_for, request, jsonify, json
 from flask_login import login_required, current_user
+import sqlalchemy
+from sqlalchemy import sql
 from .database.models import Postagem
 from werkzeug.utils import redirect
 from . import db
@@ -12,7 +14,7 @@ user = current_user
 @login_required
 def inicio():
     posts = Postagem.query.filter_by(
-        recebido=user.cargo).order_by(Postagem.data.desc()).all()
+        recebido=user.id).order_by(Postagem.data.desc()).all()
     return render_template("home.html", posts=posts, user=user)
 
 

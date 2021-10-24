@@ -7,7 +7,12 @@ from flask_login import LoginManager
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from flask_bcrypt import Bcrypt
-
+# Flask Migrate
+# Comandos para usar o Migrade 
+#"flask db migrate" - Fazer a Alteração
+#"flask db upgrade" - Fazer a Alteração dentro do banco de dados
+#"flask db stamp head" - Voltar a origem
+from flask_migrate import Migrate
 # Path
 from os import path
 
@@ -15,6 +20,8 @@ from os import path
 db = SQLAlchemy()
 DB_NAME = "fatec.db"
 
+# Migrate
+migrate = Migrate()
 # Bcrypt
 bcrypt = Bcrypt()
 
@@ -36,6 +43,7 @@ def create_app():
     # Init
     db.init_app(app)
     bcrypt.init_app(app)
+    migrate.init_app(app, db)
 
     # Importação de Rotas atraves da BluePrint
     from .auth import routes as auth_blueprint
@@ -45,9 +53,10 @@ def create_app():
     app.register_blueprint(view_blueprint)
 
     # Flask Admin Config
-    from .database.models import Postagem, User
+    from .database.models import Postagem, User, Papel
     admin = Admin(app, name='FATEC SJC')
     admin.add_view(ModelView(Postagem, db.session))
+    admin.add_view(ModelView(Papel, db.session))
     admin.add_view(ModelView(User, db.session))
 
     # Login Maneger
