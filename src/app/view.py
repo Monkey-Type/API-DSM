@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template, url_for, request, jsonify, json
+from flask import Blueprint, render_template, url_for, request, jsonify, json, request
 from flask_login import login_required, current_user
 import sqlalchemy
 from sqlalchemy import sql
-from .database.models import Postagem
+from .database.models import Postagem, User, Papel
 from werkzeug.utils import redirect
 from . import db
 
@@ -13,15 +13,16 @@ user = current_user
 @routes.route('/', methods=["GET", "POST"])
 @login_required
 def inicio():
-    posts = Postagem.query.filter_by(
-        recebido=user.id).order_by(Postagem.data.desc()).all()
-    return render_template("home.html", posts=posts, user=user)
+    print(user.papeis)
+    cargo = request.args.get(User.query.filter_by(id=user.papeis))
+    print(db.session.query(Postagem.papeis))
+    return render_template("home.html", user=user,  cargo=cargo)
 
 
 @routes.route('/editar', methods=['POST', 'GET'])
 @login_required
 def edit():
-    if not user.envia:
+    if not user.pode_editar:
         return redirect(url_for('view.inicio'))
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
@@ -29,13 +30,13 @@ def edit():
         recebido = request.form.get('recebido')
         assunto = request.form.get('assunto')
         texto = request.form.get('texto')
-        if user.envia == 1:
+        if user.pode_editar == 1:
             informativo = Postagem(
-                texto=texto, assunto=assunto, recebido=recebido, remetente=user.cargo, user_id=user.id)
+                texto=texto, assunto=assunto, remetente=user.cargo, user_id=user.id)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))
-    return render_template('editar.html', posts=posts, user=user)
+    return render_template('editar.html', posts=posts, user=user, recebido=recebido)
 
 
 # Deletar Post

@@ -12,8 +12,8 @@ class RegisterForm(FlaskForm):
     email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
         "placeholder": "exemple@fatec.sv.gov.br"})
 
-    ra = StringField('RA / Matricula', validators=[InputRequired(message=message), Length(
-        min=13, max=13, message="Digite um RA valido")], render_kw={"placeholder": "RA / Matricula"})
+    #ra = StringField('RA / Matricula', validators=[InputRequired(message=message), Length(
+    #    min=13, max=13, message="Digite um RA valido")], render_kw={"placeholder": "RA / Matricula"})
 
     cpf = StringField(validators=[InputRequired(message=message), Regexp(
         '^\d{3}\.\d{3}\.\d{3}\-\d{2}$', message='Digite um CPF')], render_kw={"placeholder": "Sem traços ou espaços"})

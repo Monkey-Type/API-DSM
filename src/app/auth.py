@@ -5,6 +5,7 @@ from . import db, bcrypt
 from .database.models import User
 from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
+import re
 
 routes = Blueprint('auth', __name__)
 user = current_user
@@ -15,15 +16,20 @@ def register():
     form = RegisterForm()
     if form.validate_on_submit():
         cpfExistente = User.query.filter_by(cpf=form.cpf.data).first()
-        raExistente = User.query.filter_by(ra=form.ra.data).first()
+        #raExistente = User.query.filter_by(ra=form.ra.data).first()
+        cpf = re.sub("[.-]", "", form.cpf.data)
+        cpf = int(cpf)
         emailExistente = User.query.filter_by(email=form.email.data).first()
-        if cpfExistente or raExistente or emailExistente:
+        #if cpfExistente or raExistente or emailExistente:
+        if cpfExistente or emailExistente:
             flash("Este usuario ja existe!")
         else:
             hashed_password = bcrypt.generate_password_hash(
                 form.senha.data).decode("utf-8")
-            novoUsuario = User(email=form.email.data, ra=form.ra.data,
-                               cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)
+            """ novoUsuario = User(email=form.email.data, ra=form.ra.data,
+                               cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)"""
+            novoUsuario = User(email=form.email.data,
+                               cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password)
             db.session.add(novoUsuario)
             db.session.commit()
             return redirect(url_for('auth.login'))
