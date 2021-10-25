@@ -1,3 +1,4 @@
+from operator import pos
 from flask import Blueprint, render_template, url_for, request, jsonify, json, request
 from flask_login import login_required, current_user
 import sqlalchemy
@@ -15,12 +16,17 @@ user = current_user
 def inicio():
     print(user.papeis)
     cargo = request.args.get(User.query.filter_by(id=user.papeis))
-    print(db.session.query(Postagem.papeis))
-    return render_template("home.html", user=user,  cargo=cargo)
+    # posts = db.session.query(Postagem, User).outerjoin(User, Postagem.papeis == User.papeis)
+    #posts = db.session.query(Postagem).filter(Papel.id == user.id).all()
+    #posts = Postagem.query.filter(Postagem.papeis.any(User.papeis.any(id=user.id))).all()
+    posts = db.session.query(Postagem).join(Postagem.destinatario).join(
+        Papel.user).filter(User.id == user.id).all()
+    print(posts)
+    return render_template("home.html", user=user, posts=posts,  cargo=cargo)
 
 
-@routes.route('/editar', methods=['POST', 'GET'])
-@login_required
+@ routes.route('/editar', methods=['POST', 'GET'])
+@ login_required
 def edit():
     if not user.pode_editar:
         return redirect(url_for('view.inicio'))
@@ -40,8 +46,8 @@ def edit():
 
 
 # Deletar Post
-@routes.route('/deletar-post', methods=['POST'])
-@login_required
+@ routes.route('/deletar-post', methods=['POST'])
+@ login_required
 def deletar_post():
     post = json.loads(request.data)
     postId = post['postId']
@@ -52,13 +58,13 @@ def deletar_post():
     return jsonify({})
 
 
-@routes.route('/arquivos')
-@login_required
+@ routes.route('/arquivos')
+@ login_required
 def archive():
     return render_template('arquivos.html', user=user)
 
 
-@routes.route('/config')
-@login_required
+@ routes.route('/config')
+@ login_required
 def config():
     return render_template('config.html', user=user)
