@@ -32,7 +32,7 @@
             <span class="material-icons-round medium-icon">archive</span>
             <div class="selection-bar"></div>
           </a>
-          {% if user.envia %}
+          {% if user_edit %}
           <a href="/editar">
             <span class="material-icons-round medium-icon">edit</span>
             <div class="selection-bar"></div>
@@ -60,6 +60,7 @@
             <span class="material-icons-round">search</span>
           </div>
           {% endblock %}
+
           {% block btn_criar %}{% endblock %}
           <main class="base-main">
             <div class="main-text">{% block main_text %}INFORMATIVOS{% endblock %}</div>
@@ -73,7 +74,7 @@
         <div class="filter-section">
           <h2 class="section-title filter-title">FILTRO</h2>
           <form action="">
-            {% if user.envia==1 %}
+            {% if user_edit %}
             <div class="input-wrapper small-input">
               <input type="search" name="cursos" placeholder="Cursos">
               <span class="material-icons-round">search</span>

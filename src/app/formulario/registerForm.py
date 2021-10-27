@@ -1,5 +1,7 @@
+from wtforms import SelectField, SelectMultipleField
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
+from wtforms.fields.core import SelectMultipleField
 from wtforms.validators import EqualTo, InputRequired, Length, Regexp, Email
 from app import *
 from wtforms.fields.html5 import EmailField
@@ -8,11 +10,41 @@ from wtforms.fields.html5 import EmailField
 message = 'Este campo é necessario'
 
 
+def _add_chosen_class(kwargs):
+    '''
+    Add the class 'chosen-select' to the HTML elements, keeping any
+    other specified render parameters or other classes.
+    '''
+    if 'render_kw' in kwargs:
+        if 'class' in kwargs['render_kw']:
+            kwargs['render_kw']['class'] += ' chosen-select'
+        else:
+            kwargs['render_kw']['class'] = 'chosen-select'
+    else:
+        kwargs['render_kw'] = {'class': 'chosen-select'}
+
+
+class ChosenSelectField(SelectField):
+    '''A select field rendered with chosen'''
+
+    def __init__(self, *args, **kwargs):
+        _add_chosen_class(kwargs)
+        super(ChosenSelectField, self).__init__(*args, **kwargs)
+
+
+class ChosenSelectMultipleField(SelectMultipleField):
+    '''A multiple-select field rendered with chosen'''
+
+    def __init__(self, *args, **kwargs):
+        _add_chosen_class(kwargs)
+        super(ChosenSelectMultipleField, self).__init__(*args, **kwargs)
+
+
 class RegisterForm(FlaskForm):
     email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
         "placeholder": "exemple@fatec.sv.gov.br"})
 
-    #ra = StringField('RA / Matricula', validators=[InputRequired(message=message), Length(
+    # ra = StringField('RA / Matricula', validators=[InputRequired(message=message), Length(
     #    min=13, max=13, message="Digite um RA valido")], render_kw={"placeholder": "RA / Matricula"})
 
     cpf = StringField(validators=[InputRequired(message=message), Regexp(
@@ -46,3 +78,8 @@ class LoginFormulario(FlaskForm):
 class EsqueceuFormulario(FlaskForm):
     email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
         "placeholder": "exemple@fatec.sp.gov.br"})
+
+
+class SelectForm(FlaskForm):
+    select = ChosenSelectMultipleField("Example", choices=[
+        ("SEU CU ALADO", "ENTRE 17 A 29 QUESTOES GLR"), ("PROVA ADIADA", "VAMO ADIA MAIS UMA VEZ")])

@@ -20,7 +20,7 @@ def register():
         cpf = re.sub("[.-]", "", form.cpf.data)
         cpf = int(cpf)
         emailExistente = User.query.filter_by(email=form.email.data).first()
-        #if cpfExistente or raExistente or emailExistente:
+        # if cpfExistente or raExistente or emailExistente:
         if cpfExistente or emailExistente:
             flash("Este usuario ja existe!")
         else:
