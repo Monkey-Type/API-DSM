@@ -2,9 +2,11 @@ from wtforms import SelectField, SelectMultipleField
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.fields.core import SelectMultipleField
-from wtforms.validators import EqualTo, InputRequired, Length, Regexp, Email
+from wtforms.validators import EqualTo, InputRequired, Length, Regexp, Email, ValidationError
 from app import *
 from wtforms.fields.html5 import EmailField
+import re
+from ..database.models import User
 
 
 message = 'Este campo é necessario'
@@ -40,6 +42,35 @@ class ChosenSelectMultipleField(SelectMultipleField):
         super(ChosenSelectMultipleField, self).__init__(*args, **kwargs)
 
 
+def cpf_validate(form, field):
+    #  Obtém os números do CPF e ignora outros caracteres
+    cpf = re.sub("[.-]", "", field.data)
+    cpf_existente = User.query.filter_by(cpf=cpf).first()
+
+    if cpf_existente:
+        raise ValidationError('CPF existente')
+
+    #  Verifica se o CPF tem 11 dígitos
+    if len(cpf) != 11:
+        raise ValidationError('Não tem 11 digitos')
+
+    #  Verifica se o CPF tem todos os números iguais, ex: 111.111.111-11
+    #  Esses CPFs são considerados inválidos mas passam na validação dos dígitos
+    #  Antigo código para referência: if all(cpf[i] == cpf[i+1] for i in range (0, len(cpf)-1))
+    if cpf == cpf[::-1]:
+        raise ValidationError('Não pode números iguais')
+
+    #  Valida os dois dígitos verificadores
+    for i in range(9, 11):
+        value = sum((int(cpf[num]) * ((i+1) - num) for num in range(0, i)))
+        print(value)
+        digit = ((value * 10) % 11) % 10
+        print(digit)
+        print(type(cpf[i]))
+        if int(digit) != int(cpf[i]):
+            raise ValidationError('Dois digitos verificadores errados')
+
+
 class RegisterForm(FlaskForm):
     email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
         "placeholder": "exemple@fatec.sv.gov.br"})
@@ -48,7 +79,7 @@ class RegisterForm(FlaskForm):
     #    min=13, max=13, message="Digite um RA valido")], render_kw={"placeholder": "RA / Matricula"})
 
     cpf = StringField(validators=[InputRequired(message=message), Regexp(
-        '^\d{3}\.\d{3}\.\d{3}\-\d{2}$', message='Digite um CPF')], render_kw={"placeholder": "Sem traços ou espaços"})
+        '^\d{3}\.\d{3}\.\d{3}\-\d{2}$',  message='Digite um CPF'), cpf_validate], render_kw={"placeholder": "Sem traços ou espaços"})
 
     nome = StringField(validators=[InputRequired(message=message), Regexp("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)$", message='Digite nome e sobrenome')], render_kw={
         "placeholder": "Nome completo"})

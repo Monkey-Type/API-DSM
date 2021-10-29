@@ -15,13 +15,13 @@ user = current_user
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        cpfExistente = User.query.filter_by(cpf=form.cpf.data).first()
+        print(form.cpf.data)
+        cpf = int(re.sub("[.-]", "", form.cpf.data))
+        #cpfExistente = User.query.filter_by(cpf=cpf).first()
         #raExistente = User.query.filter_by(ra=form.ra.data).first()
-        cpf = re.sub("[.-]", "", form.cpf.data)
-        cpf = int(cpf)
         emailExistente = User.query.filter_by(email=form.email.data).first()
         # if cpfExistente or raExistente or emailExistente:
-        if cpfExistente or emailExistente:
+        if emailExistente:
             flash("Este usuario ja existe!")
         else:
             hashed_password = bcrypt.generate_password_hash(
