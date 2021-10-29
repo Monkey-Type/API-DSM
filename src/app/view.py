@@ -1,4 +1,3 @@
-from operator import pos
 from flask import Blueprint, render_template, url_for, request, jsonify, json, request
 from flask_login import login_required, current_user
 import sqlalchemy
@@ -39,7 +38,7 @@ def inicio():
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
         Papel.user).filter(User.id == user.id).all()
     print(posts)
-    return render_template("home.html", user=user, posts=posts,  cargo=cargo, user_edit=user_edit())
+    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit())
 
 
 @ routes.route('/editar', methods=['POST', 'GET'])
@@ -52,12 +51,11 @@ def edit():
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).all()
     if request.method == 'POST':
-        recebido = request.form.get('recebido')
-        assunto = request.form.get('assunto')
+        titulo = request.form.get('titulo')
         texto = request.form.get('texto')
         if user_edit():
             informativo = Postagem(
-                texto=texto, assunto=assunto, remetente=user.cargo, user_id=user.id)
+                titulo=titulo, texto=texto, user_id=user.id)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))

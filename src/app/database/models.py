@@ -25,10 +25,10 @@ user_papel_tabela = db.Table('user_papel',
 class User(db.Model, UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nome = db.Column(db.String(150), unique=True, nullable=False)
+    nome = db.Column(db.String(150), nullable=False)
     cpf = db.Column(db.Integer, unique=True, nullable=False)  # Mudar Depois
     email = db.Column(db.String(150), unique=True, nullable=False)
-    senha = db.Column(db.String(150), unique=True, nullable=False)
+    senha = db.Column(db.String(150), nullable=False)
     # Chaves Estrangeiras
     postagem = db.relationship('Postagem')
     papeis = db.relationship('Papel',
@@ -43,8 +43,9 @@ class User(db.Model, UserMixin):
 class Postagem(db.Model):
     __tablename__ = "postagem"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    titulo = db.Column(db.String(150), unique=True, nullable=False)
-    texto = db.Column(db.String(150), unique=True, nullable=False)
+    titulo = db.Column(db.String(150), nullable=False)
+    texto = db.Column(db.String(150), nullable=False)
+    data = db.Column(db.DateTime, default=datetime.now)
     # Chaves Estrangeiras
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     destinatario = db.relationship('Papel',

@@ -34,7 +34,7 @@
                 </label>
                 <p>Assunto:</p>
                 <div class="input-wrapper small-input">
-                    <input type="text" name="assunto" placeholder="Título da menssagem">
+                    <input type="text" name="titulo" placeholder="Título da menssagem">
                     <span class="material-icons-round">subtitles</span>
                 </div>
                 <p>Corpo da menssagem:</p>
@@ -68,9 +68,9 @@
 {% block main %}
 {% for post in posts %}
 <div class="card-box">
-    <h2 class="title-text">{{ post.assunto }}</h2>
+    <h2 class="title-text">{{ post.titulo }}</h2>
     <div class="text-title-area">
-        <h3 class="sender-name">{{ post.remetente }}</h3>
+        <h3 class="sender-name">{{ post.user_id }}</h3>
         <div class="send-date">
             <p class="hour">{{ post.data.strftime('%H:%M') }}</p>
             <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
