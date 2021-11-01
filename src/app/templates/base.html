@@ -75,7 +75,7 @@
       <div class="right-menu">
         <div class="filter-section">
           <h2 class="section-title filter-title">FILTRO</h2>
-          <form action="">
+          <form action="" method="Post">
             {% if user_edit %}
             <div class="input-wrapper small-input">
               <input type="search" name="cursos" placeholder="Cursos">
@@ -106,6 +106,10 @@
               <input type="date" name="data" placeholder="Dia/Mes/Ano">
               <span class="material-icons-round">today</span>
             </div>
+            <button class="btn btn-full" value="Filtrar">
+              <span class="material-icons-round">archive</span>
+              <p>Filtrar</p>
+            </button>
             <!-- <div class="input-wrapper small-input">
               <select name="envio" id="envio">
                 <option value="" disabled selected>Data de envio</option>
