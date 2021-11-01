@@ -1,16 +1,19 @@
 from flask import Blueprint, render_template, url_for, flash
 from flask_login.utils import login_user
 from werkzeug.utils import redirect
+
+#from app import email_service
 from . import db, bcrypt
 from .database.models import User
 from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
 import re
 
+from .email_service import EmailService
 routes = Blueprint('auth', __name__)
 user = current_user
 
-
+###
 @routes.route('/register', methods=["GET", "POST"])
 def register():
     form = RegisterForm()
@@ -29,9 +32,11 @@ def register():
             """ novoUsuario = User(email=form.email.data, ra=form.ra.data,
                                cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)"""
             novoUsuario = User(email=form.email.data,
-                               cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password)
+                               cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password, confirmado=0) ### setando novos cadastro para 0
             db.session.add(novoUsuario)
             db.session.commit()
+            ServiceEmail = EmailService()
+            ServiceEmail.confirmaEmail(novoUsuario.email)
             return redirect(url_for('auth.login'))
     return render_template("registrar.html", form=form)
 
@@ -42,11 +47,14 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            if bcrypt.check_password_hash(user.senha, form.senha.data):
-                login_user(user)
-                return redirect(url_for('view.inicio'))
+            if user.confirmado == 1: ## Verificando se ele confirmou email
+                if bcrypt.check_password_hash(user.senha, form.senha.data):
+                    login_user(user)
+                    return redirect(url_for('view.inicio'))
+                else:
+                    flash('Senha ou email incorreto', 'danger')
             else:
-                flash('Senha ou email incorreto', 'danger')
+                flash('Confirme o email enviado!', 'danger') # Mensagem para caso não
         else:
             flash('Senha ou email incorreto', 'danger')
     return render_template('login.html', form=form, title='Logue-se')
@@ -80,3 +88,31 @@ def right_code():
 @routes.route('/sucesso')
 def success():
     return render_template('sucesso.html')
+
+#######
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+serial = URLSafeTimedSerializer('SENHASECRETA!') # app.config['SECRET_KEY']
+
+@routes.route('/confirma_email/<token>') 
+def confirma_email(token):   # se usar uma variável na URL utilize também como parâmetro na função
+    form = RegisterForm()
+    try:
+        tokenVem = serial.loads(token, salt='email-confirm', max_age=3600) # loads carrega o que tem no token para essa variável tokenVem, neste caso o email do usuário
+        emailUsuario = User.query.filter_by(email=tokenVem).first()
+        emailUsuario.confirmado=1
+        db.session.commit()
+    except SignatureExpired:
+        return '<h1 style="color: red">O Token Expirou! Sacanagem em! :/</h1>' # aqui html para o token expirado
+    return render_template('login.html', form=form)
+    
+    
+    
+    # EmailConfirma = EmailService()
+    # emailUsuario = EmailConfirma.setar_usuario_confirmado(token)
+    # print(token)
+    # emailUsuario = User.query.filter_by(emailUsuario).first()
+    # emailUsuario.confirmado=1
+    # db.session.commit()
+    # return render_template("login.html")
+
+
