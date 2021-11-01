@@ -55,10 +55,12 @@
       <div class="middle-box">
         <div class="middle-box-wrapper">
           {% block search %}
-          <div class="input-wrapper search-box">
-            <input type="search" name="busca" placeholder="Busca">
-            <span class="material-icons-round">search</span>
-          </div>
+          <form action="" method="post">
+            <div class="input-wrapper search-box">
+              <input type="search" name="busca" placeholder="Busca">
+              <span class="material-icons-round">search</span>
+            </div>
+          </form>
           {% endblock %}
 
           {% block btn_criar %}{% endblock %}

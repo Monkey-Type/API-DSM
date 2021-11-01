@@ -38,15 +38,21 @@ def select():
 @login_required
 def inicio():
     role = Postagem.destinatario
-    print(role)
+    # print(role)
     papel = papel_postagem(db.session.query(Papel).join(
         Papel.user).filter(User.id == Postagem.user_id).all())
-    print(papel)
-    print(user.papeis)
+    # print(papel)
+    # print(user.papeis)
     cargo = request.args.get(User.query.filter_by(id=user.papeis))
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
-        Papel.user).filter(User.id == user.id).all()
-    print(posts)
+        Papel.user).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
+    # print(posts)
+    busca = request.form.get("busca")
+    if busca:
+        busca = f"%{busca}%"
+        search_post = Postagem.query.filter(Postagem.titulo.like(busca)).all()
+        posts = search_post
+        print(search_post)
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), papel=papel)
 
 

@@ -38,7 +38,7 @@ def create_app():
 
     # App config SQLALCHEMY
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///database/{DB_NAME}'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
     # Init
     db.init_app(app)
