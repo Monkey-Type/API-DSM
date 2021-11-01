@@ -38,11 +38,11 @@ def select():
 @login_required
 def inicio():
     role = Postagem.destinatario
-    # print(role)
+    print(role)
     papel = papel_postagem(db.session.query(Papel).join(
         Papel.user).filter(User.id == Postagem.user_id).all())
-    # print(papel)
-    # print(user.papeis)
+    print(papel)
+    print(user.papeis)
     cargo = request.args.get(User.query.filter_by(id=user.papeis))
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
         Papel.user).filter(User.id == user.id).order_by(Postagem.data.desc()).all()

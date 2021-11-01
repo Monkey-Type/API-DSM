@@ -34,6 +34,7 @@ class User(db.Model, UserMixin):
     papeis = db.relationship('Papel',
                              secondary=user_papel_tabela,
                              back_populates='user')
+    confirmado = db.Column(db.Integer, nullable=True, default=0) ### adicionado 
     # Funcão para ver o Nome
 
     def __repr__(self):

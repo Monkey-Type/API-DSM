@@ -27,6 +27,11 @@ bcrypt = Bcrypt()
 
 # App config
 
+from flask_mail import Mail
+import os
+
+
+mail = Mail() # instanciação 
 
 def create_app():
     app = Flask(__name__)
@@ -38,12 +43,30 @@ def create_app():
 
     # App config SQLALCHEMY
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///database/{DB_NAME}'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+#
+    # Uso de Variável de Ambiente para esconder o Email e a Senha para quando subir esse código no GITHUB
+    app.config['MAIL_USERNAME'] = os.environ.get('SERVER_EMAIL')
+    app.config['MAIL_PASSWORD'] = os.environ.get('SERVER_PASS')
+    # Configuração para email outlook
+    app.config['MAIL_SERVER'] = 'smtp-mail.outlook.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True # Para segurança
+    app.config['MAIL_USE_SSL'] = False # Para segurança, varia entre esse e o TLS
+    #app.config['MAIL_DEBUG'] = True
+    app.config['MAIL_DEFAULT_SENDER'] = ('Monkey Type','rafaeldasilvaperes2@hotmail.com')
+    app.config['MAIL_MAX_EMAILS'] = None
+    #app.config['MAIL_SUPPRESS_SEND'] = False
+    app.config['MAIL_ASCII_ATTACHMENTS'] = False
+#
+    
 
     # Init
     db.init_app(app)
     bcrypt.init_app(app)
     migrate.init_app(app, db)
+    mail.init_app(app) # init para mail
 
     # Importação de Rotas atraves da BluePrint
     from .auth import routes as auth_blueprint
@@ -68,6 +91,8 @@ def create_app():
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
+
+    
 
     return app
 
