@@ -50,13 +50,15 @@ def inicio():
     busca = request.form.get("busca")
     if busca:
         busca = f"%{busca}%"
-        search_post = Postagem.query.filter(Postagem.titulo.like(busca)).all()
+        search_post = Postagem.query.filter(Postagem.titulo.like(
+            busca)).order_by(Postagem.data.desc()).all()
         posts = search_post
         print(search_post)
     filtro_data = request.form.get("data")
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
-        filtro_data = Postagem.query.filter(Postagem.data.like(filtro_data)).all()
+        filtro_data = Postagem.query.filter(Postagem.data.like(
+            filtro_data)).order_by(Postagem.data.desc()).all()
         posts = filtro_data
         print(filtro_data)
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), papel=papel)
