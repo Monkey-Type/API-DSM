@@ -29,8 +29,8 @@ bcrypt = Bcrypt()
 
 # App config
 
-
-mail = Mail()  # instanciação
+# Mail
+mail = Mail()
 
 
 def create_app():
@@ -50,7 +50,7 @@ def create_app():
     app.config['MAIL_USERNAME'] = os.environ.get('SERVER_EMAIL')
     app.config['MAIL_PASSWORD'] = os.environ.get('SERVER_PASS')
 
-    # Configuração para email outlook
+    # Configuração para email gmail
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USE_TLS'] = True  # Para segurança
