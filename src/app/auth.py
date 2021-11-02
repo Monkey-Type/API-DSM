@@ -97,22 +97,26 @@ serial = URLSafeTimedSerializer('SENHASECRETA!') # app.config['SECRET_KEY']
 def confirma_email(token):   # se usar uma variável na URL utilize também como parâmetro na função
     form = RegisterForm()
     try:
-        tokenVem = serial.loads(token, salt='email-confirm', max_age=3600) # loads carrega o que tem no token para essa variável tokenVem, neste caso o email do usuário
+        tokenVem = serial.loads(token, salt='email-confirm', max_age=30) # loads carrega o que tem no token para essa variável tokenVem, neste caso o email do usuário
         emailUsuario = User.query.filter_by(email=tokenVem).first()
         emailUsuario.confirmado=1
         db.session.commit()
+
     except SignatureExpired:
-        return '<h1 style="color: red">O Token Expirou! Sacanagem em! :/</h1>' # aqui html para o token expirado
+        tokenVencido = serial.loads(token, salt='email-confirm')
+        Confirmado = User.query.filter_by(email=tokenVencido).first()
+        if Confirmado.confirmado == 1:
+            flash('Você já se cadastrou!')
+            return render_template('login.html', form=form)
+            
+        else:
+            Deletador = User.query.filter_by(email=tokenVencido).first()
+            db.session.delete(Deletador)
+            db.session.commit()
+            flash('Cadastre-se Novamente')
+        return render_template('registrar.html', form=form) # aqui html para o token expirado
     return render_template('login.html', form=form)
+
     
-    
-    
-    # EmailConfirma = EmailService()
-    # emailUsuario = EmailConfirma.setar_usuario_confirmado(token)
-    # print(token)
-    # emailUsuario = User.query.filter_by(emailUsuario).first()
-    # emailUsuario.confirmado=1
-    # db.session.commit()
-    # return render_template("login.html")
 
 

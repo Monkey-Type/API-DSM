@@ -22,12 +22,3 @@ class EmailService():
         mail.send(mensagem)
         return '<h1>O email que você entrou é este: {}. O seu Token é:</h1><h2 style="color: blue"><b> {}</b></h2>'.format(ema, tokenVai)
     
-    
-    # def setar_usuario_confirmado(token):
-    #     try:
-    #         tokenVem = serial.loads(token, salt='email-confirm', max_age=3600) # loads carrega o que tem no token para essa variável tokenVem que não está sendo utilizada ainda
-    #         print(tokenVem)
-            
-    #     except SignatureExpired:
-    #         return '<h1 style="color: red">O Token Expirou! Sacanagem em! :/</h1>' # aqui html para o token expirado
-    #     return tokenVem # aqui teria que ter alguma html falando que o token está funcionando
