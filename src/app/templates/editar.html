@@ -21,17 +21,22 @@
             <div class="content-popup-editar">
                 <h2>Novo Informativo</h2>
                 <p>Enviar para:</p>
-                <!--<div class="input-wrapper small-input">
+                <div class="input-wrapper small-input">
+                    {{ form.select }}
+                    <span class="material-icons-round">person_add</span>
+                </div>
+                <!--<p>Enviar para:</p>
+                <div class="input-wrapper small-input">
                     <input type="text" name="recebido" placeholder="Aluno, Professor...">
                     <span class="material-icons-round">person_add</span>
-                </div>-->
+                </div>
                 <label for="enviar">
                     <select name="papel" id="papel" required>
                         {% for papel in papel %}
                         <option value="{{ papel.nome }}">{{ papel.nome }}</option>
                         {% endfor %}
                     </select>
-                </label>
+                </label>-->
                 <p>Assunto:</p>
                 <div class="input-wrapper small-input">
                     <input type="text" name="titulo" placeholder="Título da menssagem">
@@ -40,7 +45,7 @@
                 <p>Corpo da menssagem:</p>
                 <div class="input-wrapper small-input textarea-wrapper">
                     <textarea name="texto" placeholder="Título da menssagem"></textarea>
-                    <span class="material-icons-round">subtitles</span>
+                    <span class="material-icons-round" style="height: auto;">subtitles</span>
                 </div>
             </div>
             <div class="bottom-popup">

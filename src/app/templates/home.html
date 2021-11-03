@@ -7,10 +7,11 @@
 
 {% block main %}
 {% for post in posts %}
+
 <div class="card-box">
   <h2 class="title-text">{{ post.titulo }}</h2>
   <div class="text-title-area">
-    <h3 class="sender-name">{{ papel }}</h3>
+    <h3 class="sender-name">{{ remetente(post.user_id) }}</h3>
     <div class="send-date">
       <p class="hour">{{ post.data.strftime('%H:%M') }}</p>
       <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
@@ -33,7 +34,6 @@
     </span>
   </div>
 </div>
-
 
 {% endfor %}
 {% endblock %}

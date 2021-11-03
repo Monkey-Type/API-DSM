@@ -112,5 +112,4 @@ class EsqueceuFormulario(FlaskForm):
 
 
 class SelectForm(FlaskForm):
-    select = ChosenSelectMultipleField("Example", choices=[
-        ("SEU CU ALADO", "ENTRE 17 A 29 QUESTOES GLR"), ("PROVA ADIADA", "VAMO ADIA MAIS UMA VEZ")])
+    select = ChosenSelectMultipleField("Enviar para", choices=[])

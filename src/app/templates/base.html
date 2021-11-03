@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
@@ -106,7 +107,7 @@
               <input type="date" name="data" placeholder="Dia/Mes/Ano">
               <span class="material-icons-round">today</span>
             </div>
-            <button class="btn btn-full" value="Filtrar">
+            <button class="btn btn-empty" style="justify-content: center;" value="Filtrar">
               <span class="material-icons-round">archive</span>
               <p>Filtrar</p>
             </button>
@@ -142,5 +143,11 @@
   </div>
 </body>
 <script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<script>
+  $('#select').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "Aluno, Professor..." });
+  //$('.chosen-search-input').val("Aluno, Professor...")
+</script>
 
 </html>

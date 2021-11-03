@@ -253,7 +253,7 @@ a:link, a:visited{
 }
 
 .search-choice a{
-  position: unset !important;
+  top: 8px !important;
 }
 
 .search-choice span{
@@ -281,6 +281,14 @@ a:link, a:visited{
 .highlighted{
   background: var(--primary-text-color) !important;
   padding: 1em;
+}
+
+.chosen-results, .chosen-drop, .chosen-choices{
+  border-radius: 10px;
+}
+
+.chosen-search-input{
+  color: var(--secondary-text-color) !important
 }
 
 /* Field error */

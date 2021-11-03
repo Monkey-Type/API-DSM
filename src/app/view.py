@@ -34,18 +34,22 @@ def select():
     return render_template('formselect.html', form=form)
 
 
+def remetente(userid):
+    return papel_postagem(db.session.query(Papel).join(
+        Papel.user).filter(User.id == userid).all())
+
+
 @routes.route('/', methods=["GET", "POST"])
 @login_required
 def inicio():
     role = Postagem.destinatario
     print(role)
-    papel = papel_postagem(db.session.query(Papel).join(
-        Papel.user).filter(User.id == Postagem.user_id).all())
-    print(papel)
-    print(user.papeis)
+
+    # papeis = db.session.query(Papel).join(Papel.user).filter(User.id == Postagem.user_id).all()
     cargo = request.args.get(User.query.filter_by(id=user.papeis))
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
         Papel.user).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
+    userid = (post.user_id for post in posts)
     # print(posts)
     busca = request.form.get("busca")
     if busca:
@@ -61,34 +65,37 @@ def inicio():
             filtro_data)).order_by(Postagem.data.desc()).all()
         posts = filtro_data
         print(filtro_data)
-    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), papel=papel)
+    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente)
 
 
 @ routes.route('/editar', methods=['POST', 'GET'])
 @ login_required
 def edit():
+    form = SelectForm()
+    form.select.choices = [(select.id, select.nome)
+                           for select in Papel.query.all()]
     papel = db.session.query(Papel.nome).all()
     print(papel)
     user_papel = papel_postagem(user.papeis)
-    destinatario = request.form.get('papel')
-    destinatarios = db.session.query(
-        Papel).filter(Papel.nome == destinatario).all()
+    print(form.select.data)
+    # destinatarios = db.session.query.filter(Papel.nome.in_((form.select.data))).all()
     # print(user_edit())
     if not user_edit():
         return redirect(url_for('view.inicio'))
     posts = db.session.query(Postagem).filter(
-        Postagem.user_id == user.id).all()
+        Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
     if request.method == 'POST':
         titulo = request.form.get('titulo')
         texto = request.form.get('texto')
-
+        destinatarios = db.session.query(Papel).filter(
+            Papel.id.in_(form.select.data)).all()
         if user_edit():
             informativo = Postagem(
                 titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))
-    return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit())
+    return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
 
 
 # Deletar Post
