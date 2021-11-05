@@ -31,6 +31,7 @@ class User(db.Model, UserMixin):
     senha = db.Column(db.String(150), nullable=False)
     # Chaves Estrangeiras
     postagem = db.relationship('Postagem')
+    arquivado = db.relationship('Arquivadas', backref='user')
     papeis = db.relationship('Papel',
                              secondary=user_papel_tabela,
                              back_populates='user')
@@ -48,6 +49,7 @@ class Postagem(db.Model):
     texto = db.Column(db.String(150), nullable=False)
     data = db.Column(db.DateTime, default=datetime.now)
     # Chaves Estrangeiras
+    postagem_arquivada = db.relationship('Arquivadas')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     destinatario = db.relationship('Papel',
                                    secondary=postagem_papel_tabela,
@@ -56,6 +58,12 @@ class Postagem(db.Model):
 
     def __repr__(self):
         return self.titulo
+class Arquivadas(db.Model):
+    __tablename__ = "arquivados"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    arquivada = db.Column(db.Integer, db.ForeignKey('postagem.id'))
+    
 
 
 class Papel(db.Model):

@@ -78,11 +78,12 @@ def create_app():
     app.register_blueprint(view_blueprint)
 
     # Flask Admin Config
-    from .database.models import Postagem, User, Papel
+    from .database.models import Postagem, User, Papel, Arquivadas
     admin = Admin(app, name='FATEC SJC')
     admin.add_view(ModelView(Postagem, db.session))
     admin.add_view(ModelView(Papel, db.session))
     admin.add_view(ModelView(User, db.session))
+    admin.add_view(ModelView(Arquivadas, db.session))
 
     # Login Maneger
     login_manager = LoginManager()
