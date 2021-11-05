@@ -31,7 +31,6 @@ def remetente(userid):
         Papel.user).filter(User.id == userid).all())
 
 
-
 @routes.route('/select', methods=["GET", "POST"])
 def select():
     form = SelectForm()
@@ -45,10 +44,13 @@ def inicio():
     print(role)
     # papeis = db.session.query(Papel).join(Papel.user).filter(User.id == Postagem.user_id).all()
     cargo = request.args.get(User.query.filter_by(id=user.papeis))
-    
+
+    subquery_user = db.session.query(Arquivadas.user_id).all()
+    subquery_user = [id for id, in subquery_user]
+    print(subquery_user)
     subquery = db.session.query(Arquivadas.arquivada).all()
     subquery = [id for id, in subquery]
-    if subquery:
+    if user.id in subquery_user:
         posts = db.session.query(Postagem).join(Postagem.destinatario).join(
             Papel.user).join(Arquivadas).filter(Postagem.id.not_in(subquery)).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
     else:
@@ -116,24 +118,29 @@ def deletar_post():
         db.session.commit()
     return jsonify({})
 
+
 @routes.route('/arquivar-post', methods=['POST'])
 @login_required
 def arquivar_post():
     post = json.loads(request.data)
     postId = post['postId']
-    arquivos = db.session.query(Arquivadas.arquivada).filter(Arquivadas.user_id == user.id).all()
+    # Arquivadas.arquivada = PostId arquivadas
+    arquivos = db.session.query(Arquivadas.arquivada).filter(
+        Arquivadas.user_id == user.id).all()
     print(postId)
     if postId not in arquivos:
         arquivar = Arquivadas(arquivada=postId, user_id=user.id)
         db.session.add(arquivar)
         db.session.commit()
     return jsonify({})
+
+
 @ routes.route('/arquivos')
 @ login_required
 def archive():
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
         Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).order_by(Postagem.data.desc()).all()
-    return render_template('arquivos.html', user=user,posts=posts, user_edit=user_edit(), remetente=remetente)
+    return render_template('arquivos.html', user=user, posts=posts, user_edit=user_edit(), remetente=remetente)
 
 
 @ routes.route('/config')
