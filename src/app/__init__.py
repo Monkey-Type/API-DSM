@@ -58,7 +58,7 @@ def create_app():
     app.config['MAIL_USE_SSL'] = False
     #app.config['MAIL_DEBUG'] = True
     app.config['MAIL_DEFAULT_SENDER'] = (
-        'Monkey Type', 'contato.monkey.type@gm-ail.com')
+        'Monkey Type', 'contato.monkey.type@gmail.com')
     app.config['MAIL_MAX_EMAILS'] = None
     #app.config['MAIL_SUPPRESS_SEND'] = False
     app.config['MAIL_ASCII_ATTACHMENTS'] = False
