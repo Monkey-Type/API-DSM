@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, request, jsonify, json, request
 from flask_login import login_required, current_user
 import sqlalchemy
-from sqlalchemy import sql
+from sqlalchemy import *
 from wtforms.fields.core import SelectField
 from .database.models import Arquivadas, Postagem, User, Papel
 from werkzeug.utils import redirect
@@ -45,12 +45,12 @@ def inicio():
     # papeis = db.session.query(Papel).join(Papel.user).filter(User.id == Postagem.user_id).all()
     cargo = request.args.get(User.query.filter_by(id=user.papeis))
 
-    subquery_user = db.session.query(Arquivadas.user_id).all()
-    subquery_user = [id for id, in subquery_user]
-    print(subquery_user)
+    user_arquivados = db.session.query(Arquivadas.user_id).all()
+    user_arquivados = [id for id, in user_arquivados]
+    print(user_arquivados)
     subquery = db.session.query(Arquivadas.arquivada).all()
     subquery = [id for id, in subquery]
-    if user.id in subquery_user:
+    if user.id in user_arquivados:
         posts = db.session.query(Postagem).join(Postagem.destinatario).join(
             Papel.user).join(Arquivadas).filter(Postagem.id.not_in(subquery)).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
     else:
@@ -65,14 +65,13 @@ def inicio():
         search_post = Postagem.query.filter(Postagem.titulo.like(
             busca)).order_by(Postagem.data.desc()).all()
         posts = search_post
-        print(search_post)
     filtro_data = request.form.get("data")
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
         filtro_data = Postagem.query.filter(Postagem.data.like(
             filtro_data)).order_by(Postagem.data.desc()).all()
         posts = filtro_data
-        print(filtro_data)
+
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente)
 
 
