@@ -41,7 +41,7 @@
 |--- |--- |--- |--- |:---:
 | 01 | [Sprint 01](#sprint1) | 08/09/2021 | 19/09/2021 | ✔ |
 | 02 | [Sprint 02](#sprint2) | 20/09/2021 | 10/10/2021 | ✔ |
-| 03 | Sprint 03 | 18/10/2021 | 07/11/2021 | Em Aberto |
+| 03 | [Sprint 03](#sprint3) | 18/10/2021 | 07/11/2021 | ✔ |
 | 04 | Sprint 04 | 08/11/2021 | 28/11/2021 | Em Aberto |
 
 <br>
@@ -90,6 +90,9 @@ flask run -p 9000
 ```
 - Vá até o caminho indicado http://127.0.0.1:5000/ ou http://127.0.0.1:9000/ e navegue na aplicação.
 
+<br>
+
+> [Voltar ao Topo](#topo) ☝️
 
 <span id="backlog">
 
@@ -130,31 +133,31 @@ flask run -p 9000
         <td>RF - 4</td>
         <td>#05 #14 #15 #16</td>
         <td>  Envio de informações para divulgação via sistema (Administrador)</td>
-        <td>#02</td>
+        <td>#02 ✔</td>
     </tr>
     <tr>
         <td>RF - 5</td>
         <td>#07 #11 #13</td>
         <td> Visualização de informações de divulgação via sistema de modo seletivo (filtro por data, interessados, curso, etc.)</td>
-        <td>#02</td>
+        <td>#02 #03 ✔</td>
     </tr>
     <tr>
         <td>RF - 6</td>
         <td>#08</td>
         <td>  Acesso às informações do sistema através de perfis de usuário/papeis (adm,usuário comum, coordenador de curso, etc.)</td>
-        <td>#02</td>
+        <td>#02 #03 ✔</td>
     </tr>
     <tr>
         <td>RF - 7</td>
         <td>#21</td>
         <td>  Quem criou a mensagem é o único com poder de exclusão da mesma</td>
-        <td>#02</td>
+        <td>#02 #03 ✔</td>
     </tr>
     <tr>
         <td>RF - 8</td>
         <td>#09 #17</td>
         <td>  Cada Usuário deve ter o poder de enviar informes/anúncios a determinados grupos de usuários e receber mensagens de determinado grupos de usuários numa hierarquia de USERS</td>
-        <td>#02 #03</td>
+        <td>#02 #03 ✔</td>
     </tr>
     <tr>
         <td>RF - 9</td>
@@ -165,7 +168,7 @@ flask run -p 9000
     <tr>
         <td>RF - 10</td>
         <td>#18 #20</td>
-        <td>  O usuário deve ter a automia de marcar a mensagem como lida e não lida. Será importante manter um histórico de mensagem.</td>
+        <td>  O usuário deve ter a automia de marcar a mensagem como lida e não lida (arquivar). Será importante manter um histórico de mensagem.</td>
         <td>#03 #04</td>
     </tr>
     <tr>
@@ -711,6 +714,12 @@ MariaDB/MySQL/PostGresSQL</td>
         <td align="center">✔</td>
     </tr>
     <tr>
+        <td>RF - 5</td>
+        <td>Filtro por data</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
         <td>RF - 6</td>
         <td> Funcionalidade de registro e armazenamento de novos usuários na aplicação</td>
         <td align="center">✔</td>
@@ -735,6 +744,12 @@ MariaDB/MySQL/PostGresSQL</td>
         <td align="center">✔</td>
     </tr>
     <tr>
+        <td>RF - 7</td>
+        <td> Apenas o usuário que criou o informativo, terá a liberdade de excluí-lo</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
         <td>RF - 8</td>
         <td> Criar lógica que permita que o direcionamento dos informativos criados pelo novo Usuário seja feito de acordo com as hierarquias</td>
         <td align="center">✔</td>
@@ -749,19 +764,93 @@ MariaDB/MySQL/PostGresSQL</td>
     <tr><td></td><td></td><td></td><td></td></tr>
     <tr>
         <td>RNF - 4</td>
-        <td>Construção da API em Flask</td>
-        <td align="center">✔</td>
-        <td align="center">✔</td>
-    </tr>
-    <tr>
-        <td>RNF - 4</td>
-        <td>Integração do front end com a API</td>
+        <td>Construção da API para conversação entre front e back end</td>
         <td align="center">✔</td>
         <td align="center">✔</td>
     </tr>
     <tr>
         <td>RNF - 5</td>
         <td>Utilização de SQLite para banco de dados da aplicação considerando possibilidade de troca para PostGresSQL devido facilidade com o Heroku</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+</table>
+
+<br>
+
+> [Voltar ao Topo](#topo) ☝️
+
+<br>
+
+<span id="sprint3">
+
+## Sprint 03 :running:
+
+<br>
+
+<p align="justify">Na <b>Terceira Sprint</b>, já possuindo uma aplicação minimamente funcional, focamos em adicionar <b>novas funcionalidades essênciais</b> a aplicação. Implementamos um método de <b>autenticação por e-mail</b>, <b>filtragem</b> dos informativos <b>por dia</b> organizados por ordem de mais recente ao menos recente, <b>filtro por palavra chave</b> também em ordem e a funcionalidade de <b>arquivar informativos</b>. Foram feitas melhorias em alguns aspectos visuais da aplicação, principalmente na exibição dos informativos arquivados, e também feita uma <b>revisão no modelo lógico do banco de dados</b> conseguindo relacionar todos os papéis na nossa aplicação de forma efetiva. Implementamos o uso da ferramenta <b>Flask-Migrate</b> para facilitar o versionamento do esquema do nosso banco de dados caso necessário junto a ferramenta <b>Flask-Alembic</b> para prover as configurações e o ambiente para migração das atualizações feitas no banco de dados sem riscos as informações contidas neste. A nossa aplicação agora permite a <b>inserção (editar), ocultamento (arquivar) e remoção dos informativos. 
+
+<br>
+
+
+# Sprint Backlog
+
+> ## Sprint 03
+
+<br>
+
+<table>
+    <tr>
+        <td align="center">REQUISITO FUNCIONAL_ID</td>
+        <td align="center">REQUISITOS DA SPRINT</td>
+        <td align="center">TAREFA INICIADA</td>
+        <td align="center">STATUS</td>
+    </tr>
+    <tr>
+        <td>RF - 6</td>
+        <td>Criação da funcionalidade de autenticação do cadastro do novo usuário por e-mail</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 7</td>
+        <td>Informativos poderão ser excluídos apenas pelos usuários que os criarão</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 10</td>
+        <td>Possibilidade de arquivar informativos em um campo separado e em ordem cronológica para que seja mantido um histórico de informativos</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 8</td>
+        <td>Informativos são enviados a destinatários específicos e apenas os usuários com os papéis selecionados poderam visualiza-los</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 5</td>
+        <td>Filtragem dos informativos por papéis (ex.: Diretor, Professor, Aluno e etc)</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 5</td>
+        <td>Criação de um mecanismo de filtro por palavras chaves em um campo de busca de fácil acesso para pesquisas rápidas</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 5</td>
+        <td>Criação dos mecanismos de filtragem por data, com exibição em ordem de mais recente para menos recente</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 9</td>
+        <td>Funcionamento da seção adm. com acesso restrito para que seja feita a administração de papéis e funções dentro da aplicação</td>
         <td align="center">✔</td>
         <td align="center">✔</td>
     </tr>
