@@ -426,7 +426,7 @@ MariaDB/MySQL/PostGresSQL</td>
 ## :movie_camera: Preview da Aplicação
 <br>
 
-[![PREVIEW DA APLICAÇÃO](https://img.youtube.com/vi/ID_VIDEO_YOUTUBE_AQUI/0.jpg)](LINK_DO_VIDEO_DO_YOUTUBE_AQUI)
+[![PREVIEW DA APLICAÇÃO](https://img.youtube.com/vi/tgTBTtuiZNc/0.jpg)](https://www.youtube.com/watch?v=tgTBTtuiZNc)
 
 <br>
 
