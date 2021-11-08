@@ -1,3 +1,4 @@
+{% from '_render_field.html' import render_field %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +48,7 @@
   <main class="main-login">
     <div class="login-area">
       <div class="login-wrapper">
-        <form action="{% block form %}{% endblock %}" method="POST">
+        <form action="{% block form %}{% endblock %}" method="POST" novalidate>
           {{ form.csrf_token }}
           <h1 class="login-title">{%block loginTitle %}Bem vindo{% endblock %}</h1>
           <h3 class="login-subtitle">{%block loginSub %}Entre com seu email da fatec{% endblock %}</h3>
@@ -76,5 +77,11 @@
   </footer>
 
 </body>
+<!--
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>-->
+<script src="https://unpkg.com/imask"></script>
+<script src="{{url_for('static', filename='js/mask.js')}}"></script>
 
 </html>

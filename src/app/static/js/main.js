@@ -23,3 +23,21 @@ popupBg.addEventListener("click", () => {
   popup.classList.remove('popup-active')
   document.body.style.overflow = "auto"
 })
+
+// deletar post
+function deletarPost(postId) {
+  fetch('/deletar-post', {
+    method: 'POST',
+    body: JSON.stringify({ postId: postId })
+  }).then((_res) => {
+    window.location.href = "/editar";
+  });
+}
+function arquivarPost(postId) {
+  fetch('/arquivar-post', {
+    method: 'POST',
+    body: JSON.stringify({ postId: postId })
+  }).then((_res) => {
+    window.location.href = "/";
+  });
+}

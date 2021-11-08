@@ -1,0 +1,37 @@
+{% macro render_field(field, icon) %}
+<div class="field">
+  <div class="error-wrapper" data-id={{ field.id | tojson }}>
+    {{ field.label }}
+    {% if field.errors %}
+    <div class="flashes">
+      {% for error in field.errors %}
+      <div>{{ error }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages and category == danger %}
+    <div class=flashes>
+      {% for category, message in messages %}
+      <div class="alert text-center alert-{{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+  </div>
+  <div class="input-wrapper small-input">
+    {{ field(class_="input", **kwargs)|safe }}
+    <!-- <input type="email" name="email" placeholder="exemple@fatec.sp.gov.br"> -->
+    <span class="material-icons-round">{{ icon }}</span>
+  </div>
+  {% with messages = get_flashed_messages() %}
+  {% if field.errors or messages %}
+  <script>
+    var input = {{ field.id | tojson }}
+    document.getElementById(input).style.border = '2px solid red';
+    document.querySelector('[data-id={{ field.id | tojson }}]').classList.add('error-label')
+  </script>
+  {% endif %}
+  {% endwith %}
+</div>
+{% endmacro %}

@@ -5,41 +5,16 @@
 {%block loginTitle %}Bem vindo{% endblock %}
 {%block loginSub %}Entre com seu email da fatec{% endblock %}
 
-{% block form %}{{ url_for('main.login') }}{% endblock %}
+{% block form %}{{ url_for('auth.login') }}{% endblock %}
 
 {% block login %}
 
-
 <div class="login-input">
-  <h3>Email:</h3>
-  <div class="input-wrapper small-input">
-    {{ form.email }}
-    <!-- <input type="email" name="email" placeholder="exemple@fatec.sp.gov.br"> -->
-    <span class="material-icons-round">lock</span>
-  </div>
-
-
-  <div class="password-label">
-    <h3>Senha:</h3>
-    <a href="/esqueceu-senha">esqueceu a senha?</a>
-  </div>
-  <div class="input-wrapper small-input">
-    {{ form.senha }}
-    <!-- <input type="password" name="senha" placeholder="Mínimo de 5 caracteres"> -->
-    <span class="material-icons-round">lock</span>
-  </div>
+  {{ render_field(form.email, 'email') }}
+  {{ render_field(form.senha, 'lock') }}
+  <a class="link" href="/esqueceu-senha">esqueceu a senha?</a>
 </div>
 
-<div class="flashes">
-  {% for error in form.email.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-  {% for error in form.senha.errors %}
-  <div>Erro: {{ error }}</div>
-  {% endfor %}
-</div>
-
-{% include '_messages.html' %}
 {% endblock %}
 
 {% block btnTitle %}Entrar{% endblock %}

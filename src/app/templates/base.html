@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
@@ -32,7 +33,7 @@
             <span class="material-icons-round medium-icon">archive</span>
             <div class="selection-bar"></div>
           </a>
-          {% if user.envia %}
+          {% if user_edit %}
           <a href="/editar">
             <span class="material-icons-round medium-icon">edit</span>
             <div class="selection-bar"></div>
@@ -55,45 +56,18 @@
       <div class="middle-box">
         <div class="middle-box-wrapper">
           {% block search %}
-          <div class="input-wrapper search-box">
-            <input type="search" name="busca" placeholder="Busca">
-            <span class="material-icons-round">search</span>
-          </div>
+          <form action="" method="post">
+            <div class="input-wrapper search-box">
+              <input type="search" name="busca" placeholder="Busca">
+              <span class="material-icons-round">search</span>
+            </div>
+          </form>
           {% endblock %}
+
           {% block btn_criar %}{% endblock %}
           <main class="base-main">
-            {% block main %}
             <div class="main-text">{% block main_text %}INFORMATIVOS{% endblock %}</div>
-            {% for post in posts %}
-            <div class="card-box">
-              <h2 class="title-text">{{ post.assunto }}</h2>
-              <div class="text-title-area">
-                <h3 class="sender-name">{{ post.remetente }}</h3>
-                <div class="send-date">
-                  <p class="hour">{{ post.data.strftime('%H:%M') }}</p>
-                  <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
-                </div>
-              </div>
-              <div class="text-area">
-                <p>{{ post.texto }}</p>
-              </div>
-              <div class="bottom-buttons">
-                <button class="btn btn-full">
-                  <span class="material-icons-round">more_horiz</span>
-                  <p>Ler mais</p>
-                </button>
-                {% block btn_empty %}
-                <button class="btn btn-empty">
-                  <span class="material-icons-round">delete</span>
-                  <p>Excluir</p>
-                </button>
-                {% endblock %}
-                <span class="material-icons-round card-icon">
-                  attach_file
-                </span>
-              </div>
-            </div>
-            {% endfor %}
+            {% block main %}
             {% endblock %}
           </main>
         </div>
@@ -102,37 +76,41 @@
       <div class="right-menu">
         <div class="filter-section">
           <h2 class="section-title filter-title">FILTRO</h2>
-          <form action="">
-            {% if user.envia==1 %}
+          <form action="" method="Post">
+            {% if user_edit %}
             <div class="input-wrapper small-input">
               <input type="search" name="cursos" placeholder="Cursos">
               <span class="material-icons-round">search</span>
             </div>
             {% endif %}
-            <div class="dropdown-wrapper">
-              <div class="input-wrapper small-input">
-                <select name="anexos" id="anexos">
-                  <option value="" disabled selected>Anexos</option>
-                  <option value="foto">Foto</option>
-                  <option value="video">Video</option>
-                  <option value="documento">Documentos</option>
-                </select>
-                <span class="material-icons-round">expand_more</span>
-              </div>
-              <div class="input-wrapper small-input">
-                <select name="remetente" id="remetente">
-                  <option value="" disabled selected>Remetente</option>
-                  <option value="diretor">Diretor</option>
-                  <option value="secretaria">Secretaria</option>
-                  <option value="professor">Professor</option>
-                </select>
-                <span class="material-icons-round">expand_more</span>
-              </div>
+            <div class="input-wrapper small-input">
+              <select name="anexos" id="anexos">
+                <option value="" disabled selected>Anexos</option>
+                <option value="foto">Foto</option>
+                <option value="video">Video</option>
+                <option value="documento">Documentos</option>
+              </select>
+              <span class="material-icons-round">expand_more</span>
             </div>
+            {% block remetente %}
+            <div class="input-wrapper small-input">
+              <select name="remetente" id="remetente">
+                <option value="" disabled selected>Remetente</option>
+                <option value="diretor">Diretor</option>
+                <option value="secretaria">Secretaria</option>
+                <option value="professor">Professor</option>
+              </select>
+              <span class="material-icons-round">expand_more</span>
+            </div>
+            {% endblock %}
             <div class="input-wrapper small-input">
               <input type="date" name="data" placeholder="Dia/Mes/Ano">
               <span class="material-icons-round">today</span>
             </div>
+            <button class="btn btn-empty" style="justify-content: center;" value="Filtrar">
+              <span class="material-icons-round">archive</span>
+              <p>Filtrar</p>
+            </button>
             <!-- <div class="input-wrapper small-input">
               <select name="envio" id="envio">
                 <option value="" disabled selected>Data de envio</option>
@@ -147,7 +125,7 @@
           </form>
         </div>
 
-        <div class="notifications-section">
+        <!--<div class="notifications-section">
           <h2 class="section-title notifications-title">Notificações</h2>
           <div class="notifications-wrapper">
             <span class="material-icons-round big-icon">notifications_active</span>
@@ -159,11 +137,17 @@
               <div class="circle"></div>
             </div>
           </div>
-        </div>
+        </div>-->
       </div>
     </div>
   </div>
 </body>
 <script src="{{url_for('static', filename='js/main.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.8.7/chosen.jquery.min.js"></script>
+<script>
+  $('#select').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "Aluno, Professor..." });
+  //$('.chosen-search-input').val("Aluno, Professor...")
+</script>
 
 </html>

@@ -2,11 +2,47 @@
 
 {% block title %}Home{% endblock %}
 
+
 {% block main_text %}INFORMATIVOS{% endblock %}
 
-{% block btn_empty %}
-<button class="btn btn-empty">
-  <span class="material-icons-round">archive</span>
-  <p>Arquivar</p>
-</button>
+
+{% block main %}
+{% for post in posts %}
+
+<div class="card-box">
+  <h2 class="title-text">{{ post.titulo }}</h2>
+  <div class="text-title-area">
+    <h3 class="sender-name">{{ remetente(post.user_id) }}</h3>
+    <div class="send-date">
+      <p class="hour">{{ post.data.strftime('%H:%M') }}</p>
+      <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
+    </div>
+  </div>
+  <div class="text-area">
+    <p>{{ post.texto }}</p>
+  </div>
+  <div class="bottom-buttons">
+    <button class="btn btn-full">
+      <span class="material-icons-round">more_horiz</span>
+      <p>Ler mais</p>
+    </button>
+    <button class="btn btn-empty" onClick="arquivarPost({{ post.id }})">
+      <span class="material-icons-round">archive</span>
+      <p>Arquivar</p>
+    </button>
+    <span class="material-icons-round card-icon">
+      attach_file
+    </span>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}
+
+
+{% block remetente %}
+<div class="input-wrapper small-input">
+  {{ form.select }}
+  <span class="material-icons-round">expand_more</span>
+</div>
 {% endblock %}
