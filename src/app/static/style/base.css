@@ -150,7 +150,7 @@ a:link, a:visited{
   position: relative;
   display: flex;
   padding: 0;
-  height: 55px;
+  min-height: 55px;
   margin: .25em 0;
 }
 
@@ -234,13 +234,11 @@ a:link, a:visited{
 }
 
 .input-wrapper .chosen-choices{
-  height: 100%;
+  min-height: 55px;
   padding: 0px 1em 0px calc(var(--small-icon)*2);
   border:none;
   background: none;
-  line-height: 1rem;
-  display: flex;
-  align-items: center;
+  line-height: 55px;
 }
 
 .input-wrapper .search-choice{
@@ -250,6 +248,7 @@ a:link, a:visited{
   background: var(--card-bg-color) !important;
   line-height: 1em !important;
   gap: 10px;
+  margin-top: 14px !important; 
 }
 
 .search-choice a{

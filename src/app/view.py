@@ -53,29 +53,48 @@ def inicio():
     if user.id in user_arquivados:
         posts = db.session.query(Postagem).join(Postagem.destinatario).join(
             Papel.user).join(Arquivadas).filter(Postagem.id.not_in(subquery)).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
+
+        busca = request.form.get("busca")
+        if busca:
+            busca = f"%{busca}%"
+            search_post = db.session.query(Postagem).join(Postagem.destinatario).join(
+                Papel.user).join(Arquivadas).filter(Postagem.id.not_in(subquery)).filter(User.id == user.id).filter(Postagem.titulo.like(
+                    busca)).order_by(Postagem.data.desc()).all()
+            posts = search_post
+        filtro_data = request.form.get("data")
+        if filtro_data:
+            filtro_data = f"%{filtro_data}%"
+            filtro_data = db.session.query(Postagem).join(Postagem.destinatario).join(
+                Papel.user).join(Arquivadas).filter(Postagem.id.not_in(subquery)).filter(User.id == user.id).filter(Postagem.data.like(
+                    filtro_data)).order_by(Postagem.data.desc()).all()
+            posts = filtro_data
+
     else:
         posts = db.session.query(Postagem).join(Postagem.destinatario).join(
             Papel.user).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
-    userid = (post.user_id for post in posts)
+
+        busca = request.form.get("busca")
+        if busca:
+            busca = f"%{busca}%"
+            search_post = db.session.query(Postagem).join(Postagem.destinatario).join(
+                Papel.user).filter(User.id == user.id).filter(Postagem.titulo.like(
+                    busca)).order_by(Postagem.data.desc()).all()
+            posts = search_post
+        filtro_data = request.form.get("data")
+        if filtro_data:
+            filtro_data = f"%{filtro_data}%"
+            filtro_data = db.session.query(Postagem).join(Postagem.destinatario).join(
+                Papel.user).filter(User.id == user.id).filter(Postagem.data.like(
+                    filtro_data)).order_by(Postagem.data.desc()).all()
+            posts = filtro_data
 
     # print(posts)
-    busca = request.form.get("busca")
-    if busca:
-        busca = f"%{busca}%"
-        search_post = db.session.query(Postagem).join(Postagem.destinatario).join(
-            Papel.user).filter(User.id == user.id).filter(Postagem.titulo.like(
-                busca)).order_by(Postagem.data.desc()).all()
-        posts = search_post
-    filtro_data = request.form.get("data")
-    if filtro_data:
-        filtro_data = f"%{filtro_data}%"
-        filtro_data = db.session.query(Postagem).join(Postagem.destinatario).join(
-            Papel.user).filter(User.id == user.id).filter(Postagem.data.like(
-                filtro_data)).order_by(Postagem.data.desc()).all()
-        posts = filtro_data
-    print(posts)
 
-    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente)
+    form = SelectForm()
+    form.select.choices = [(select.id, select.nome)
+                           for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
+
+    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form)
 
 
 @ routes.route('/editar', methods=['POST', 'GET'])
@@ -83,7 +102,7 @@ def inicio():
 def edit():
     form = SelectForm()
     form.select.choices = [(select.id, select.nome)
-                           for select in Papel.query.all()]
+                           for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
     papel = db.session.query(Papel.nome).all()
     print(papel)
     user_papel = papel_postagem(user.papeis)
@@ -92,8 +111,26 @@ def edit():
     # print(user_edit())
     if not user_edit():
         return redirect(url_for('view.inicio'))
+
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
+
+    '''if request.method == 'GET':
+        busca = request.form.get("busca")
+        if busca:
+            busca = f"%{busca}%"
+            search_post = db.session.query(Postagem).filter(
+                Postagem.user_id == user.id).filter(Postagem.titulo.like(
+                    busca)).order_by(Postagem.data.desc()).all()
+            posts = search_post
+        filtro_data = request.form.get("data")
+        if filtro_data:
+            filtro_data = f"%{filtro_data}%"
+            filtro_data = db.session.query(Postagem).filter(
+                Postagem.user_id == user.id).filter(Postagem.titulo.like(
+                    busca)).order_by(Postagem.data.desc()).all()
+            posts = filtro_data'''
+
     if request.method == 'POST':
         titulo = request.form.get('titulo')
         texto = request.form.get('texto')
@@ -121,8 +158,8 @@ def deletar_post():
     return jsonify({})
 
 
-@routes.route('/arquivar-post', methods=['POST'])
-@login_required
+@ routes.route('/arquivar-post', methods=['POST'])
+@ login_required
 def arquivar_post():
     post = json.loads(request.data)
     postId = post['postId']
@@ -137,11 +174,26 @@ def arquivar_post():
     return jsonify({})
 
 
-@ routes.route('/arquivos')
+@ routes.route('/arquivos', methods=['POST', 'GET'])
 @ login_required
 def archive():
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
         Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).order_by(Postagem.data.desc()).all()
+
+    busca = request.form.get("busca")
+    if busca:
+        busca = f"%{busca}%"
+        search_post = db.session.query(Postagem).join(Postagem.destinatario).join(
+            Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).filter(Postagem.titulo.like(
+                busca)).order_by(Postagem.data.desc()).all()
+        posts = search_post
+    filtro_data = request.form.get("data")
+    if filtro_data:
+        filtro_data = f"%{filtro_data}%"
+        filtro_data = db.session.query(Postagem).join(Postagem.destinatario).join(
+            Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).filter(Postagem.data.like(
+                filtro_data)).order_by(Postagem.data.desc()).all()
+        posts = filtro_data
     return render_template('arquivos.html', user=user, posts=posts, user_edit=user_edit(), remetente=remetente)
 
 

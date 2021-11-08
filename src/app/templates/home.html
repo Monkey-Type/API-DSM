@@ -5,6 +5,7 @@
 
 {% block main_text %}INFORMATIVOS{% endblock %}
 
+
 {% block main %}
 {% for post in posts %}
 
@@ -36,4 +37,12 @@
 </div>
 
 {% endfor %}
+{% endblock %}
+
+
+{% block remetente %}
+<div class="input-wrapper small-input">
+  {{ form.select }}
+  <span class="material-icons-round">expand_more</span>
+</div>
 {% endblock %}

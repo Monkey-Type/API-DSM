@@ -47,8 +47,8 @@ def create_app():
 
 #
     # Uso de Variável de Ambiente para esconder o Email e a Senha para quando subir esse código no GITHUB
-    app.config['MAIL_USERNAME'] = os.environ.get('SERVER_EMAIL')
-    app.config['MAIL_PASSWORD'] = os.environ.get('SERVER_PASS')
+    app.config['MAIL_USERNAME'] = 'contato.monkey.type@gmail.com' #os.environ.get('SERVER_EMAIL')
+    app.config['MAIL_PASSWORD'] = 'GPPRMMT0006' #os.environ.get('SERVER_PASS')
 
     # Configuração para email gmail
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
