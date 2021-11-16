@@ -1,0 +1,45 @@
+@media screen and (max-width: 500px) {
+    
+    .login-header-wrapper{
+        padding: 2em 0px 0em 30px;
+    }
+
+    .main-login{
+        padding: 30px;
+    }
+
+  }
+
+@media screen and (max-width: 410px) {
+    
+    .login-footer-wrapper p{
+        font-size: small;
+        padding: 0px;
+    }
+
+}
+
+@media screen and (max-width: 310px) {
+      
+    .login-footer-wrapper p{
+      font-size: 11px;
+    }
+  
+  }
+
+
+@media screen and (max-height: 620px) {
+    
+    .main-logo svg{
+      height: 46px;
+    }
+  
+    .login-header-wrapper{
+      padding: 2em 0px 0em 20px;
+    }
+
+    .login-title{
+        font-size: var(--h2-font-size);
+    }
+  
+  }

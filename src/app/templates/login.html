@@ -2,7 +2,7 @@
 
 {% block title %}Login{% endblock %}
 
-{%block loginTitle %}Bem vindo{% endblock %}
+{%block loginTitle %}Bem-vindo{% endblock %}
 {%block loginSub %}Entre com seu email da fatec{% endblock %}
 
 {% block form %}{{ url_for('auth.login') }}{% endblock %}
@@ -13,6 +13,14 @@
   {{ render_field(form.email, 'email') }}
   {{ render_field(form.senha, 'lock') }}
   <a class="link" href="/esqueceu-senha">esqueceu a senha?</a>
+</div>
+
+{% endblock %}
+
+{% block cadastrar %}
+
+<div class="cadastrar">
+  <p>É novo aqui? <a href="/register">Crie uma conta</a></p>
 </div>
 
 {% endblock %}
