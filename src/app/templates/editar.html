@@ -81,11 +81,11 @@
             <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
         </div>
     </div>
-    <div class="text-area">
+    <div class="text-area text-area--short">
         <p>{{ post.texto }}</p>
     </div>
     <div class="bottom-buttons">
-        <button class="btn btn-full">
+        <button class="btn btn-full" onClick="abrirPopup({{ post.id }})">
             <span class="material-icons-round">more_horiz</span>
             <p>Ler mais</p>
         </button>
@@ -98,5 +98,7 @@
         </span>
     </div>
 </div>
+
+{{ modal_lermais(post, user_papel ,user.nome) }}
 {% endfor %}
 {% endblock %}

@@ -31,6 +31,10 @@ def remetente(userid):
         Papel.user).filter(User.id == userid).all())
 
 
+def remetente_nome(userid):
+    return papel_postagem(db.session.query(User.nome).filter(User.id == userid).first())
+
+
 @routes.route('/select', methods=["GET", "POST"])
 def select():
     form = SelectForm()
@@ -94,7 +98,7 @@ def inicio():
     form.select.choices = [(select.id, select.nome)
                            for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
 
-    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form)
+    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form, remetente_nome=remetente_nome)
 
 
 @ routes.route('/editar', methods=['POST', 'GET'])
@@ -194,7 +198,7 @@ def archive():
             Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).filter(Postagem.data.like(
                 filtro_data)).order_by(Postagem.data.desc()).all()
         posts = filtro_data
-    return render_template('arquivos.html', user=user, posts=posts, user_edit=user_edit(), remetente=remetente)
+    return render_template('arquivos.html', user=user, posts=posts, user_edit=user_edit(), remetente=remetente, remetente_nome=remetente_nome)
 
 
 @ routes.route('/config')

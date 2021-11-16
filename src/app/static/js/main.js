@@ -7,7 +7,8 @@ hamburger.addEventListener("click", () => {
   else {
     menu.classList.add('toggled')
   }
-}); */
+}); 
+*/
 
 // Popup
 var popup = document.getElementById("popup")
@@ -23,6 +24,24 @@ popupBg.addEventListener("click", () => {
   popup.classList.remove('popup-active')
   document.body.style.overflow = "auto"
 })
+
+
+function abrirPopup(id) {
+  modal = document.querySelector("[data-id='" + id + "']");
+  modal.classList.add('popup-active')
+  document.body.style.overflow = "hidden"
+}
+
+function fecharPopup(id) {
+  modal = document.querySelector("[data-id='" + id + "']");
+  modal.classList.remove('popup-active')
+  document.body.style.overflow = "auto"
+}
+
+function stop(event) {
+  event.stopPropagation();
+}
+
 
 // deletar post
 function deletarPost(postId) {

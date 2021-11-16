@@ -1,0 +1,48 @@
+{% macro modal_lermais(post, remetente, remetente_nome) %}
+
+<div class="page-wrapper modal-lermais--wrapper" data-id="{{ post.id }}" onClick="fecharPopup({{post.id}})">
+  <div class="popup p-9 lg:p-14 max-w-screen-lg flex-grow" onClick="stop(event)">
+    <div class=" modal-top flex justify-between mb-12">
+      <div class="sender-info">
+        <h3 class="sender-name">{{ remetente_nome }}</h3>
+      </div>
+      <button onClick="fecharPopup({{ post.id }})"><span class="material-icons-round">close</span></button>
+    </div>
+    <div class="message mb-12">
+      <h2 class="title-text">{{ post.titulo }}</h2>
+      <div class="text-title-area">
+        <h3 class="sender-papel">{{ remetente }}</h3>
+        <div class="send-date">
+          <p class="hour">{{ post.data.strftime('%H:%M') }}</p>
+          <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
+        </div>
+      </div>
+      <div class="text-area text-area--modal">
+        <p>{{ post.texto }}</p>
+      </div>
+    </div>
+    <div class="anexos mb-12">
+      <h2 class="title-text">Anexos</h2>
+      <div class="anexo flex gap-3">
+        <span class="material-icons-round">folder</span>
+        <div>
+          <h3 class="anexo-nome">arquivo_da_mensagem</h3>
+          <p class="anexo-info">400mb</p>
+        </div>
+      </div>
+    </div>
+    <div class="buttons-area flex gap-6">
+      <button class="btn btn-full">
+        <span class="material-icons-round">download</span>
+        <p>Enviar</p>
+      </button>
+      <button class="btn btn-empty" onClick="arquivarPost({{ post.id }})">
+        <span class="material-icons-round">archive</span>
+        <p>Arquivar</p>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+{% endmacro %}

@@ -367,24 +367,22 @@ button{
 
 /* Pop-up */
 .page-wrapper{
-  top: 0px;
-  left: 0px;
-  z-index: 999;
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
+  inset: 0;
+  z-index: 900;
+  position: fixed;
   display: none;
   align-items: center;
   justify-content: center;
-
+  align-items: flex-start;
+  padding: 5rem;
+  overflow-y:auto;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .popup-bg{
+  inset: 0;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
   cursor:pointer;
 }
 
@@ -392,11 +390,40 @@ button{
   background-color: white;
   border-radius: var(--main-border-radius);
   z-index: 1000;
-  
+  position: relative;
 }
+
 
 .popup-active{
   display: flex;
+}
+
+.modal-top span{
+  font-size: var(--medium-icon);
+}
+
+.text-area--modal p::after{
+  display: none;
+}
+
+.sender-name{
+  font-size: var(--h2-font-size);
+  font-weight: var(--bold);
+}
+
+.anexo span{
+  font-size: var(--big-icon);
+  color: var(--faded-icon-color);
+}
+
+.anexo-nome{
+  font-weight: bold;
+  font-size: var(--h3-font-size);
+  color: var(--primary-text-color)
+}
+
+.anexo-info{
+  color:var(--faded-text-color)
 }
 
 /* outros */
@@ -511,6 +538,10 @@ body{
   
 }
 
+.filter-title{
+  font-weight: bold;
+}
+
 .dropdown-wrapper div{
   flex: 1 1 0;
 }
@@ -613,7 +644,7 @@ body{
   font-weight: var(--bold);
 }
 
-.sender-name{
+.sender-papel{
   line-height: 1.9em;
   font-size: var(--h3-font-size);
   font-weight: var(--semi-bold);
@@ -645,7 +676,15 @@ body{
   position: relative;
   padding-left: 1em;
   font-weight: var(--regular);
+}
+
+.text-area--short p{
   word-wrap: break-word;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
 }
 
 .text-area p::before{
@@ -657,10 +696,6 @@ body{
   left:0;
   position: absolute;
   border-radius: 3em;
-}
-
-.text-area p::after{
-  content: '...';
 }
 
 .bottom-buttons{

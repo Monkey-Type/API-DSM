@@ -12,17 +12,17 @@
 <div class="card-box">
   <h2 class="title-text">{{ post.titulo }}</h2>
   <div class="text-title-area">
-    <h3 class="sender-name">{{ remetente(post.user_id) }}</h3>
+    <h3 class="sender-papel">{{ remetente(post.user_id) }}</h3>
     <div class="send-date">
       <p class="hour">{{ post.data.strftime('%H:%M') }}</p>
       <p class="date">{{ post.data.strftime('%d/%m/%Y') }}</p>
     </div>
   </div>
-  <div class="text-area">
+  <div class="text-area text-area--short">
     <p>{{ post.texto }}</p>
   </div>
   <div class="bottom-buttons">
-    <button class="btn btn-full">
+    <button class="btn btn-full" onClick="abrirPopup({{ post.id }})">
       <span class="material-icons-round">more_horiz</span>
       <p>Ler mais</p>
     </button>
@@ -35,6 +35,8 @@
     </span>
   </div>
 </div>
+
+{{ modal_lermais(post, remetente(post.user_id) ,remetente_nome(post.user_id)) }}
 
 {% endfor %}
 {% endblock %}
