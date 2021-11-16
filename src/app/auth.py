@@ -9,16 +9,20 @@ from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
 import re
 
+# imports para token
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired
+serial = URLSafeTimedSerializer('SENHASECRETA!') # app.config['SECRET_KEY']
+
 from .email_service import EmailService
 routes = Blueprint('auth', __name__)
 user = current_user
 
-###
+
 @routes.route('/register', methods=["GET", "POST"])
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        print(form.cpf.data)
+        #print(form.cpf.data)
         cpf = int(re.sub("[.-]", "", form.cpf.data))
         #cpfExistente = User.query.filter_by(cpf=cpf).first()
         #raExistente = User.query.filter_by(ra=form.ra.data).first()
@@ -71,6 +75,10 @@ def logout():
 def password():
     form = EsqueceuFormulario()
     if form.validate_on_submit():
+        emailExistente = User.query.filter_by(email=form.email.data).first()
+        ServiceEmail = EmailService()
+        ServiceEmail.esqueceuSenha(emailExistente.email)
+        flash('Acesse o Link enviado no seu email e acesse com a nova senha!') # HTML aqui para essa mensagem
         return redirect(url_for('auth.login'))
     return render_template('esqueceu-senha.html', form=form)
 
@@ -88,10 +96,6 @@ def right_code():
 @routes.route('/sucesso')
 def success():
     return render_template('sucesso.html')
-
-#######
-from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-serial = URLSafeTimedSerializer('SENHASECRETA!') # app.config['SECRET_KEY']
 
 @routes.route('/confirma_email/<token>') 
 def confirma_email(token):   # se usar uma variável na URL utilize também como parâmetro na função
@@ -117,6 +121,23 @@ def confirma_email(token):   # se usar uma variável na URL utilize também como
         return render_template('registrar.html', form=form) # aqui html para o token expirado
     return render_template('login.html', form=form)
 
-    
+
+@routes.route('/esqueceu_senha/<token>') 
+def esqueceu_senha(token):
+    form = RegisterForm()
+    try:
+        tokenVem = serial.loads(token, salt='password-forgotten', max_age=60) # nesse tokenVem tem o email concatenado com a senha, separados por um ;
+        emailToken = tokenVem.split(";")[0] # usando um split eu consigo separar o email da senha para usar em diferentes partes
+        senhaToken = tokenVem.split(";")[1]
+        emailUsuario = User.query.filter_by(email=emailToken).first()
+        hashed_password = bcrypt.generate_password_hash(senhaToken).decode("utf-8") 
+        emailUsuario.senha = hashed_password
+        db.session.commit()
+
+    except SignatureExpired:
+        serial.loads(token, salt='password-forgotten')
+        flash('Link expirado! Tente novamente.') # HTML aqui caso necessário
+        return render_template('login.html', form=form)
+    return render_template('login.html', form=form)
 
 
