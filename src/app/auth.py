@@ -75,11 +75,16 @@ def logout():
 def password():
     form = EsqueceuFormulario()
     if form.validate_on_submit():
-        emailExistente = User.query.filter_by(email=form.email.data).first()
-        ServiceEmail = EmailService()
-        ServiceEmail.esqueceuSenha(emailExistente.email)
-        flash('Acesse o Link enviado no seu email e acesse com a nova senha!') # HTML aqui para essa mensagem
-        return redirect(url_for('auth.login'))
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            user = User.query.filter_by(email=form.email.data).first()
+            ServiceEmail = EmailService()
+            ServiceEmail.esqueceuSenha(user.email)
+            flash('Clique no Link enviado no seu email e acesse com a nova senha!') # HTML aqui para essa mensagem
+            return redirect(url_for('auth.login'))
+        else:
+            flash('Use um e-mail válido!', 'info')
+            return render_template('esqueceu-senha.html', form=form)
     return render_template('esqueceu-senha.html', form=form)
 
 
