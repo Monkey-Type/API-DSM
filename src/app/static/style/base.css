@@ -375,6 +375,7 @@ button{
   justify-content: center;
   align-items: flex-start;
   padding: 5rem;
+  overflow-x:hidden;
   overflow-y:auto;
   background-color: rgba(0, 0, 0, 0.5);
 }
@@ -873,9 +874,8 @@ body{
     font-size: calc(var(--medium-icon)*1.5);
   }
 
-  .text-area p{
-    max-height: 100px;
-    overflow: hidden;
+  .text-area--short p{
+    -webkit-line-clamp: 5;
   }
 
 }
