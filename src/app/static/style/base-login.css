@@ -78,7 +78,7 @@ tspan{
 
 .login-input{
   margin-top: 1.5em;
-  margin-bottom: 2.5em;
+  margin-bottom: 1.5em;
 }
 
 
@@ -120,3 +120,58 @@ tspan{
   margin-bottom: 1em;
 }
 
+.cadastrar{
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+    
+  .login-header-wrapper{
+    padding: 2em 0px 0em 30px;
+  }
+
+  .btn-header{
+    display: none;
+  }
+
+  .login-footer-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .cadastrar{
+    display: flex;
+    padding-top: 10px;
+    font-size: var(--h3-font-size);
+    font-weight: var(--semi-bold);
+  }
+
+  .cadastrar a{
+    color: var(--primary-accent-color);
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .login-footer-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+}
+
+@media screen and (max-width: 310px) {
+    
+  .login-footer-wrapper{
+    padding: 5px;
+  }
+
+  .login-footer-wrapper p{
+    font-size: 11px;
+  }
+
+}

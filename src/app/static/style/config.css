@@ -68,8 +68,29 @@
 }
 
 @media screen and (max-width: 1200px){
+    
     .card-box-profile{
-        gap:0;
+        justify-content: space-around;
     }
     
+}
+
+@media screen and (max-width: 450px){
+
+    .btn{
+        font-size: calc(var(--h3-font-size)*0.8);
+    }
+
+    .card-img{
+        font-size: calc(var(--extra-big-icon)*0.8);
+    }
+    
+}
+
+@media screen and (max-width: 300px){
+
+    .card-box-profile{
+        gap: 0.5em;
+    }
+
 }

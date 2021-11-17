@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="{{url_for('static', filename='style/base-login.css')}}">
   <title>{% block title %}Base-Login{% endblock %}</title>
   {% block head %}
+  <link rel="stylesheet" href="{{url_for('static', filename='style/login.css')}}">
   {% endblock %}
 </head>
 
@@ -46,7 +47,6 @@
     </div>
   </header>
   <main class="main-login">
-    <div class="login-area">
       <div class="login-wrapper">
         <form action="{% block form %}{% endblock %}" method="POST" novalidate>
           {{ form.csrf_token }}
@@ -59,9 +59,10 @@
             <p>{% block btnTitle %}Entrar{% endblock %}</p>
             {% endblock %}
           </button>
+          {% block cadastrar %}
+          {% endblock %}
         </form>
       </div>
-    </div>
   </main>
   <footer class="footer-login">
     <div class="login-footer-wrapper">
@@ -69,8 +70,8 @@
         <p>@2021 - FatecSJC - Todos os direitos reservados</p>
       </div>
       <nav class="footer-nav">
-        <p>Termos</p>
         <p>Política de privacidade</p>
+        <p>Termos</p>
         <p>Contato</p>
       </nav>
     </div>
