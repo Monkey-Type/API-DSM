@@ -7,6 +7,7 @@
 
 
 {% block main %}
+<link rel="stylesheet" href="{{url_for('static', filename='style/home.css')}}">
 {% for post in posts %}
 
 <div class="card-box">
@@ -22,11 +23,11 @@
     <p>{{ post.texto }}</p>
   </div>
   <div class="bottom-buttons">
-    <button class="btn btn-full">
+    <button class="F-btn btn btn-full">
       <span class="material-icons-round">more_horiz</span>
       <p>Ler mais</p>
     </button>
-    <button class="btn btn-empty" onClick="arquivarPost({{ post.id }})">
+    <button class="F-btn btn btn-empty" onClick="arquivarPost({{ post.id }})">
       <span class="material-icons-round">archive</span>
       <p>Arquivar</p>
     </button>
