@@ -25,6 +25,9 @@
           <button class="hamburger-menu">
             <span class="material-icons-round medium-icon ">menu</span>
           </button>
+          <button class="close-menu">
+            <span class="material-icons-round medium-icon ">close</span>
+          </button>
         </div>
         <div class="main-nav-items middle-items">
           <a href="/">
@@ -58,12 +61,17 @@
       <div class="middle-box">
         <div class="middle-box-wrapper">
           {% block search %}
-          <form action="" method="post">
+          <div class='flex gap-6 align-middle'>
+          <form action="" method="post" class='flex-grow'>
             <div class="input-wrapper search-box">
               <input type="search" name="busca" placeholder="Busca">
               <span class="material-icons-round">search</span>
             </div>
           </form>
+          <button class='btn btn-full h-16 btn-filter' onclick="togglefilter()">
+            <span class="material-icons-round medium-icon">filter_list</span>
+          </button>
+        </div>
           {% endblock %}
 
           {% block btn_criar %}{% endblock %}
@@ -78,7 +86,12 @@
 
       <div class="right-menu">
         <div class="filter-section">
+          <div class='flex justify-between'>
           <h2 class="section-title filter-title">FILTRO</h2>
+          <button class='btn-filter' onclick="closefilter()">
+            <span class="material-icons-round">close</span>
+          </button>
+          </div>
           <form action="" method="Post">
             {% if user_edit %}
             <div class="input-wrapper small-input">

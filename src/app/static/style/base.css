@@ -499,6 +499,11 @@ body{
   color: var(--primary-text-color);
   cursor:pointer;
 }
+.close-menu{
+  color: var(--primary-text-color);
+  cursor:pointer;
+  display: none;
+}
 
 /* navbar da direita */
 
@@ -749,6 +754,10 @@ body{
     padding-bottom: 0;
   }
 
+  .btn-filter{
+    display: none;
+  }
+
   /* responsividade dos filtros */
 
   .filter-section .dropdown-wrapper{
@@ -771,7 +780,14 @@ body{
 @media screen and (max-width: 1155px) {
 
   .right-menu{
+    width: 100%;
+    position: fixed;
     display: none;
+    overflow-y: visible;
+  }
+
+  .btn-filter{
+    display: initial;
   }
 
 }
@@ -779,7 +795,10 @@ body{
 @media screen and (max-width: 800px) {
 
     .right-menu{
+    width: 100%;
+    position: fixed;
     display: none;
+    overflow-y: visible;
   }
 
   .middle-box{
