@@ -1,3 +1,7 @@
 .card-box{
     filter: opacity(50%);
 }
+
+#arquivar{
+    display: none;
+}

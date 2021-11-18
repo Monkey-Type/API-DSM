@@ -19,7 +19,12 @@
     <div class="popup popup-editar">
         <form action="{{ url_for('view.edit') }}" method="POST">
             <div class="content-popup-editar">
-                <h2>Novo Informativo</h2>
+                <div class="flex items-center justify-between">
+                    <h2>Novo Informativo</h2>
+                    <button class='btn-filter' type="button" onclick="closeEdit()">
+                        <span class="material-icons-round">close</span>
+                    </button>
+                </div>
                 <p>Enviar para:</p>
                 <div class="input-wrapper small-input">
                     {{ form.select }}

@@ -420,7 +420,8 @@ button{
 .anexo-nome{
   font-weight: bold;
   font-size: var(--h3-font-size);
-  color: var(--primary-text-color)
+  color: var(--primary-text-color);
+  word-wrap: anywhere;
 }
 
 .anexo-info{
@@ -526,6 +527,7 @@ body{
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  
 
 }
 
@@ -723,6 +725,15 @@ body{
   display: none;
 }
 
+.btn-filter{
+  display: none;
+  height: 100%;
+  padding: .7em;
+}
+
+.btn-filter span{
+  font-size: 2.5rem !important;
+}
 
 @media only screen and (max-width: 1670px) {
 
@@ -754,9 +765,7 @@ body{
     padding-bottom: 0;
   }
 
-  .btn-filter{
-    display: none;
-  }
+
 
   /* responsividade dos filtros */
 
@@ -781,9 +790,11 @@ body{
 
   .right-menu{
     width: 100%;
+    height: 100vh;
     position: fixed;
     display: none;
-    overflow-y: visible;
+    overflow-y: auto;
+    padding: 4rem 2rem 8rem 2rem;
   }
 
   .btn-filter{
@@ -794,16 +805,9 @@ body{
 
 @media screen and (max-width: 800px) {
 
-    .right-menu{
-    width: 100%;
-    position: fixed;
-    display: none;
-    overflow-y: visible;
-  }
 
   .middle-box{
     width: 100%;
-    min-width: 350px;
   }
 
   .middle-box-wrapper{
@@ -815,7 +819,7 @@ body{
     top: auto;
     bottom: 0px;
     width: 100%;
-    height: 10%;
+    height: 100px;
     display: flex;
     position: fixed;
     flex-direction: row;
@@ -900,10 +904,15 @@ body{
 }
 
 @media screen and (max-width: 450px) {
+  
+  :root{
+    --medium-icon:1.5rem;
+    --h1-font-size:2rem;
+  }
 
   .main-nav{
-    height: 12%;
     gap: calc(var(--medium-icon)*1.1);
+    height: 75px;
   }
 
   .main-nav-items{
@@ -913,14 +922,31 @@ body{
   .material-icons-round.medium-icon{
     font-size: calc(var(--medium-icon)*1.5);
   }
+  
+  .page-wrapper{
+    padding: 0;
+  }
+  
+  .popup{
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    inset: 0;
+    border-radius: 0;
+    width: 100% !important;
+  }
+  
+  .bottom-popup{
+    flex-direction: column !important; 
+  }
+  
+  .bottom-popup button{
+    justify-content: center;
+  }
 
 }
 
 @media screen and (max-width: 400px) {
-
-  .middle-box{
-    min-width: 350px;
-  }
 
   .text-title-area{
     flex-direction: column;
@@ -946,13 +972,18 @@ body{
   .bottom-buttons .card-icon{
     font-size: var(--small-icon);
   }
-
-}
-
-@media screen and (max-height: 500px) {
-
-  .main-nav{
-    height: 20%;
+  
+  .buttons-area{
+    flex-direction: column;
   }
+  
+  .buttons-area button{
+    justify-content: center;
+  }
+  
+  .icons-popup span{
+    font-size: 1.75rem !important;
+  }
+  
 
 }

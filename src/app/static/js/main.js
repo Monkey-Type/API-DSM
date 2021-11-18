@@ -15,6 +15,12 @@ var popup = document.getElementById("popup")
 var popupBg = document.getElementById("popupBg")
 var btnPopup = document.getElementById("btnpop")
 
+function closeEdit() {
+  popup.classList.remove('popup-active')
+  document.body.style.overflow = "auto"
+}
+
+
 btnPopup.addEventListener("click", () => {
   popup.classList.add('popup-active')
   document.body.style.overflow = "hidden"
@@ -23,7 +29,7 @@ btnPopup.addEventListener("click", () => {
 popupBg.addEventListener("click", () => {
   popup.classList.remove('popup-active')
   document.body.style.overflow = "auto"
-})
+});
 
 
 function abrirPopup(id) {
@@ -61,14 +67,14 @@ function arquivarPost(postId) {
   });
 }
 
-var filtro=document.querySelector('.right-menu');
-
-function togglefilter(){
-  filtro.style.display='block';
-  document.body.style.overflow='hidden';
+function togglefilter() {
+  filtro = document.getElementById('filtro')
+  filtro.style.display = 'block';
+  document.body.style.overflow = 'hidden';
 }
 
-function closefilter(){
-  filtro.style.display='none';
-  document.body.style.overflow='visible';
+function closefilter() {
+  filtro = document.getElementById('filtro')
+  filtro.style.display = 'none';
+  document.body.style.overflow = 'visible';
 }

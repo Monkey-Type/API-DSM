@@ -61,17 +61,17 @@
       <div class="middle-box">
         <div class="middle-box-wrapper">
           {% block search %}
-          <div class='flex gap-6 align-middle'>
-          <form action="" method="post" class='flex-grow'>
-            <div class="input-wrapper search-box">
-              <input type="search" name="busca" placeholder="Busca">
-              <span class="material-icons-round">search</span>
-            </div>
-          </form>
-          <button class='btn btn-full h-16 btn-filter' onclick="togglefilter()">
-            <span class="material-icons-round medium-icon">filter_list</span>
-          </button>
-        </div>
+          <div class='flex gap-3 items-center'>
+            <form action="" method="post" class='flex-grow'>
+              <div class="input-wrapper search-box">
+                <input type="search" name="busca" placeholder="Busca">
+                <span class="material-icons-round">search</span>
+              </div>
+            </form>
+            <button class='btn btn-full btn-filter' onclick="togglefilter()">
+              <span class="material-icons-round medium-icon">filter_list</span>
+            </button>
+          </div>
           {% endblock %}
 
           {% block btn_criar %}{% endblock %}
@@ -84,13 +84,13 @@
         <div class="space"></div>
       </div>
 
-      <div class="right-menu">
+      <div class="right-menu" id="filtro">
         <div class="filter-section">
           <div class='flex justify-between'>
-          <h2 class="section-title filter-title">FILTRO</h2>
-          <button class='btn-filter' onclick="closefilter()">
-            <span class="material-icons-round">close</span>
-          </button>
+            <h2 class="section-title filter-title">FILTRO</h2>
+            <button class='btn-filter' onclick="closefilter()">
+              <span class="material-icons-round">close</span>
+            </button>
           </div>
           <form action="" method="Post">
             {% if user_edit %}

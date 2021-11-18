@@ -39,6 +39,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: 1.5em;
+    gap: 1rem;
 }
 
 .icons-popup{
