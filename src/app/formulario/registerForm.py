@@ -113,3 +113,10 @@ class EsqueceuFormulario(FlaskForm):
 
 class SelectForm(FlaskForm):
     select = ChosenSelectMultipleField("Enviar para", choices=[])
+
+class NovaSenhaForm(FlaskForm):
+    senha = PasswordField('Senha', validators=[InputRequired(message=message), Length(min=5, max=70, message="Senha deve ter pelomenos 5 caracteres"), EqualTo(
+        'confirm', message='Senha e corfimação não conferrem')], render_kw={"placeholder": "Mínimo de 5 caracteres"})
+    confirm = PasswordField('Confirmar senha', render_kw={
+        "placeholder": "Mínimo de 5 caracteres"},
+        validators=[InputRequired(message=message), Length(min=5, max=70, message="Senha deve ter pelomenos 5 caracteres"), EqualTo('senha', message='Senha e corfimação não conferrem')])
