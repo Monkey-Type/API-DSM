@@ -1,9 +1,11 @@
 from flask import Blueprint, render_template, url_for, flash
 from flask_login.utils import login_user
+from sqlalchemy.orm import session
 from werkzeug.utils import redirect
+from werkzeug.wrappers import request
 
 #from app import email_service
-from . import db, bcrypt
+from .import db, bcrypt
 from .database.models import User
 from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
@@ -29,7 +31,7 @@ def register():
         emailExistente = User.query.filter_by(email=form.email.data).first()
         # if cpfExistente or raExistente or emailExistente:
         if emailExistente:
-            flash("Este usuario ja existe!")
+            flash("Este usuario já existe!")
         else:
             hashed_password = bcrypt.generate_password_hash(
                 form.senha.data).decode("utf-8")
@@ -77,7 +79,7 @@ def password():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            user = User.query.filter_by(email=form.email.data).first()
+            user = User.query.filter_by(email=form.email.data).first()#
             ServiceEmail = EmailService()
             ServiceEmail.esqueceuSenha(user.email)
             flash('Clique no Link enviado no seu email e acesse com a nova senha!') # HTML aqui para essa mensagem
@@ -93,9 +95,15 @@ def password_code():
     return render_template('senha-codigo.html')
 
 
-@routes.route('/codigo-correto')
-def right_code():
-    return render_template('codigo-correto.html')
+@routes.route('/codigo-correto', methods=['GET', 'POST'])
+def codigo_correto():
+    form = NovaSenhaForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(id=current_user.id).first()
+        hashed_password = bcrypt.generate_password_hash(form.senha.data).decode("utf-8") 
+        user.senha = hashed_password
+        db.session.commit()
+    return render_template('sucesso.html', form=form)
 
 
 @routes.route('/sucesso')
@@ -131,18 +139,14 @@ def confirma_email(token):   # se usar uma variável na URL utilize também como
 def esqueceu_senha(token):
     form = RegisterForm()
     try:
-        tokenVem = serial.loads(token, salt='password-forgotten', max_age=60) # nesse tokenVem tem o email concatenado com a senha, separados por um ;
-        emailToken = tokenVem.split(";")[0] # usando um split eu consigo separar o email da senha para usar em diferentes partes
-        senhaToken = tokenVem.split(";")[1]
-        emailUsuario = User.query.filter_by(email=emailToken).first()
-        hashed_password = bcrypt.generate_password_hash(senhaToken).decode("utf-8") 
-        emailUsuario.senha = hashed_password
-        db.session.commit()
-
+        tokenVem = serial.loads(token, salt='password-forgotten', max_age=3600) # nesse tokenVem tem o email concatenado com a senha, separados por um ;
+        emailUsuario = User.query.filter_by(email=tokenVem).first()
+        login_user(emailUsuario)
+        
     except SignatureExpired:
         serial.loads(token, salt='password-forgotten')
         flash('Link expirado! Tente novamente.') # HTML aqui caso necessário
-        return render_template('login.html', form=form)
-    return render_template('login.html', form=form)
+        return render_template('esqueceu-senha.html', form=form)
+    return render_template('codigo-correto.html', form=form)
 
 

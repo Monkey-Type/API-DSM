@@ -2,28 +2,34 @@
 
 {% block title %} Codigo Correto {% endblock %}
 
-{%block loginTitle %}Código Correto{% endblock %}
+{%block loginTitle %}Esqueceu a senha?{% endblock %}
 {%block loginSub %}Digite a sua nova senha{% endblock %}
+
+{% block form %}{{ url_for('auth.codigo_correto') }}{% endblock %}
 
 {% block login %}
 
 <div class="login-input">
-    <h3>Nova senha:</h3>
+
+  {{ render_field(form.senha, 'lock') }}
+  {{ render_field(form.confirm, 'lock') }}
+    <!-- <h3>Código do e-mail:</h3>
     <div class="input-wrapper small-input">
-      <input type="password" name="senha" placeholder="mínimo de 5 caracteres">
+      <input type="text" name="codigo" placeholder="mínimo de 5 caracteres">
+      <span class="material-icons-round"></span>
+    </div>
+      <h3>Nova senha:</h3>
+    <div class="input-wrapper small-input">
+      <input type="password" name="senha1" placeholder="Mínimo de 5 caracteres">
       <span class="material-icons-round">lock</span>
     </div>
-      <h3>Confirmar nova senha:</h3>
+    <h3>Confirmar nova senha:</h3>
     <div class="input-wrapper small-input">
-      <input type="password" name="senha" placeholder="Mínimo de 5 caracteres">
+      <input type="password" name="senha2" placeholder="Mínimo de 5 caracteres">
       <span class="material-icons-round">lock</span>
-    </div>
-  </div>
+    </div> -->
+</div>
 
 {% endblock %}
 
-{% block btnlink %}
-
-<a href="/sucesso">Enviar nova senha</a>
-
-{% endblock %}
+{% block btnTitle %}Criar nova senha{% endblock %}

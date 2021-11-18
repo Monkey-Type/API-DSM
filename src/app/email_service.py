@@ -7,14 +7,6 @@ from . import mail
 from itsdangerous import URLSafeTimedSerializer
 serial = URLSafeTimedSerializer('SENHASECRETA!') # app.config['SECRET_KEY']
 
-# identificador único universal (uuid) utilizo apenas os 5 primeiros digitos que ele gera
-import uuid
-def gerador_de_senhas(string_length=5):
-    random = str(uuid.uuid4())
-    random = random.upper()
-    random = random.replace("-", "")
-    return random[0:string_length]
-
 class EmailService():
     def confirmaEmail(self, email):
         ema = email   
@@ -29,14 +21,11 @@ class EmailService():
     
     def esqueceuSenha(self, email):
         emo = email
-        ema = gerador_de_senhas()
-        fusao = emo + ";" + ema
-        tokenVao = serial.dumps(fusao, salt='password-forgotten')
-        
-        mensagem = Message("Criação de nova senha", recipients=[fusao])
+        tokenVao = serial.dumps(emo, salt='password-forgotten')
+        mensagem = Message("Criação de nova senha", recipients=[emo])
         link = url_for('auth.esqueceu_senha', token=tokenVao, _external=True)
         
-        mensagem.body = 'Esqueceu a sua senha? Após clicar no link, use a senha "{}" para entrar: {}'.format(ema, link)
+        mensagem.body = 'Esqueceu a sua senha? Após clicar no link crie uma nova senha: {}'.format(link)
         mail.send(mensagem)
         
         return tokenVao
