@@ -60,3 +60,15 @@ function arquivarPost(postId) {
     window.location.href = "/";
   });
 }
+
+var filtro=document.querySelector('.right-menu');
+
+function togglefilter(){
+  filtro.style.display='block';
+  document.body.style.overflow='hidden';
+}
+
+function closefilter(){
+  filtro.style.display='none';
+  document.body.style.overflow='visible';
+}
