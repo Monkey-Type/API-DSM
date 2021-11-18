@@ -1,17 +1,20 @@
-from flask import Blueprint, render_template, url_for, request, jsonify, json, request
+from operator import pos
+from flask import Blueprint, render_template, url_for, request, jsonify, json, request, Response
 from flask_login import login_required, current_user
 import sqlalchemy
 from sqlalchemy import *
 from wtforms.fields.core import SelectField
-from .database.models import Arquivadas, Postagem, User, Papel
-from werkzeug.utils import redirect
+from .database.models import Arquivadas, Postagem, User, Papel, Curso
+from werkzeug.utils import redirect, secure_filename, send_file
 from . import db
 from .formulario.registerForm import *
+import io
+from io import BytesIO
 
 routes = Blueprint('view', __name__)
 user = current_user
 
-
+# Defs
 def user_edit():
     user_edit = db.session.query(Papel.pode_editar).join(
         Papel.user).filter(User.id == user.id).all()
@@ -115,40 +118,31 @@ def edit():
     # print(user_edit())
     if not user_edit():
         return redirect(url_for('view.inicio'))
-
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
-
-    '''if request.method == 'GET':
-        busca = request.form.get("busca")
-        if busca:
-            busca = f"%{busca}%"
-            search_post = db.session.query(Postagem).filter(
-                Postagem.user_id == user.id).filter(Postagem.titulo.like(
-                    busca)).order_by(Postagem.data.desc()).all()
-            posts = search_post
-        filtro_data = request.form.get("data")
-        if filtro_data:
-            filtro_data = f"%{filtro_data}%"
-            filtro_data = db.session.query(Postagem).filter(
-                Postagem.user_id == user.id).filter(Postagem.titulo.like(
-                    busca)).order_by(Postagem.data.desc()).all()
-            posts = filtro_data'''
-
     if request.method == 'POST':
+        file = request.files['imagem']
+        db.session.commit()
+        filename = secure_filename(file.filename)
+        mimetype = file.mimetype
         titulo = request.form.get('titulo')
         texto = request.form.get('texto')
         destinatarios = db.session.query(Papel).filter(
             Papel.id.in_(form.select.data)).all()
         if user_edit():
             informativo = Postagem(
-                titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios)
+                titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, data_file=file.read(), name=filename, mimetype=mimetype)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))
     return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
 
-
+# Donwload Arquivo
+@routes.route('/baixar/<int:id>', methods=['GET'])
+@ login_required
+def baixar(id):
+    posts = Postagem().query.filter_by(id=id).first()
+    return send_file(BytesIO(posts.data_file), mimetype=posts.mimetype, download_name=posts.name, attachment_filename=posts.titulo)
 # Deletar Post
 @ routes.route('/deletar-post', methods=['POST'])
 @ login_required

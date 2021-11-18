@@ -17,7 +17,7 @@
 <div class="page-wrapper" id="popup">
     <div class="popup-bg" id="popupBg"></div>
     <div class="popup popup-editar">
-        <form action="{{ url_for('view.edit') }}" method="POST">
+        <form action="{{ url_for('view.edit') }}" method="POST" enctype="multipart/form-data">
             <div class="content-popup-editar">
                 <h2>Novo Informativo</h2>
                 <p>Enviar para:</p>
@@ -54,7 +54,10 @@
                     <button><span class="material-icons-round">format_underlined</span></button>
                     <button><span class="material-icons-round">format_italic</span></button>
                     <div class="separator"></div>
-                    <button><span class="material-icons-round">attach_file</span></button>
+                    <input type="button" id="btnFileUpload" value="attach_file" class="material-icons-round" />
+                    <span style="font-size: 16px;" id="spnFilePath"></span>
+                    <!--Mudar-->
+                    <input type="file" id="FileUpload1" name="imagem" style="display: none" multiple />
                     <button><span class="material-icons-round">image</span></button>
                     <button><span class="material-icons-round">folder</span></button>
                 </div>
