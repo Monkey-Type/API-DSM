@@ -26,17 +26,15 @@
       <div class="anexo flex gap-3">
         <span class="material-icons-round">folder</span>
         <div>
-          <h3 class="anexo-nome">{{ post.name }}</h3>
+          <img class="img-fluid" src="{{url_for('static',filename='images/' + post.image)}}"style="width:200px; height:200px;">
           <p class="anexo-info">{{ post.mimetype }}</p>
         </div>
       </div>
     </div>
     <div class="buttons-area flex gap-6">
       <button class="btn btn-full">
-        <a href="{{ url_for('view.baixar', id=post.id) }}">
           <span class="material-icons-round">download</span>
           <p>Enviar</p>
-        </a>
         </button>
       <button class="btn btn-empty" onClick="arquivarPost({{ post.id }})">
         <span class="material-icons-round">archive</span>

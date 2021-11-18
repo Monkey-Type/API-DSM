@@ -54,12 +54,18 @@
                     <button><span class="material-icons-round">format_underlined</span></button>
                     <button><span class="material-icons-round">format_italic</span></button>
                     <div class="separator"></div>
-                    <input type="button" id="btnFileUpload" value="attach_file" class="material-icons-round" />
-                    <span style="font-size: 16px;" id="spnFilePath"></span>
-                    <!--Mudar-->
-                    <input type="file" id="FileUpload1" name="imagem" style="display: none" multiple />
-                    <button><span class="material-icons-round">image</span></button>
-                    <button><span class="material-icons-round">folder</span></button>
+                    <!--Mudar // Files -->
+                    <input type="button" id="FileUpBTN" value="attach_file" class="material-icons-round" />
+                    <span style="font-size: 16px;" id="FolderPatch"></span>
+                    <input type="file" id="FileUp" name="photo" accept="text/*" style="display: none" multiple />
+                    <!--Mudar // Files -->
+                    <input type="button" id="FilesUpBTN" value="image" class="material-icons-round" />
+                    <span style="font-size: 16px;" id="FilesPatch"></span>
+                    <input type="file" id="FilesUp" name="photo" accept="image/*" style="display: none" multiple />
+                    <!--Mudar // Folder -->
+                    <input type="button" id="FolderUpBTN" value="folder" class="material-icons-round" />
+                    <span style="font-size: 16px;" id="FolderPath"></span>
+                    <input type="file" id="FolderUp" name="photo" accept="application/*" style="display: none" multiple />
                 </div>
                 <button class="btn btn-full">
                     <span class="material-icons-round">send</span>

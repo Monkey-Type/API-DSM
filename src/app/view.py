@@ -1,5 +1,6 @@
 from operator import pos
-from flask import Blueprint, render_template, url_for, request, jsonify, json, request, Response
+from os import name
+from flask import Blueprint, render_template, url_for, request, jsonify, json, request, Response, current_app, send_from_directory
 from flask_login import login_required, current_user
 import sqlalchemy
 from sqlalchemy import *
@@ -9,12 +10,22 @@ from werkzeug.utils import redirect, secure_filename, send_file
 from . import db
 from .formulario.registerForm import *
 import io
+import secrets
 from io import BytesIO
 
 routes = Blueprint('view', __name__)
 user = current_user
 
 # Defs
+UPLOAD = os.path.join(os.getcwd(), 'static/images')
+#Função para salvar dentro do Diretorio
+def save_photo(file):
+    rand_hex  = secrets.token_hex(10)
+    _, file_extention = os.path.splitext(file.filename)
+    file_name = rand_hex + file_extention
+    file_path = os.path.join(current_app.root_path, 'static/images', file_name)
+    file.save(file_path)
+    return file_name
 def user_edit():
     user_edit = db.session.query(Papel.pode_editar).join(
         Papel.user).filter(User.id == user.id).all()
@@ -121,28 +132,36 @@ def edit():
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
     if request.method == 'POST':
-        file = request.files['imagem']
-        db.session.commit()
-        filename = secure_filename(file.filename)
+        file_teste = save_photo(request.files.get('photo'))
+        file = request.files['photo']
+        #filename = secure_filename(file.filename)
         mimetype = file.mimetype
         titulo = request.form.get('titulo')
         texto = request.form.get('texto')
         destinatarios = db.session.query(Papel).filter(
             Papel.id.in_(form.select.data)).all()
         if user_edit():
-            informativo = Postagem(
-                titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, data_file=file.read(), name=filename, mimetype=mimetype)
+            #informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, data_file=file.read(), image=filename)
+            informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, image=file_teste,mimetype=mimetype)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))
     return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
 
 # Donwload Arquivo
-@routes.route('/baixar/<int:id>', methods=['GET'])
+
+@routes.route('/download/<file_name>')
 @ login_required
-def baixar(id):
-    posts = Postagem().query.filter_by(id=id).first()
-    return send_file(BytesIO(posts.data_file), mimetype=posts.mimetype, download_name=posts.name, attachment_filename=posts.titulo)
+def baixar(file_name):
+    file = os.path.join(UPLOAD, file_name + '.jpeg')
+    print(UPLOAD)
+    return send_file(file, mimetype='image/jpeg', as_attachment=True)
+
+
+
+
+
+
 # Deletar Post
 @ routes.route('/deletar-post', methods=['POST'])
 @ login_required

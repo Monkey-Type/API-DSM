@@ -60,10 +60,12 @@ class Postagem(db.Model):
     texto = db.Column(db.String(150), nullable=False)
     data = db.Column(db.DateTime, default=datetime.now)
     # Imagem
-    img = db.Column(db.Text)
-    name = db.Column(db.Text)
+    # image = db.Column(db.String(150)) BD + Local
+    #folder = db.Column(db.String(150),default="sem pastas")
+    #files = db.Column(db.String(150), default="sem arquivo")
+    image = db.Column(db.String(150), default="sem imagem") # TESTAR SEM O largenibary
+    #data_file = db.Column(db.LargeBinary())
     mimetype = db.Column(db.Text)
-    data_file = db.Column(db.LargeBinary(), index=False)
     # Chaves Estrangeiras
     postagem_arquivada = db.relationship('Arquivadas')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

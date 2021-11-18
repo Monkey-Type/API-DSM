@@ -62,14 +62,37 @@ function arquivarPost(postId) {
 }
 // BTN - INPUT
 window.onload = function () {
-  var fileupload = document.getElementById("FileUpload1");
-  var filePath = document.getElementById("spnFilePath");
-  var button = document.getElementById("btnFileUpload");
-  button.onclick = function () {
-      fileupload.click();
+  // Image
+  var fileupload_img = document.getElementById("FileUp");
+  var filePath_file = document.getElementById("Filepath");
+  var button_file = document.getElementById("FileUpBTN");
+  button_file.onclick = function () {
+    fileupload_img.click();
   };
-  fileupload.onchange = function () {
-      var fileName = fileupload.value.split('\\')[fileupload.value.split('\\').length - 1];
-      filePath.innerHTML = "<b>Arquivos: </b> " + fileName;
+  fileupload_img.onchange = function () {
+    var fileName = fileupload_img.value.split('\\')[fileupload_img.value.split('\\').length - 1];
+    filePath_file.innerHTML = "<b>Arquivos: </b> " + fileName;
+  };
+  // Folder
+  var fileupload_folder = document.getElementById("FolderUp");
+  var filePath_folder = document.getElementById("FolderPatch");
+  var button_folder = document.getElementById("FolderUpBTN");
+  button_folder.onclick = function () {
+    fileupload_folder.click();
+  };
+  fileupload_folder.onchange = function () {
+    var fileName = fileupload_folder.value.split('\\')[fileupload_folder.value.split('\\').length - 1];
+    filePath_folder.innerHTML = "<b>Arquivos: </b> " + fileName;
+  };
+  // Files
+  var fileupload_file = document.getElementById("FilesUp");
+  var filePath_file = document.getElementById("FilesPatch");
+  var button_file = document.getElementById("FilesUpBTN");
+  button_file.onclick = function () {
+    fileupload_file.click();
+  };
+  fileupload_file.onchange = function () {
+    var fileName = fileupload_file.value.split('\\')[fileupload_file.value.split('\\').length - 1];
+    filePath_file.innerHTML = "<b>Arquivos: </b> " + fileName;
   };
 };
