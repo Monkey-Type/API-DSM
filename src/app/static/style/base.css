@@ -76,7 +76,6 @@
 
 .error-wrapper{
   display: flex;
-  white-space: nowrap;
 }
 
 .error-wrapper .flashes{

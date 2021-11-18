@@ -72,7 +72,7 @@ def cpf_validate(form, field):
 
 
 class RegisterForm(FlaskForm):
-    email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
+    email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email')], render_kw={
         "placeholder": "exemple@fatec.sv.gov.br"})
 
     # ra = StringField('RA / Matricula', validators=[InputRequired(message=message), Length(
@@ -99,7 +99,7 @@ class RegisterForm(FlaskForm):
 
 
 class LoginFormulario(FlaskForm):
-    email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
+    email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email')], render_kw={
         "placeholder": "exemple@fatec.sp.gov.br"})
     senha = PasswordField('Senha', validators=[InputRequired(message=message), Length(
         min=5, max=100, message='Senha deve ter pelomenos 5 caracteres')], render_kw={
@@ -107,12 +107,13 @@ class LoginFormulario(FlaskForm):
 
 
 class EsqueceuFormulario(FlaskForm):
-    email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email valido')], render_kw={
+    email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email')], render_kw={
         "placeholder": "exemple@fatec.sp.gov.br"})
 
 
 class SelectForm(FlaskForm):
     select = ChosenSelectMultipleField("Enviar para", choices=[])
+
 
 class NovaSenhaForm(FlaskForm):
     senha = PasswordField('Senha', validators=[InputRequired(message=message), Length(min=5, max=70, message="Senha deve ter pelomenos 5 caracteres"), EqualTo(

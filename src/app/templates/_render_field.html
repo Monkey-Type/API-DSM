@@ -9,10 +9,10 @@
       {% endfor %}
     </div>
     {% endif %}
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages and category == danger %}
+    {% with messages = get_flashed_messages(category_filter=["danger"]) %}
+    {% if messages%}
     <div class=flashes>
-      {% for category, message in messages %}
+      {% for message in messages %}
       <div class="alert text-center alert-{{ category }}">{{ message }}</div>
       {% endfor %}
     </div>
@@ -24,7 +24,7 @@
     <!-- <input type="email" name="email" placeholder="exemple@fatec.sp.gov.br"> -->
     <span class="material-icons-round">{{ icon }}</span>
   </div>
-  {% with messages = get_flashed_messages() %}
+  {% with messages = get_flashed_messages(category_filter=["danger"]) %}
   {% if field.errors or messages %}
   <script>
     var input = {{ field.id | tojson }}

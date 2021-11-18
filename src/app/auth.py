@@ -1,3 +1,4 @@
+from .email_service import EmailService
 from flask import Blueprint, render_template, url_for, flash
 from flask_login.utils import login_user
 from sqlalchemy.orm import session
@@ -13,9 +14,8 @@ import re
 
 # imports para token
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
-serial = URLSafeTimedSerializer('SENHASECRETA!') # app.config['SECRET_KEY']
+serial = URLSafeTimedSerializer('SENHASECRETA!')  # app.config['SECRET_KEY']
 
-from .email_service import EmailService
 routes = Blueprint('auth', __name__)
 user = current_user
 
@@ -24,7 +24,7 @@ user = current_user
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        #print(form.cpf.data)
+        # print(form.cpf.data)
         cpf = int(re.sub("[.-]", "", form.cpf.data))
         #cpfExistente = User.query.filter_by(cpf=cpf).first()
         #raExistente = User.query.filter_by(ra=form.ra.data).first()
@@ -38,7 +38,7 @@ def register():
             """ novoUsuario = User(email=form.email.data, ra=form.ra.data,
                                cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)"""
             novoUsuario = User(email=form.email.data,
-                               cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password, confirmado=0) ### setando novos cadastro para 0
+                               cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password, confirmado=0)  # setando novos cadastro para 0
             db.session.add(novoUsuario)
             db.session.commit()
             ServiceEmail = EmailService()
@@ -53,14 +53,15 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            if user.confirmado == 1: ## Verificando se ele confirmou email
+            if user.confirmado == 1:  # Verificando se ele confirmou email
                 if bcrypt.check_password_hash(user.senha, form.senha.data):
                     login_user(user)
                     return redirect(url_for('view.inicio'))
                 else:
                     flash('Senha ou email incorreto', 'danger')
             else:
-                flash('Confirme o email enviado!', 'danger') # Mensagem para caso não
+                # Mensagem para caso não
+                flash('Confirme o email enviado!', 'danger')
         else:
             flash('Senha ou email incorreto', 'danger')
     return render_template('login.html', form=form, title='Logue-se')
@@ -79,14 +80,15 @@ def password():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
-            user = User.query.filter_by(email=form.email.data).first()#
+            user = User.query.filter_by(email=form.email.data).first()
             ServiceEmail = EmailService()
             ServiceEmail.esqueceuSenha(user.email)
-            flash('Clique no Link enviado no seu email e acesse com a nova senha!') # HTML aqui para essa mensagem
-            return redirect(url_for('auth.login'))
+            # HTML aqui para essa mensagem
+            flash(
+                'Clique no Link enviado no seu email e acesse com a nova senha!', 'info')
+            return redirect(url_for('auth.password'))
         else:
-            flash('Use um e-mail válido!', 'info')
-            return render_template('esqueceu-senha.html', form=form)
+            flash('Use um e-mail válido!', 'danger')
     return render_template('esqueceu-senha.html', form=form)
 
 
@@ -100,7 +102,8 @@ def codigo_correto():
     form = NovaSenhaForm()
     if form.validate_on_submit():
         user = User.query.filter_by(id=current_user.id).first()
-        hashed_password = bcrypt.generate_password_hash(form.senha.data).decode("utf-8") 
+        hashed_password = bcrypt.generate_password_hash(
+            form.senha.data).decode("utf-8")
         user.senha = hashed_password
         db.session.commit()
     return render_template('sucesso.html', form=form)
@@ -110,13 +113,16 @@ def codigo_correto():
 def success():
     return render_template('sucesso.html')
 
-@routes.route('/confirma_email/<token>') 
-def confirma_email(token):   # se usar uma variável na URL utilize também como parâmetro na função
+
+@routes.route('/confirma_email/<token>')
+# se usar uma variável na URL utilize também como parâmetro na função
+def confirma_email(token):
     form = RegisterForm()
     try:
-        tokenVem = serial.loads(token, salt='email-confirm', max_age=30) # loads carrega o que tem no token para essa variável tokenVem, neste caso o email do usuário
+        # loads carrega o que tem no token para essa variável tokenVem, neste caso o email do usuário
+        tokenVem = serial.loads(token, salt='email-confirm', max_age=30)
         emailUsuario = User.query.filter_by(email=tokenVem).first()
-        emailUsuario.confirmado=1
+        emailUsuario.confirmado = 1
         db.session.commit()
 
     except SignatureExpired:
@@ -125,28 +131,28 @@ def confirma_email(token):   # se usar uma variável na URL utilize também como
         if Confirmado.confirmado == 1:
             flash('Você já se cadastrou!')
             return render_template('login.html', form=form)
-            
+
         else:
             Deletador = User.query.filter_by(email=tokenVencido).first()
             db.session.delete(Deletador)
             db.session.commit()
             flash('Cadastre-se Novamente')
-        return render_template('registrar.html', form=form) # aqui html para o token expirado
+        # aqui html para o token expirado
+        return render_template('registrar.html', form=form)
     return render_template('login.html', form=form)
 
 
-@routes.route('/esqueceu_senha/<token>') 
+@routes.route('/esqueceu_senha/<token>')
 def esqueceu_senha(token):
     form = RegisterForm()
     try:
-        tokenVem = serial.loads(token, salt='password-forgotten', max_age=3600) # nesse tokenVem tem o email concatenado com a senha, separados por um ;
+        # nesse tokenVem tem o email concatenado com a senha, separados por um ;
+        tokenVem = serial.loads(token, salt='password-forgotten', max_age=3600)
         emailUsuario = User.query.filter_by(email=tokenVem).first()
         login_user(emailUsuario)
-        
+
     except SignatureExpired:
         serial.loads(token, salt='password-forgotten')
-        flash('Link expirado! Tente novamente.') # HTML aqui caso necessário
+        flash('Link expirado! Tente novamente.')  # HTML aqui caso necessário
         return render_template('esqueceu-senha.html', form=form)
     return render_template('codigo-correto.html', form=form)
-
-
