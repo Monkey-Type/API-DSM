@@ -31,7 +31,7 @@ def register():
         emailExistente = User.query.filter_by(email=form.email.data).first()
         # if cpfExistente or raExistente or emailExistente:
         if emailExistente:
-            flash("Este usuario já existe!")
+            flash("Este usuario já existe!", 'danger')
         else:
             hashed_password = bcrypt.generate_password_hash(
                 form.senha.data).decode("utf-8")
@@ -43,6 +43,7 @@ def register():
             db.session.commit()
             ServiceEmail = EmailService()
             ServiceEmail.confirmaEmail(novoUsuario.email)
+            flash('Clique no Link enviado no seu email para confirmá-lo!', 'info')
             return redirect(url_for('auth.login'))
     return render_template("registrar.html", form=form)
 
@@ -129,14 +130,14 @@ def confirma_email(token):
         tokenVencido = serial.loads(token, salt='email-confirm')
         Confirmado = User.query.filter_by(email=tokenVencido).first()
         if Confirmado.confirmado == 1:
-            flash('Você já se cadastrou!')
+            flash('Você já se cadastrou!', 'danger')
             return render_template('login.html', form=form)
 
         else:
             Deletador = User.query.filter_by(email=tokenVencido).first()
             db.session.delete(Deletador)
             db.session.commit()
-            flash('Cadastre-se Novamente')
+            flash('Seu link expirou, cadastre-se novamente', 'erro')
         # aqui html para o token expirado
         return render_template('registrar.html', form=form)
     return render_template('login.html', form=form)

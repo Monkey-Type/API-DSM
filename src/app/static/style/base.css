@@ -364,6 +364,10 @@ button{
   outline-offset: -3px;
 }
 
+#deletar {
+  display: none;
+}
+
 /* Pop-up */
 .page-wrapper{
   inset: 0;
@@ -513,6 +517,10 @@ body{
   margin-bottom: 1em;
   font-size: var(--h2-font-size);
   text-transform: uppercase;
+}
+
+.filter-title{
+  margin-top: .5rem;
 }
 
 .right-menu{
