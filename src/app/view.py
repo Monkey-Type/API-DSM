@@ -17,14 +17,13 @@ routes = Blueprint('view', __name__)
 user = current_user
 
 # Defs
-UPLOAD = os.path.join(os.getcwd(), 'static/images')
 #Função para salvar dentro do Diretorio
-def save_photo(file):
-    rand_hex  = secrets.token_hex(10)
-    _, file_extention = os.path.splitext(file.filename)
-    file_name = rand_hex + file_extention
+def save_photo(photo):
+    #rand_hex  = secrets.token_hex(10)
+    _, file_extention = os.path.splitext(photo.filename)
+    file_name = photo.filename  # rand_hex
     file_path = os.path.join(current_app.root_path, 'static/images', file_name)
-    file.save(file_path)
+    photo.save(file_path)
     return file_name
 def user_edit():
     user_edit = db.session.query(Papel.pode_editar).join(
@@ -132,9 +131,14 @@ def edit():
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
     if request.method == 'POST':
-        file_teste = save_photo(request.files.get('photo'))
+        alo = str(request.files.get("photo"))
+        print(request.files.get("photo").filename)
+        print(request.files.get("photo"))
+        if not request.files.get("photo").filename:
+            file_teste = ''
+        else:
+            file_teste = save_photo(request.files.get('photo'))
         file = request.files['photo']
-        #filename = secure_filename(file.filename)
         mimetype = file.mimetype
         titulo = request.form.get('titulo')
         texto = request.form.get('texto')
@@ -149,13 +153,6 @@ def edit():
     return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
 
 # Donwload Arquivo
-
-@routes.route('/download/<file_name>')
-@ login_required
-def baixar(file_name):
-    file = os.path.join(UPLOAD, file_name + '.jpeg')
-    print(UPLOAD)
-    return send_file(file, mimetype='image/jpeg', as_attachment=True)
 
 
 
