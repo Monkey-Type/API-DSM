@@ -7,7 +7,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 # Flask Admin
 from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
 from flask_bcrypt import Bcrypt
 # Flask Migrate
 # Comandos para usar o Migrade
@@ -17,6 +16,7 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 # Path
 from os import path
+
 
 # Banco de dados config
 db = SQLAlchemy()
@@ -47,8 +47,10 @@ def create_app():
 
 #
     # Uso de Variável de Ambiente para esconder o Email e a Senha para quando subir esse código no GITHUB
-    app.config['MAIL_USERNAME'] = 'contato.monkey.type@gmail.com' #os.environ.get('SERVER_EMAIL')
-    app.config['MAIL_PASSWORD'] = 'GPPRMMT0006' #os.environ.get('SERVER_PASS')
+    # os.environ.get('SERVER_EMAIL')
+    app.config['MAIL_USERNAME'] = 'contato.monkey.type@gmail.com'
+    # os.environ.get('SERVER_PASS')
+    app.config['MAIL_PASSWORD'] = 'GPPRMMT0006'
 
     # Configuração para email gmail
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
@@ -78,12 +80,11 @@ def create_app():
     app.register_blueprint(view_blueprint)
 
     # Flask Admin Config
-    from .database.models import Postagem, User, Papel, Arquivadas
-    admin = Admin(app, name='FATEC SJC')
-    admin.add_view(ModelView(Postagem, db.session))
-    admin.add_view(ModelView(Papel, db.session))
-    admin.add_view(ModelView(User, db.session))
-    admin.add_view(ModelView(Arquivadas, db.session))
+    from .database.models import Postagem, User, Papel, PapelView, PostagemView, UsuarioView
+    admin = Admin(app, name='FATEC SJC', template_mode='bootstrap4')
+    admin.add_view(PostagemView(Postagem, db.session))
+    admin.add_view(PapelView(Papel, db.session))
+    admin.add_view(UsuarioView(User, db.session))
 
     # Login Maneger
     login_manager = LoginManager()

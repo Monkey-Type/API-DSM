@@ -1,3 +1,4 @@
+from flask_admin.contrib.sqla.view import ModelView
 from sqlalchemy.orm import backref
 from app import db
 from datetime import datetime
@@ -35,7 +36,7 @@ class User(db.Model, UserMixin):
     papeis = db.relationship('Papel',
                              secondary=user_papel_tabela,
                              back_populates='user')
-    confirmado = db.Column(db.Integer, nullable=True, default=0) ### adicionado 
+    confirmado = db.Column(db.Integer, nullable=True, default=0)  # adicionado
     # Funcão para ver o Nome
 
     def __repr__(self):
@@ -58,12 +59,13 @@ class Postagem(db.Model):
 
     def __repr__(self):
         return self.titulo
+
+
 class Arquivadas(db.Model):
     __tablename__ = "arquivados"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     arquivada = db.Column(db.Integer, db.ForeignKey('postagem.id'))
-    
 
 
 class Papel(db.Model):
@@ -84,3 +86,20 @@ class Papel(db.Model):
 
     def __repr__(self):
         return self.nome
+
+
+class PapelView(ModelView):
+    column_list = ['nome', 'user', 'pode_editar', 'admin']
+    form_columns = ['nome', 'user', 'pode_editar', 'admin']
+
+
+class PostagemView(ModelView):
+    column_list = ['titulo', 'texto', 'data', 'destinatario']
+    form_columns = ['titulo', 'texto', 'data', 'destinatario']
+    can_create = False
+
+
+class UsuarioView(ModelView):
+    column_list = ['nome', 'email', 'papeis']
+    form_columns = ['nome', 'email', 'papeis']
+    can_create = False
