@@ -73,15 +73,4 @@ window.onload = function () {
     var fileName = fileupload_img.value.split('\\')[fileupload_img.value.split('\\').length - 1];
     filePath_file.innerHTML = "<b>Arquivos: </b> " + fileName;
   };
-  // Files
-  var fileupload_file = document.getElementById("FilesUp");
-  var filePath_file = document.getElementById("FilesPatch");
-  var button_file = document.getElementById("FilesUpBTN");
-  button_file.onclick = function () {
-    fileupload_file.click();
-  };
-  fileupload_file.onchange = function () {
-    var fileName = fileupload_file.value.split('\\')[fileupload_file.value.split('\\').length - 1];
-    filePath_file.innerHTML = "<b>Arquivos: </b> " + fileName;
-  };
 };
