@@ -44,10 +44,12 @@
     {% endif %}
     <div class="buttons-area flex gap-6">
       {% if post.image %}
+      <a href="{{url_for('view.get_arquivo', nome_do_arquivo=post.image)}}">
       <button class="btn btn-full">
           <span class="material-icons-round">download</span>
           <p>Enviar</p>
         </button>
+      </a>
       {% endif %}
       <button class="btn btn-empty" onClick="arquivarPost({{ post.id }})">
         <span class="material-icons-round">archive</span>
