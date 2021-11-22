@@ -1,0 +1,9 @@
+{% extends admin_base_template %}
+
+{% block head_css %}
+{{ super() }}
+
+<link href="{{ url_for('static', filename='style/admin/index.css') }}" rel="stylesheet">
+
+{% endblock %}
+
