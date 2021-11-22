@@ -112,10 +112,12 @@ def inicio():
                            for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
 
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form, remetente_nome=remetente_nome)
+#Baixar Imagens
 IMAGEMS = "static/images"
 @ routes.route('/editar/<nome_do_arquivo>', methods=['GET'])
 def get_arquivo(nome_do_arquivo):
     return send_from_directory(IMAGEMS,nome_do_arquivo, as_attachment=True)
+# Edição
 @ routes.route('/editar', methods=['POST', 'GET'])
 @ login_required
 def edit():
@@ -153,14 +155,6 @@ def edit():
             db.session.commit()
             return redirect(url_for('view.edit'))
     return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
-
-# Donwload Arquivo
-
-
-
-
-
-
 # Deletar Post
 @ routes.route('/deletar-post', methods=['POST'])
 @ login_required
