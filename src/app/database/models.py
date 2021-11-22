@@ -1,3 +1,4 @@
+from flask_admin.contrib.sqla.view import ModelView
 from sqlalchemy.orm import backref
 from app import db
 from datetime import datetime
@@ -8,11 +9,19 @@ import base64
 # Postagem e Usuario one to many
 # Cursos e Usuario Many to Many
 curso_user_tabela = db.Table('user_cursos',
+                             db.Column('cursos_id', db.Integer,
+                                       db.ForeignKey('cursos.id')),
+                             db.Column('user_id', db.Integer,
+                                       db.ForeignKey('user.id'))
+                             )
+# Postagem e Curso Many to Many
+postagem_curso_tabela = db.Table('postagem_curso',
+                                 db.Column('postagem_id', db.Integer,
+                                           db.ForeignKey('postagem.id')),
                                  db.Column('cursos_id', db.Integer,
-                                           db.ForeignKey('cursos.id')),
-                                 db.Column('user_id', db.Integer,
-                                           db.ForeignKey('user.id'))
+                                           db.ForeignKey('cursos.id'))
                                  )
+
 # Postagem e Papel Many to Many
 postagem_papel_tabela = db.Table('postagem_papel',
                                  db.Column('postagem_id', db.Integer,
@@ -29,6 +38,7 @@ user_papel_tabela = db.Table('user_papel',
                              )
 # Tabelas Criadas
 
+
 class User(db.Model, UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -42,11 +52,11 @@ class User(db.Model, UserMixin):
     papeis = db.relationship('Papel',
                              secondary=user_papel_tabela,
                              back_populates='user')
-    confirmado = db.Column(db.Integer, nullable=True, default=0) ### adicionado 
+    confirmado = db.Column(db.Integer, nullable=True, default=0)  # adicionado
     # Muitos para Muitos
     cursos = db.relationship('Curso',
-                            secondary=curso_user_tabela,
-                            back_populates='user')
+                             secondary=curso_user_tabela,
+                             back_populates='user')
     # Funcão para ver o Nome
 
     def __repr__(self):
@@ -59,13 +69,9 @@ class Postagem(db.Model):
     titulo = db.Column(db.String(150), nullable=False)
     texto = db.Column(db.String(150), nullable=False)
     data = db.Column(db.DateTime, default=datetime.now)
-    # Imagem
-    # image = db.Column(db.String(150)) BD + Local
-    #folder = db.Column(db.String(150),default="sem pastas")
-    #files = db.Column(db.String(150), default="sem arquivo")
-    image = db.Column(db.String(150), default="sem imagem") # TESTAR SEM O largenibary
-    #data_file = db.Column(db.LargeBinary())
+    image = db.Column(db.String(150), default="sem imagem")
     mimetype = db.Column(db.Text)
+
     # Chaves Estrangeiras
     postagem_arquivada = db.relationship('Arquivadas')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -73,18 +79,24 @@ class Postagem(db.Model):
     destinatario = db.relationship('Papel',
                                    secondary=postagem_papel_tabela,
                                    back_populates='postagem')
+    curso = db.relationship('Curso',
+                            secondary=postagem_curso_tabela,
+                            back_populates='postagem')
     # Funcão para ver o Nome
+
     def __repr__(self):
         return self.titulo
+
     @property
     def b64encoded(self):
         return base64.b64encode(self.data_file).decode()
+
+
 class Arquivadas(db.Model):
     __tablename__ = "arquivados"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     arquivada = db.Column(db.Integer, db.ForeignKey('postagem.id'))
-    
 
 
 class Papel(db.Model):
@@ -109,12 +121,34 @@ class Papel(db.Model):
 
 class Curso(db.Model):
     __tablename__ = "cursos"
-    id =  db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome_curso = db.Column(db.String(150), unique=True, nullable=False)
     # Chaves Estrangeiras
     user = db.relationship('User',
-                            secondary=curso_user_tabela,
-                            back_populates='cursos')
+                           secondary=curso_user_tabela,
+                           back_populates='cursos')
+    postagem = db.relationship('Postagem',
+                               secondary=postagem_curso_tabela,
+                               back_populates='curso')
+
     # Função para ver o nome
+
     def __repr__(self):
         return self.nome_curso
+
+
+class PapelView(ModelView):
+    column_list = ['nome', 'user', 'pode_editar', 'admin']
+    form_columns = ['nome', 'user', 'pode_editar', 'admin']
+
+
+class PostagemView(ModelView):
+    column_list = ['titulo', 'texto', 'data', 'destinatario']
+    form_columns = ['titulo', 'texto', 'data', 'destinatario']
+    can_create = False
+
+
+class UsuarioView(ModelView):
+    column_list = ['nome', 'email', 'papeis', 'cursos']
+    form_columns = ['nome', 'email', 'papeis', 'cursos']
+    can_create = False

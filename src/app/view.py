@@ -17,14 +17,18 @@ routes = Blueprint('view', __name__)
 user = current_user
 
 # Defs
-#Função para salvar dentro do Diretorio
+# Função para salvar dentro do Diretorio
+
+
 def save_photo(photo):
-    #rand_hex  = secrets.token_hex(10)
+    # rand_hex  = secrets.token_hex(10)
     _, file_extention = os.path.splitext(photo.filename)
     file_name = photo.filename  # rand_hex
     file_path = os.path.join(current_app.root_path, 'static/images', file_name)
     photo.save(file_path)
     return file_name
+
+
 def user_edit():
     user_edit = db.session.query(Papel.pode_editar).join(
         Papel.user).filter(User.id == user.id).all()
@@ -67,9 +71,15 @@ def inicio():
     print(user_arquivados)
     subquery = db.session.query(Arquivadas.arquivada).all()
     subquery = [id for id, in subquery]
+
+    user_curso = db.session.query(
+        Curso.nome_curso).join(Curso.user).filter(User.id == user.id).all()
+    user_curso = [id for id, in user_curso]
+
     if user.id in user_arquivados:
         posts = db.session.query(Postagem).join(Postagem.destinatario).join(
-            Papel.user).join(Arquivadas).filter(Postagem.id.not_in(subquery)).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
+            Papel.user).join(Arquivadas).join(
+                Postagem.curso).filter(Postagem.id.not_in(subquery)).filter(Curso.nome_curso.in_(user_curso)).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
 
         busca = request.form.get("busca")
         if busca:
@@ -87,8 +97,10 @@ def inicio():
             posts = filtro_data
 
     else:
-        posts = db.session.query(Postagem).join(Postagem.destinatario).join(
-            Papel.user).filter(User.id == user.id).order_by(Postagem.data.desc()).all()
+        posts = db.session.query(Postagem).join(
+            Postagem.destinatario).join(
+            Papel.user).join(
+                Postagem.curso).filter(User.id == user.id).filter(Curso.nome_curso.in_(user_curso)).order_by(Postagem.data.desc()).all()
 
         busca = request.form.get("busca")
         if busca:
@@ -112,18 +124,26 @@ def inicio():
                            for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
 
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form, remetente_nome=remetente_nome)
-#Baixar Imagens
+
+
+# Baixar Imagens
 IMAGEMS = "static/images"
+
+
 @ routes.route('/editar/<nome_do_arquivo>', methods=['GET'])
 def get_arquivo(nome_do_arquivo):
-    return send_from_directory(IMAGEMS,nome_do_arquivo, as_attachment=True)
+    return send_from_directory(IMAGEMS, nome_do_arquivo, as_attachment=True)
 # Edição
+
+
 @ routes.route('/editar', methods=['POST', 'GET'])
 @ login_required
 def edit():
     form = SelectForm()
     form.select.choices = [(select.id, select.nome)
                            for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
+    form.curso.choices = [(curso.id, curso.nome_curso)
+                          for curso in Curso.query.join(Curso.user).filter(User.id != user.id).all()]
     papel = db.session.query(Papel.nome).all()
     print(papel)
     user_papel = papel_postagem(user.papeis)
@@ -148,14 +168,19 @@ def edit():
         texto = request.form.get('texto')
         destinatarios = db.session.query(Papel).filter(
             Papel.id.in_(form.select.data)).all()
+        cursos = db.session.query(Curso).filter(
+            Curso.id.in_(form.curso.data)).all()
         if user_edit():
-            #informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, data_file=file.read(), image=filename)
-            informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, image=file_teste,mimetype=mimetype)
+            # informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, data_file=file.read(), image=filename)
+            informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id,
+                                   destinatario=destinatarios, image=file_teste, mimetype=mimetype, curso=cursos)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))
     return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
 # Deletar Post
+
+
 @ routes.route('/deletar-post', methods=['POST'])
 @ login_required
 def deletar_post():
