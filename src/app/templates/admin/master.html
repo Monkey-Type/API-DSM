@@ -3,7 +3,60 @@
 {% block head_css %}
 {{ super() }}
 
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 <link href="{{ url_for('static', filename='style/admin/index.css') }}" rel="stylesheet">
 
 {% endblock %}
 
+{% block page_body %}
+    <div class="container{% if config.get('FLASK_ADMIN_FLUID_LAYOUT', False) %}-fluid{% endif %}">
+        <nav class="navbar navbar-expand-lg mb-2" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse"
+                    aria-controls="admin-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="material-icons-round navbar-toggler-icon menu-icon">menu</span>
+            </button>
+            <!-- navbar content -->
+            <div class="collapse navbar-collapse" id="admin-navbar-collapse">
+            {% block brand %}
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="99" height="56" viewBox="0 0 99 56">
+                  <text id="SJC" transform="translate(99 49)" fill="#c62f45" font-size="24"
+                    font-weight="700">
+                    <tspan x="-39.096" y="0">SJC</tspan>
+                  </text>
+                  <text id="FATEC" transform="translate(87 31)" font-size="32"
+                    font-weight="800">
+                    <tspan x="-86.592" y="0">FATEC</tspan>
+                  </text>
+              </svg>
+
+            {% endblock %}
+            {% block main_menu %}
+                <ul class="navbar-nav mr-auto">
+                    {{ layout.menu() }}
+                </ul>
+            {% endblock %}
+
+                {% block menu_links %}
+                <ul class="nav navbar-nav navbar-right">
+                    {{ layout.menu_links() }}
+                </ul>
+                {% endblock %}
+            {% block access_control %}
+            {% endblock %}
+            </div>
+        </nav>
+
+        {% block messages %}
+            {{ layout.messages() }}
+        {% endblock %}
+
+        {# store the jinja2 context for form_rules rendering logic #}
+        {% set render_ctx = h.resolve_ctx() %}
+
+        {% block body %}{% endblock %}
+    </div>
+{% endblock %}
