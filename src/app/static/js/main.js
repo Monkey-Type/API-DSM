@@ -78,3 +78,17 @@ function closefilter() {
   filtro.style.display = 'none';
   document.body.style.overflow = 'visible';
 }
+// BTN - INPUT
+window.onload = function () {
+  // Image
+  var fileupload_img = document.getElementById("FileUp");
+  var filePath_file = document.getElementById("Filepath");
+  var button_file = document.getElementById("FileUpBTN");
+  button_file.onclick = function () {
+    fileupload_img.click();
+  };
+  fileupload_img.onchange = function () {
+    var fileName = fileupload_img.value.split('\\')[fileupload_img.value.split('\\').length - 1];
+    filePath_file.innerHTML = "<b>Arquivos: </b> " + fileName;
+  };
+};

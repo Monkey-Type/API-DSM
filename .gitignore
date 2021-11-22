@@ -5,8 +5,12 @@ __pycache__/
 
 # C extensions
 *.so
+
 #Migracao
 src/migrations/
+migrations/
+.migrations/
+
 # Distribution / packaging
 .Python
 build/

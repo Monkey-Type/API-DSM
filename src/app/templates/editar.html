@@ -17,7 +17,7 @@
 <div class="page-wrapper" id="popup">
     <div class="popup-bg" id="popupBg"></div>
     <div class="popup popup-editar">
-        <form action="{{ url_for('view.edit') }}" method="POST">
+        <form action="{{ url_for('view.edit') }}" method="POST" enctype="multipart/form-data">
             <div class="content-popup-editar">
                 <div class="flex items-center justify-between">
                     <h2>Novo Informativo</h2>
@@ -59,9 +59,10 @@
                     <button><span class="material-icons-round">format_underlined</span></button>
                     <button><span class="material-icons-round">format_italic</span></button>
                     <div class="separator"></div>
-                    <button><span class="material-icons-round">attach_file</span></button>
-                    <button><span class="material-icons-round">image</span></button>
-                    <button><span class="material-icons-round">folder</span></button>
+                    <!--Mudar // Files // -->
+                    <input type="button" id="FileUpBTN" value="attach_file" class="material-icons-round" />
+                    <span style="font-size: 16px;" id="FolderPatch"></span>
+                    <input type="file" id="FileUp" name="photo"  style="display: none" multiple />
                 </div>
                 <button class="btn btn-full">
                     <span class="material-icons-round">send</span>
@@ -98,9 +99,11 @@
             <span class="material-icons-round">delete</span>
             <p>Excluir</p>
         </button>
+        {% if post.image %}
         <span class="material-icons-round card-icon">
             attach_file
         </span>
+        {% endif %}
     </div>
 </div>
 

@@ -1,17 +1,30 @@
-from flask import Blueprint, render_template, url_for, request, jsonify, json, request
+from operator import pos
+from os import name
+from flask import Blueprint, render_template, url_for, request, jsonify, json, request, Response, current_app, send_from_directory
 from flask_login import login_required, current_user
 import sqlalchemy
 from sqlalchemy import *
 from wtforms.fields.core import SelectField
-from .database.models import Arquivadas, Postagem, User, Papel
-from werkzeug.utils import redirect
+from .database.models import Arquivadas, Postagem, User, Papel, Curso
+from werkzeug.utils import redirect, secure_filename, send_file
 from . import db
 from .formulario.registerForm import *
+import io
+import secrets
+from io import BytesIO
 
 routes = Blueprint('view', __name__)
 user = current_user
 
-
+# Defs
+#Função para salvar dentro do Diretorio
+def save_photo(photo):
+    #rand_hex  = secrets.token_hex(10)
+    _, file_extention = os.path.splitext(photo.filename)
+    file_name = photo.filename  # rand_hex
+    file_path = os.path.join(current_app.root_path, 'static/images', file_name)
+    photo.save(file_path)
+    return file_name
 def user_edit():
     user_edit = db.session.query(Papel.pode_editar).join(
         Papel.user).filter(User.id == user.id).all()
@@ -99,8 +112,12 @@ def inicio():
                            for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
 
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form, remetente_nome=remetente_nome)
-
-
+#Baixar Imagens
+IMAGEMS = "static/images"
+@ routes.route('/editar/<nome_do_arquivo>', methods=['GET'])
+def get_arquivo(nome_do_arquivo):
+    return send_from_directory(IMAGEMS,nome_do_arquivo, as_attachment=True)
+# Edição
 @ routes.route('/editar', methods=['POST', 'GET'])
 @ login_required
 def edit():
@@ -115,40 +132,29 @@ def edit():
     # print(user_edit())
     if not user_edit():
         return redirect(url_for('view.inicio'))
-
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
-
-    '''if request.method == 'GET':
-        busca = request.form.get("busca")
-        if busca:
-            busca = f"%{busca}%"
-            search_post = db.session.query(Postagem).filter(
-                Postagem.user_id == user.id).filter(Postagem.titulo.like(
-                    busca)).order_by(Postagem.data.desc()).all()
-            posts = search_post
-        filtro_data = request.form.get("data")
-        if filtro_data:
-            filtro_data = f"%{filtro_data}%"
-            filtro_data = db.session.query(Postagem).filter(
-                Postagem.user_id == user.id).filter(Postagem.titulo.like(
-                    busca)).order_by(Postagem.data.desc()).all()
-            posts = filtro_data'''
-
     if request.method == 'POST':
+        alo = str(request.files.get("photo"))
+        print(request.files.get("photo").filename)
+        print(request.files.get("photo"))
+        if not request.files.get("photo").filename:
+            file_teste = ''
+        else:
+            file_teste = save_photo(request.files.get('photo'))
+        file = request.files['photo']
+        mimetype = file.mimetype
         titulo = request.form.get('titulo')
         texto = request.form.get('texto')
         destinatarios = db.session.query(Papel).filter(
             Papel.id.in_(form.select.data)).all()
         if user_edit():
-            informativo = Postagem(
-                titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios)
+            #informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, data_file=file.read(), image=filename)
+            informativo = Postagem(titulo=titulo, texto=texto, user_id=user.id, destinatario=destinatarios, image=file_teste,mimetype=mimetype)
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))
     return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
-
-
 # Deletar Post
 @ routes.route('/deletar-post', methods=['POST'])
 @ login_required

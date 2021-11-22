@@ -21,21 +21,37 @@
         <p>{{ post.texto }}</p>
       </div>
     </div>
+    {% if post.image %}
     <div class="anexos mb-12">
       <h2 class="title-text">Anexos</h2>
       <div class="anexo flex gap-3">
-        <span class="material-icons-round">folder</span>
+        {% if post.mimetype == 'image/png' or post.mimetype == 'image/jpeg' or post.mimetype == 'image/jpg' %}
+        <span class="material-icons-round">image</span>
+        {% else %}
+        <span class="material-icons-round">insert_drive_file</span>
+        {% endif %}
         <div>
-          <h3 class="anexo-nome">arquivo_da_mensagem</h3>
-          <p class="anexo-info">400mb</p>
+          {% if post.mimetype == 'image/png' or post.mimetype == 'image/jpeg' or post.mimetype == 'image/jpg' %}
+          <img class="img-fluid" src="{{url_for('static',filename='images/' + post.image)}}"
+            style="width:200px; height:200px;">
+          <p class="anexo-info">{{ post.mimetype }}</p>
+          {% else %}
+          <p class="anexo-nome">{{ post.image }}</p>
+          <p class="anexo-info">{{ post.mimetype }}</p>
+          {% endif %}
         </div>
       </div>
     </div>
+    {% endif %}
     <div class="buttons-area flex gap-6">
-      <button class="btn btn-full">
-        <span class="material-icons-round">download</span>
-        <p>Baixar</p>
-      </button>
+      {% if post.image %}
+      <a href="{{url_for('view.get_arquivo', nome_do_arquivo=post.image)}}">
+        <button class="btn btn-full">
+          <span class="material-icons-round">download</span>
+          <p>Baixar</p>
+        </button>
+      </a>
+      {% endif %}
       <button class="btn btn-empty" id="arquivar" onClick="arquivarPost({{ post.id }})">
         <span class="material-icons-round">archive</span>
         <p>Arquivar</p>

@@ -35,6 +35,7 @@ mail = Mail()
 
 def create_app():
     app = Flask(__name__)
+    app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
     # App config Chaves de Segurança
     app.config['SECRET_KEY'] = 'Secreto'
@@ -78,12 +79,13 @@ def create_app():
     app.register_blueprint(view_blueprint)
 
     # Flask Admin Config
-    from .database.models import Postagem, User, Papel, Arquivadas
+    from .database.models import Postagem, User, Papel, Arquivadas, Curso
     admin = Admin(app, name='FATEC SJC')
     admin.add_view(ModelView(Postagem, db.session))
     admin.add_view(ModelView(Papel, db.session))
     admin.add_view(ModelView(User, db.session))
     admin.add_view(ModelView(Arquivadas, db.session))
+    admin.add_view(ModelView(Curso, db.session))
 
     # Login Maneger
     login_manager = LoginManager()
