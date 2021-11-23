@@ -11,6 +11,7 @@ from .database.models import User
 from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
 import re
+from .view import papel_postagem
 
 # imports para token
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
@@ -40,6 +41,19 @@ def register():
         return redirect(url_for('auth.login'))
     return render_template("registrar.html", form=form)
 
+@routes.route('/registrar2', methods=['GET', 'POST'])
+def registrar2():
+    form = InfoForm()
+    if form.validate_on_submit():
+        registro = form.ra.data
+        if len (registro) == 7:
+            flash('Você é um funcionario', 'info')
+        elif len(registro) == 13:
+            flash('Você é um aluno', 'info')
+        else:
+            flash('Você não existe', 'danger')
+    return render_template('registrar-2.html', form=form)
+
 
 @routes.route('/login', methods=['GET', 'POST'])
 def login():
@@ -50,7 +64,12 @@ def login():
             if user.confirmado == 1:  # Verificando se ele confirmou email
                 if bcrypt.check_password_hash(user.senha, form.senha.data):
                     login_user(user)
-                    return redirect(url_for('view.inicio'))
+                    cpf = papel_postagem(db.session.query(User.cpf).filter_by(cpf=user.cpf).first())
+                    print(cpf)
+                    if cpf != '':
+                        return redirect(url_for('view.inicio'))
+                    else:
+                        return redirect(url_for('auth.registrar2'))
                 else:
                     flash('Senha ou email incorreto', 'danger')
             else:

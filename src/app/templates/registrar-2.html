@@ -1,0 +1,18 @@
+{% extends 'base-login.html' %}
+
+{% block title %}Registrar-2{% endblock %}
+
+{%block loginTitle %}Confirmação dos dados{% endblock %}
+{%block loginSub %}Precisamos de algumas informações cadastrais para continuar{% endblock %}
+
+{% block form %}{{ url_for('auth.registrar2') }} {% endblock %}
+
+{% block login %}
+<div class="login-input registrar-input">
+  {{ render_field(form.cpf, 'badge') }}
+  {{ render_field(form.ra, 'badge') }}
+
+</div>
+{% endblock %}
+
+{% block btnTitle %}Continuar cadastro{% endblock %}

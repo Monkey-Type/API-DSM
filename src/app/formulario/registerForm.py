@@ -13,12 +13,6 @@ class RegisterForm(FlaskForm):
     email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email'), emailExistente], render_kw={
         "placeholder": "exemple@fatec.sv.gov.br"})
 
-    # ra = StringField('RA / Matricula', validators=[InputRequired(message=message), Length(
-    #    min=13, max=13, message="Digite um RA valido")], render_kw={"placeholder": "RA / Matricula"})
-
-    cpf = StringField(validators=[InputRequired(message=message), Regexp(
-        '^\d{3}\.\d{3}\.\d{3}\-\d{2}$',  message='Digite um CPF'), cpf_validate], render_kw={"placeholder": "Sem traços ou espaços"})
-
     nome = StringField(validators=[InputRequired(message=message)], render_kw={
         "placeholder": "Nome completo"})
 
@@ -35,6 +29,13 @@ class RegisterForm(FlaskForm):
             raise ValidationError(
                 "Este usuario ja existe!")'''
 
+class InfoForm(FlaskForm):
+    ra = StringField('RA / Matrícula', validators=[InputRequired(message=message), Length(
+        min=7, max=13, message="Digite um RA/Matrícula valido")], render_kw={"placeholder": "RA / Matrícula"})
+
+    cpf = StringField(validators=[InputRequired(message=message), Regexp(
+        '^\d{3}.\d{3}.\d{3}-\d{2}$',  message='Digite um CPF'), cpf_validate], render_kw={"placeholder": "Sem traços ou espaços"})
+        
 
 class LoginFormulario(FlaskForm):
     email = EmailField('Email', validators=[InputRequired(message=message), Email(message='Digite um email')], render_kw={
