@@ -991,6 +991,10 @@ body{
   .icons-popup span{
     font-size: 1.75rem !important;
   }
-  
+}
 
+@media (min-width:700px){
+  .middle-box-wrapper{
+    min-width: 510px;
+  }
 }

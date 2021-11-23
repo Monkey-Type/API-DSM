@@ -24,27 +24,20 @@ user = current_user
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        # print(form.cpf.data)
-        cpf = int(re.sub("[.-]", "", form.cpf.data))
-        #cpfExistente = User.query.filter_by(cpf=cpf).first()
         #raExistente = User.query.filter_by(ra=form.ra.data).first()
-        emailExistente = User.query.filter_by(email=form.email.data).first()
-        # if cpfExistente or raExistente or emailExistente:
-        if emailExistente:
-            flash("Este usuario já existe!", 'danger')
-        else:
-            hashed_password = bcrypt.generate_password_hash(
-                form.senha.data).decode("utf-8")
-            """ novoUsuario = User(email=form.email.data, ra=form.ra.data,
-                               cpf=form.cpf.data, nome=form.nome.data.lower(), senha=hashed_password)"""
-            novoUsuario = User(email=form.email.data,
-                               cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password, confirmado=0)  # setando novos cadastro para 0
-            db.session.add(novoUsuario)
-            db.session.commit()
-            ServiceEmail = EmailService()
-            ServiceEmail.confirmaEmail(novoUsuario.email)
-            flash('Clique no Link enviado no seu email para confirmá-lo!', 'info')
-            return redirect(url_for('auth.login'))
+
+        cpf = int(re.sub("[.-]", "", form.cpf.data))
+
+        hashed_password = bcrypt.generate_password_hash(
+            form.senha.data).decode("utf-8")
+        novoUsuario = User(email=form.email.data,
+                           cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password, confirmado=0)  # setando novos cadastro para 0
+        db.session.add(novoUsuario)
+        db.session.commit()
+        ServiceEmail = EmailService()
+        ServiceEmail.confirmaEmail(novoUsuario.email)
+        flash('Clique no Link enviado no seu email para confirmá-lo!', 'info')
+        return redirect(url_for('auth.login'))
     return render_template("registrar.html", form=form)
 
 
