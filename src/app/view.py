@@ -4,7 +4,6 @@ from flask import Blueprint, render_template, url_for, request, jsonify, json, r
 from flask_login import login_required, current_user
 import sqlalchemy
 from sqlalchemy import *
-from wtforms.fields.core import SelectField
 from .database.models import Arquivadas, Postagem, User, Papel, Curso
 from werkzeug.utils import redirect, secure_filename, send_file
 from . import db
@@ -12,50 +11,10 @@ from .formulario.registerForm import *
 import io
 import secrets
 from io import BytesIO
+from .controller import *
 
 routes = Blueprint('view', __name__)
 user = current_user
-
-# Defs
-# Função para salvar dentro do Diretorio
-
-
-def save_photo(photo):
-    # rand_hex  = secrets.token_hex(10)
-    _, file_extention = os.path.splitext(photo.filename)
-    file_name = photo.filename  # rand_hex
-    file_path = os.path.join(current_app.root_path, 'static/images', file_name)
-    photo.save(file_path)
-    return file_name
-
-
-def user_edit():
-    user_edit = db.session.query(Papel.pode_editar).join(
-        Papel.user).filter(User.id == user.id).all()
-    for edit in user_edit:
-        if edit:
-            user_edit = edit[0]
-        break
-    return user_edit
-
-
-def papel_postagem(papel):
-    return ', '.join(map(str, papel))
-
-
-def remetente(userid):
-    return papel_postagem(db.session.query(Papel).join(
-        Papel.user).filter(User.id == userid).all())
-
-
-def remetente_nome(userid):
-    return papel_postagem(db.session.query(User.nome).filter(User.id == userid).first())
-
-
-@routes.route('/select', methods=["GET", "POST"])
-def select():
-    form = SelectForm()
-    return render_template('formselect.html', form=form)
 
 
 @routes.route('/', methods=["GET", "POST"])
@@ -120,8 +79,6 @@ def inicio():
     # print(posts)
 
     form = SelectForm()
-    form.select.choices = [(select.id, select.nome)
-                           for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
 
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form, remetente_nome=remetente_nome)
 
@@ -140,16 +97,9 @@ def get_arquivo(nome_do_arquivo):
 @ login_required
 def edit():
     form = SelectForm()
-    form.select.choices = [(select.id, select.nome)
-                           for select in Papel.query.join(Papel.user).filter(User.id != user.id).all()]
-    form.curso.choices = [(curso.id, curso.nome_curso)
-                          for curso in Curso.query.join(Curso.user).filter(User.id != user.id).all()]
     papel = db.session.query(Papel.nome).all()
     print(papel)
     user_papel = papel_postagem(user.papeis)
-    print(form.select.data)
-    # destinatarios = db.session.query.filter(Papel.nome.in_((form.select.data))).all()
-    # print(user_edit())
     if not user_edit():
         return redirect(url_for('view.inicio'))
     posts = db.session.query(Postagem).filter(
@@ -167,7 +117,7 @@ def edit():
         titulo = request.form.get('titulo')
         texto = request.form.get('texto')
         destinatarios = db.session.query(Papel).filter(
-            Papel.id.in_(form.select.data)).all()
+            Papel.id.in_(form.papel.data)).all()
         cursos = db.session.query(Curso).filter(
             Curso.id.in_(form.curso.data)).all()
         if user_edit():

@@ -5,6 +5,8 @@ from app import *
 from wtforms.fields.html5 import EmailField
 from .chosenSelect import *
 from .customValidators import *
+from ..database.models import Papel, Curso
+from flask_login import current_user
 
 message = 'Este campo é necessario'
 
@@ -50,8 +52,15 @@ class EsqueceuFormulario(FlaskForm):
 
 
 class SelectForm(FlaskForm):
-    select = ChosenSelectMultipleField("Enviar para", choices=[])
+    papel = ChosenSelectMultipleField("Enviar para", choices=[])
     curso = ChosenSelectMultipleField("Para o curso", choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.papel.choices = [(papel.id, papel.nome)
+                              for papel in Papel.query.join(Papel.user).filter(User.id != current_user.id).all()]
+        self.curso.choices = [(curso.id, curso.nome_curso)
+                              for curso in Curso.query.join(Curso.user).filter(User.id != current_user.id).all()]
 
 
 class NovaSenhaForm(FlaskForm):

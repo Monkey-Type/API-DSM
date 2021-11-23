@@ -143,8 +143,8 @@ class PapelView(ModelView):
 
 
 class PostagemView(ModelView):
-    column_list = ['titulo', 'texto', 'data', 'destinatario']
-    form_columns = ['titulo', 'texto', 'data', 'destinatario']
+    column_list = ['titulo', 'texto', 'data', 'destinatario', 'curso']
+    form_columns = ['titulo', 'texto', 'data', 'destinatario', 'curso']
     can_create = False
 
 
