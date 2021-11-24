@@ -20,6 +20,9 @@
       <div class="text-area text-area--modal">
         <p>{{ post.texto }}</p>
       </div>
+      {% if post.mimetype == 'image/png' or post.mimetype == 'image/jpeg' or post.mimetype == 'image/jpg' %}
+      <img class="img-fluid" src="{{url_for('static',filename='images/' + post.image)}}" style="width:80%">
+      {% endif %}
     </div>
     {% if post.image %}
     <div class="anexos mb-12">
@@ -32,8 +35,7 @@
         {% endif %}
         <div>
           {% if post.mimetype == 'image/png' or post.mimetype == 'image/jpeg' or post.mimetype == 'image/jpg' %}
-          <img class="img-fluid" src="{{url_for('static',filename='images/' + post.image)}}"
-            style="width:200px; height:200px;">
+          <p class="anexo-nome">{{ post.image }}</p>
           <p class="anexo-info">{{ post.mimetype }}</p>
           {% else %}
           <p class="anexo-nome">{{ post.image }}</p>

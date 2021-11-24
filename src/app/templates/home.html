@@ -9,7 +9,8 @@
 {% block main %}
 <link rel="stylesheet" href="{{url_for('static', filename='style/home.css')}}">
 {% for post in posts %}
-
+{% if post.user_id == user.id %}
+{% else %}
 <div class="card-box">
   <h2 class="title-text">{{ post.titulo }}</h2>
   <div class="text-title-area">
@@ -40,14 +41,6 @@
 </div>
 
 {{ modal_lermais(post, remetente(post.user_id) ,remetente_nome(post.user_id)) }}
-
+{% endif %}
 {% endfor %}
-{% endblock %}
-
-
-{% block remetente %}
-<div class="input-wrapper small-input">
-  {{ form.papel }}
-  <span class="material-icons-round">expand_more</span>
-</div>
 {% endblock %}

@@ -39,6 +39,11 @@ def remetente(userid):
         Papel.user).filter(User.id == userid).all())
 
 
+def remetente2(userid):
+    return db.session.query(Papel.id).join(
+        Papel.user).filter(User.id == userid).all()
+
+
 def remetente_nome(userid):
     return tupleToString(db.session.query(User.nome).filter(User.id == userid).first())
 
@@ -53,19 +58,31 @@ def postConsulta(rota=None):
     user_curso = tupleToList(db.session.query(
         Curso.nome_curso).join(Curso.user).filter(User.id == user.id).all())
     arquivada = tupleToList(db.session.query(Arquivadas.arquivada).all())
-
-    if rota == 'inicio':
-        posts = db.session.query(Postagem) \
-            .join(Postagem.destinatario).join(Papel.user).join(Arquivadas).join(Postagem.curso) \
-            .filter(Postagem.id.not_in(arquivada)) \
-            .filter(Curso.nome_curso.in_(user_curso)) \
-            .filter(User.id == user.id) \
-            .order_by(Postagem.data.desc())
+    if user_curso == []:
+        if rota == 'inicio':
+            posts = db.session.query(Postagem) \
+                .join(Postagem.destinatario).join(Papel.user).join(Arquivadas) \
+                .filter(Postagem.id.not_in(arquivada)) \
+                .filter(User.id == user.id) \
+                .order_by(Postagem.data.desc())
+        else:
+            posts = db.session.query(Postagem) \
+                .join(Postagem.destinatario).join(Papel.user) \
+                .filter(User.id == user.id) \
+                .order_by(Postagem.data.desc())
     else:
-        posts = db.session.query(Postagem) \
-            .join(Postagem.destinatario).join(Papel.user).join(Postagem.curso) \
-            .filter(Curso.nome_curso.in_(user_curso)) \
-            .filter(User.id == user.id) \
-            .order_by(Postagem.data.desc())
+        if rota == 'inicio':
+            posts = db.session.query(Postagem) \
+                .join(Postagem.destinatario).join(Papel.user).join(Arquivadas).join(Postagem.curso) \
+                .filter(Postagem.id.not_in(arquivada)) \
+                .filter(Curso.nome_curso.in_(user_curso)) \
+                .filter(User.id == user.id) \
+                .order_by(Postagem.data.desc())
+        else:
+            posts = db.session.query(Postagem) \
+                .join(Postagem.destinatario).join(Papel.user).join(Postagem.curso) \
+                .filter(Curso.nome_curso.in_(user_curso)) \
+                .filter(User.id == user.id) \
+                .order_by(Postagem.data.desc())
 
     return posts

@@ -93,32 +93,26 @@
             </button>
           </div>
           <form action="" method="Post">
+            {% block remetente %}
+            <div class="input-wrapper small-input">
+              {{ filtro.filtro_papel }}
+              <span class="material-icons-round">expand_more</span>
+            </div>
+            {% endblock %}
             {% if user_edit %}
             <div class="input-wrapper small-input">
-              <input type="search" name="cursos" placeholder="Cursos">
-              <span class="material-icons-round">search</span>
+              {{ filtro.filtro_curso }}
+              <span class="material-icons-round">expand_more</span>
             </div>
             {% endif %}
             <div class="input-wrapper small-input">
               <select name="anexos" id="anexos">
                 <option value="" disabled selected>Anexos</option>
-                <option value="foto">Foto</option>
-                <option value="video">Video</option>
-                <option value="documento">Documentos</option>
+                <option value="1">Tem anexo</option>
+                <option value="2">Não tem anexo</option>
               </select>
               <span class="material-icons-round">expand_more</span>
             </div>
-            {% block remetente %}
-            <div class="input-wrapper small-input">
-              <select name="remetente" id="remetente">
-                <option value="" disabled selected>Remetente</option>
-                <option value="diretor">Diretor</option>
-                <option value="secretaria">Secretaria</option>
-                <option value="professor">Professor</option>
-              </select>
-              <span class="material-icons-round">expand_more</span>
-            </div>
-            {% endblock %}
             <div class="input-wrapper small-input">
               <input type="date" name="data" placeholder="Dia/Mes/Ano">
               <span class="material-icons-round">today</span>
@@ -164,6 +158,8 @@
 <script>
   $('#papel').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "Aluno, Professor..." });
   $('#curso').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "DMS, ADS..." });
+  $('#filtro_papel').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "Aluno, Professor..." });
+  $('#filtro_curso').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "DMS, ADS..." });
   //$('.chosen-search-input').val("Aluno, Professor...")
 </script>
 

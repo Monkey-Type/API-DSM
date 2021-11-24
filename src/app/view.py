@@ -20,8 +20,8 @@ user = current_user
 @routes.route('/', methods=["GET", "POST"])
 @login_required
 def inicio():
+    filtro = FiltroForm()
     cargo = request.args.get(User.query.filter_by(id=user.papeis))
-
     user_arquivados = tupleToList(db.session.query(Arquivadas.user_id).all())
 
     if user.id in user_arquivados:
@@ -36,15 +36,35 @@ def inicio():
         busca = f"%{busca}%"
         search_post = post.filter(Postagem.titulo.like(busca)).all()
         posts = search_post
+
     filtro_data = request.form.get("data")
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
         filtro_data = post.filter(Postagem.data.like(filtro_data)).all()
         posts = filtro_data
 
-    form = SelectForm()
+    filtro_papel = filtro.filtro_papel.data
+    if filtro_papel:
+        filtro_papel = list(map(int, filtro_papel))
+        papel_userid = tupleToList(db.session.query(User.id).join(
+            Papel.user).filter(Papel.id.in_(filtro_papel)).all())
+        filtro_papel = post.filter(Postagem.user_id.in_(papel_userid)).all()
+        posts = filtro_papel
 
-    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, form=form, remetente_nome=remetente_nome)
+    filtro_curso = filtro.filtro_curso.data
+    if filtro_curso:
+        filtro_curso = list(map(int, filtro_curso))
+        print(filtro_curso)
+        filtro_curso = post.filter(Curso.id.in_(filtro_curso)).all()
+        posts = filtro_curso
+
+    filtro_anexo = request.form.get("anexos")
+    if filtro_anexo == '1':
+        posts = post.filter(Postagem.image != '').all()
+    if filtro_anexo == '2':
+        posts = post.filter(Postagem.image == '').all()
+
+    return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, filtro=filtro, remetente_nome=remetente_nome)
 
 
 # Baixar Imagens
@@ -61,6 +81,7 @@ def get_arquivo(nome_do_arquivo):
 @ login_required
 def edit():
     form = SelectForm()
+    filtro = FiltroForm()
     papel = db.session.query(Papel.nome).all()
     user_papel = tupleToString(user.papeis)
 
@@ -89,7 +110,7 @@ def edit():
             db.session.add(informativo)
             db.session.commit()
             return redirect(url_for('view.edit'))
-    return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), form=form)
+    return render_template('editar.html', posts=posts, user=user, user_papel=user_papel, papel=papel, user_edit=user_edit(), filtro=filtro, form=form)
 
 
 # Deletar Post
@@ -122,6 +143,7 @@ def arquivar_post():
 @ routes.route('/arquivos', methods=['POST', 'GET'])
 @ login_required
 def archive():
+    filtro = FiltroForm()
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
         Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).order_by(Postagem.data.desc()).all()
 
@@ -139,10 +161,11 @@ def archive():
             Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).filter(Postagem.data.like(
                 filtro_data)).order_by(Postagem.data.desc()).all()
         posts = filtro_data
-    return render_template('arquivos.html', user=user, posts=posts, user_edit=user_edit(), remetente=remetente, remetente_nome=remetente_nome)
+    return render_template('arquivos.html', user=user, posts=posts, user_edit=user_edit(), remetente=remetente, remetente_nome=remetente_nome, filtro=filtro)
 
 
 @ routes.route('/config')
 @ login_required
 def config():
-    return render_template('config.html', user=user, user_edit=user_edit())
+    filtro = FiltroForm()
+    return render_template('config.html', user=user, user_edit=user_edit(), filtro=filtro)

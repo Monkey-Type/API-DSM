@@ -58,9 +58,21 @@ class SelectForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.papel.choices = [(papel.id, papel.nome)
-                              for papel in Papel.query.join(Papel.user).filter(User.id != current_user.id).all()]
+                              for papel in Papel.query.join(Papel.user).all()]
         self.curso.choices = [(curso.id, curso.nome_curso)
                               for curso in Curso.query.join(Curso.user).filter(User.id != current_user.id).all()]
+
+
+class FiltroForm(FlaskForm):
+    filtro_papel = ChosenSelectMultipleField("Enviar para", choices=[])
+    filtro_curso = ChosenSelectMultipleField("Para o curso", choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.filtro_papel.choices = [(papel.id, papel.nome)
+                                     for papel in Papel.query.join(Papel.user).all()]
+        self.filtro_curso.choices = [(curso.id, curso.nome_curso)
+                                     for curso in Curso.query.join(Curso.user).filter(User.id != current_user.id).all()]
 
 
 class NovaSenhaForm(FlaskForm):

@@ -406,8 +406,19 @@ button{
   font-size: var(--medium-icon);
 }
 
+.text-area--modal{
+  word-wrap: break-word;
+}
+
 .text-area--modal p::after{
   display: none;
+}
+
+.img-fluid{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-top: 2rem;
 }
 
 .sender-name{

@@ -82,7 +82,7 @@ function closefilter() {
 window.onload = function () {
   // Image
   var fileupload_img = document.getElementById("FileUp");
-  var filePath_file = document.getElementById("Filepath");
+  var filePath_file = document.getElementById("FolderPatch");
   var button_file = document.getElementById("FileUpBTN");
   button_file.onclick = function () {
     fileupload_img.click();
