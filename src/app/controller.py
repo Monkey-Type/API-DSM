@@ -1,5 +1,5 @@
 import os
-from .database.models import User, Papel
+from .database.models import *
 from flask_login import login_required, current_user
 from flask import current_app
 from . import db
@@ -30,14 +30,42 @@ def user_edit():
     return user_edit
 
 
-def papel_postagem(papel):
-    return ', '.join(map(str, papel))
+def tupleToString(tupla):
+    return ', '.join(map(str, tupla))
 
 
 def remetente(userid):
-    return papel_postagem(db.session.query(Papel).join(
+    return tupleToString(db.session.query(Papel).join(
         Papel.user).filter(User.id == userid).all())
 
 
 def remetente_nome(userid):
-    return papel_postagem(db.session.query(User.nome).filter(User.id == userid).first())
+    return tupleToString(db.session.query(User.nome).filter(User.id == userid).first())
+
+
+def tupleToList(tupla):
+    return [id for id, in tupla]
+
+# filter(Postagem.id.not_in(arquivada))
+
+
+def postConsulta(rota=None):
+    user_curso = tupleToList(db.session.query(
+        Curso.nome_curso).join(Curso.user).filter(User.id == user.id).all())
+    arquivada = tupleToList(db.session.query(Arquivadas.arquivada).all())
+
+    if rota == 'inicio':
+        posts = db.session.query(Postagem) \
+            .join(Postagem.destinatario).join(Papel.user).join(Arquivadas).join(Postagem.curso) \
+            .filter(Postagem.id.not_in(arquivada)) \
+            .filter(Curso.nome_curso.in_(user_curso)) \
+            .filter(User.id == user.id) \
+            .order_by(Postagem.data.desc())
+    else:
+        posts = db.session.query(Postagem) \
+            .join(Postagem.destinatario).join(Papel.user).join(Postagem.curso) \
+            .filter(Curso.nome_curso.in_(user_curso)) \
+            .filter(User.id == user.id) \
+            .order_by(Postagem.data.desc())
+
+    return posts

@@ -718,7 +718,6 @@ body{
   gap:1.5em;
   margin-top: 2em;
   align-items: center;
-  justify-content: space-between;
 }
 
 .bottom-buttons .card-icon{
