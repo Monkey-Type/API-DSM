@@ -43,7 +43,7 @@ class User(db.Model, UserMixin):
     __tablename__ = "user"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     nome = db.Column(db.String(150), nullable=False)
-    cpf = db.Column(db.Integer, unique=True, nullable=True, default='')  # Mudar Depois
+    cpf = db.Column(db.Integer, nullable=True, default='')  # Mudar Depois
     email = db.Column(db.String(150), unique=True, nullable=False)
     senha = db.Column(db.String(150), nullable=False)
     # Chaves Estrangeiras

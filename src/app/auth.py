@@ -7,7 +7,7 @@ from werkzeug.wrappers import request
 
 #from app import email_service
 from .import db, bcrypt
-from .database.models import User
+from .database.models import User, Papel
 from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
 import re
@@ -44,9 +44,15 @@ def registrar2():
     form = InfoForm()
     if form.validate_on_submit():
         registro = form.ra.data
+        aluno_papel = Papel.query.filter_by(nome='Aluno').first()
+        funcionario_papel = Papel.query.filter_by(nome='Funcionário').first()
         if len (registro) == 7:
+            user.papeis = [funcionario_papel]
+            db.session.commit()
             flash('Você é um funcionario', 'info')
         elif len(registro) == 13:
+            user.papeis = [aluno_papel]
+            db.session.commit()
             flash('Você é um aluno', 'info')
         else:
             flash('Você não existe', 'danger')
