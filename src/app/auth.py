@@ -27,12 +27,10 @@ def register():
     if form.validate_on_submit():
         #raExistente = User.query.filter_by(ra=form.ra.data).first()
 
-        cpf = int(re.sub("[.-]", "", form.cpf.data))
-
         hashed_password = bcrypt.generate_password_hash(
             form.senha.data).decode("utf-8")
         novoUsuario = User(email=form.email.data,
-                           cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password, confirmado=0)  # setando novos cadastro para 0
+                            nome=form.nome.data.lower(), senha=hashed_password, confirmado=0)  # setando novos cadastro para 0
         db.session.add(novoUsuario)
         db.session.commit()
         ServiceEmail = EmailService()
@@ -66,10 +64,10 @@ def login():
                     login_user(user)
                     cpf = papel_postagem(db.session.query(User.cpf).filter_by(cpf=user.cpf).first())
                     print(cpf)
-                    if cpf != '':
-                        return redirect(url_for('view.inicio'))
-                    else:
+                    if cpf == '':
                         return redirect(url_for('auth.registrar2'))
+                    else:
+                        return redirect(url_for('view.inicio'))
                 else:
                     flash('Senha ou email incorreto', 'danger')
             else:
