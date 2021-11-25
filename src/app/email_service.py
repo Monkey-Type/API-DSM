@@ -25,7 +25,7 @@ class EmailService():
     def esqueceuSenha(self, email):
         emo = email
         tokenVao = serial.dumps(emo, salt='password-forgotten')
-        mensagem = Message("Criação de nova senha", recipients=[emo])
+        mensagem = Message("Criação de nova senha", recipients=[emo], sender=('Esqueceu Senha - Monkey Type','contato.monkey.type@gmail.com'))
         link = url_for('auth.esqueceu_senha', token=tokenVao, _external=True)
 
         mensagem.body = 'Esqueceu a sua senha? Após clicar no link crie uma nova senha: {}'.format(

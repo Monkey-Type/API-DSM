@@ -163,7 +163,7 @@ def confirma_email(token):
     form = RegisterForm()
     try:
         # loads carrega o que tem no token para essa variável tokenVem, neste caso o email do usuário
-        tokenVem = serial.loads(token, salt='email-confirm', max_age=30)
+        tokenVem = serial.loads(token, salt='email-confirm', max_age=3600)
         emailUsuario = User.query.filter_by(email=tokenVem).first()
         emailUsuario.confirmado = 1
         db.session.commit()
@@ -182,6 +182,7 @@ def confirma_email(token):
             flash('Seu link expirou, cadastre-se novamente', 'erro')
         # aqui html para o token expirado
         return render_template('registrar.html', form=form)
+    flash('Cadastro feito com sucesso!', 'info')
     return render_template('login.html', form=form)
 
 
