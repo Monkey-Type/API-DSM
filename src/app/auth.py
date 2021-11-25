@@ -7,10 +7,11 @@ from werkzeug.wrappers import request
 
 #from app import email_service
 from .import db, bcrypt
-from .database.models import User
+from .database.models import User, Papel
 from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
 import re
+from .controller import tupleToString
 
 # imports para token
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
@@ -26,12 +27,10 @@ def register():
     if form.validate_on_submit():
         #raExistente = User.query.filter_by(ra=form.ra.data).first()
 
-        cpf = int(re.sub("[.-]", "", form.cpf.data))
-
         hashed_password = bcrypt.generate_password_hash(
             form.senha.data).decode("utf-8")
         novoUsuario = User(email=form.email.data,
-                           cpf=cpf, nome=form.nome.data.lower(), senha=hashed_password, confirmado=0)  # setando novos cadastro para 0
+                           nome=form.nome.data.lower(), senha=hashed_password, confirmado=0)  # setando novos cadastro para 0
         db.session.add(novoUsuario)
         db.session.commit()
         ServiceEmail = EmailService()
@@ -39,6 +38,50 @@ def register():
         flash('Clique no Link enviado no seu email para confirmá-lo!', 'info')
         return redirect(url_for('auth.login'))
     return render_template("registrar.html", form=form)
+
+
+@routes.route('/registrar2', methods=['GET', 'POST'])
+def registrar2():
+    form = InfoForm()
+    if form.validate_on_submit():
+        registro = form.ra.data
+        aluno_papel = Papel.query.filter_by(nome='Aluno').first()
+        funcionario_papel = Papel.query.filter_by(nome='Funcionário').first()
+        cpf = int(re.sub("[.-]", "", form.cpf.data))
+        user.cpf = cpf
+        if len(registro) == 7:
+            user.papeis = [funcionario_papel]
+            db.session.commit()
+            return redirect(url_for('auth.cursofuncionario'))
+        elif len(registro) == 13:
+            user.papeis = [aluno_papel]
+            db.session.commit()
+            return redirect(url_for('auth.cursoaluno'))
+        else:
+            flash('Você não existe', 'danger')
+    return render_template('registrar-2.html', form=form)
+
+
+@routes.route('/conclusaoregistro', methods=['GET', 'POST'])
+def cursoaluno():
+    form = SelectForm()
+    curso_list = form.curso.data
+
+    if curso_list:
+        curso_list = list(map(int, curso_list))
+        curso = Curso.query.filter(Curso.id.in_(curso_list)).all()
+        print(curso)
+        user.cursos = curso
+        db.session.commit()
+        print(user)
+        return redirect(url_for('view.inicio'))
+
+    return render_template('curso-aluno.html', form=form)
+
+# @routes.route('/conclusaoregistro2', methods=['GET', 'POST'])
+# def cursofuncionario():
+    form = InfoForm()
+    return render_template('curso-funcionario.html', form=form)
 
 
 @routes.route('/login', methods=['GET', 'POST'])
@@ -50,7 +93,13 @@ def login():
             if user.confirmado == 1:  # Verificando se ele confirmou email
                 if bcrypt.check_password_hash(user.senha, form.senha.data):
                     login_user(user)
-                    return redirect(url_for('view.inicio'))
+                    cpf = tupleToString(db.session.query(
+                        User.cpf).filter_by(cpf=user.cpf).first())
+                    print(cpf)
+                    if cpf == '':
+                        return redirect(url_for('auth.registrar2'))
+                    else:
+                        return redirect(url_for('view.inicio'))
                 else:
                     flash('Senha ou email incorreto', 'danger')
             else:

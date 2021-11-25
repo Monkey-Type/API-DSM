@@ -67,3 +67,32 @@
 #arquivar{
     display: none;
 }
+
+.attach-icon{
+    background: none;
+    font-size: var(--medium-icon);
+    cursor: pointer;
+}
+
+.attach-icon:hover + .attach-icon-div{
+    opacity: 1;
+}
+
+.attach-icon-div{
+    width: 200px;
+    height: 50px;
+    background-color: var(--card-bg-color);
+    position: absolute;
+    left: -80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 200ms ease-in-out;
+}
+.attach-icon-div p{
+    font-weight: var(--semi-bold);
+}
