@@ -3,8 +3,15 @@
 <div class="page-wrapper modal-lermais--wrapper" data-id="{{ post.id }}" onClick="fecharPopup({{post.id}})">
   <div class="popup p-9 lg:p-14 max-w-screen-lg flex-grow" onClick="stop(event)">
     <div class=" modal-top flex justify-between mb-12">
-      <div class="sender-info">
-        <h3 class="sender-name">{{ remetente_nome }}</h3>
+      <div class="sender-info texts flex gap-9">
+        <div>
+          <h4>NOME</h4>
+          <h2 class="sender-name">{{ remetente_nome }}</h2>
+        </div>
+        <div>
+          <h4>AREA DE ATUAÇÃO</h4>
+          <p class="sender-papel">{{ remetente }}</p>
+        </div>
       </div>
       <button onClick="fecharPopup({{ post.id }})"><span class="material-icons-round">close</span></button>
     </div>

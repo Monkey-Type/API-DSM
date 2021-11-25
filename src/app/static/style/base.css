@@ -1008,3 +1008,39 @@ body{
     min-width: 510px;
   }
 }
+
+.texts p{
+  font-size: var(--p-font-size);
+  color: var(--primary-text-color);
+  font-weight: var(--semi-bold);
+  white-space: nowrap;
+}
+
+.texts h2{
+  font-size: var(--h3-font-size);
+  color: var(--primary-text-color);
+  font-weight: var(--bold);
+  text-transform: capitalize;
+}
+
+.texts h4{
+  margin-top: 0.5em;
+  font-size: var(--h4-font-size);
+  color: var(--secondary-text-color);
+  font-weight: var(--bold);
+  white-space: nowrap;
+}
+
+
+.text-password h1{
+  font-size: var(--h2-font-size);
+  color: var(--primary-text-color);
+  font-weight: var(--bold);
+}
+
+.text-password p{
+  margin-top: 2em;
+  font-size: var(--p-font-size);
+  color: var(--primary-text-color);
+  font-weight: var(--bold);
+}

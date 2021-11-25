@@ -1,0 +1,3 @@
+-> Registro --> Perguntar se é RA ou Matricula -> RA = Aluno -> Matricula = Funcionario
+-> Funcionario --> Pode criar postagem
+
