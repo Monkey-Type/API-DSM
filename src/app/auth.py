@@ -49,15 +49,25 @@ def registrar2():
         if len (registro) == 7:
             user.papeis = [funcionario_papel]
             db.session.commit()
-            flash('Você é um funcionario', 'info')
+            return redirect(url_for('auth.cursoaluno'))
         elif len(registro) == 13:
             user.papeis = [aluno_papel]
             db.session.commit()
-            flash('Você é um aluno', 'info')
+            return redirect(url_for('auth.corsufuncionario'))
         else:
             flash('Você não existe', 'danger')
     return render_template('registrar-2.html', form=form)
 
+@routes.route('/conclusaoregistro', methods=['GET', 'POST'])
+def cursoaluno():
+    form = SelectForm()
+    aluno_curso = Curso.query.filter_by(nome= request.form.get('curso')).first()
+    return render_template('curso-aluno.html', form=form)
+
+@routes.route('/conclusaoregistro2', methods=['GET', 'POST'])
+def cursofuncionario():
+    form = InfoForm()
+    return render_template('curso-funcionario.html', form=form)
 
 @routes.route('/login', methods=['GET', 'POST'])
 def login():

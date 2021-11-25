@@ -1,0 +1,19 @@
+{% extends 'base-login.html' %}
+
+{% block title %}Finalizar Cadastro{% endblock %}
+
+{%block loginTitle %}Escolha seu curso{% endblock %}
+{%block loginSub %}Para finalizar seu cadastro selecione o curso a qual pertence{% endblock %}
+
+{% block form %}{{ url_for('auth.cursoaluno') }} {% endblock %}
+
+{% block login %}
+
+<div class="input-wrapper small-input">
+  {{ form.curso }}
+  <span class="material-icons-round">person_add</span>
+</div>
+
+{% endblock %}
+
+{% block btnTitle %}Finalizar Cadastro{% endblock %}

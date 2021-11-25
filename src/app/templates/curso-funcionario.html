@@ -1,0 +1,18 @@
+{% extends 'base-login.html' %}
+
+{% block title %}Finalizar Cadastro{% endblock %}
+
+{%block loginTitle %}Escolha seu(s) curso(s){% endblock %}
+{%block loginSub %}Para finalizar seu cadastro selecione o(s) curso(s) a qual você leciona.{% endblock %}
+
+{% block form %}{{ url_for('auth.cursofuncionario') }} {% endblock %}
+
+{% block login %}
+<div class="login-input registrar-input">
+  {{ render_field(form.cpf, 'badge') }}
+  {{ render_field(form.ra, 'badge') }}
+
+</div>
+{% endblock %}
+
+{% block btnTitle %}Finalizar Cadastro{% endblock %}
