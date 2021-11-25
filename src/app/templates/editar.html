@@ -18,6 +18,7 @@
     <div class="popup-bg" id="popupBg"></div>
     <div class="popup popup-editar">
         <form action="{{ url_for('view.edit') }}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="form_name" value="form1">
             <div class="content-popup-editar">
                 <div class="flex items-center justify-between">
                     <h2>Novo Informativo</h2>
@@ -69,7 +70,7 @@
                     <span style="font-size: 16px;" id="FolderPatch"></span>
                     <input type="file" id="FileUp" name="photo" style="display: none" multiple />
                 </div>
-                <button class="btn btn-full">
+                <button class="btn btn-full" name='form_enviar'>
                     <span class="material-icons-round">send</span>
                     <p>Enviar</p>
                 </button>

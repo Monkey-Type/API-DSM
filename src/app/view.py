@@ -34,35 +34,34 @@ def inicio():
     busca = request.form.get("busca")
     if busca:
         busca = f"%{busca}%"
-        search_post = post.filter(Postagem.titulo.like(busca)).all()
-        posts = search_post
+        post = post.filter(Postagem.titulo.like(busca))
 
     filtro_data = request.form.get("data")
+    filtro_papel = filtro.filtro_papel.data
+    filtro_curso = filtro.filtro_curso.data
+    filtro_anexo = request.form.get("anexos")
+
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
-        filtro_data = post.filter(Postagem.data.like(filtro_data)).all()
-        posts = filtro_data
+        post = post.filter(Postagem.data.like(filtro_data))
 
-    filtro_papel = filtro.filtro_papel.data
     if filtro_papel:
         filtro_papel = list(map(int, filtro_papel))
         papel_userid = tupleToList(db.session.query(User.id).join(
             Papel.user).filter(Papel.id.in_(filtro_papel)).all())
-        filtro_papel = post.filter(Postagem.user_id.in_(papel_userid)).all()
-        posts = filtro_papel
+        print('oi')
+        post = post.filter(Postagem.user_id.in_(papel_userid))
 
-    filtro_curso = filtro.filtro_curso.data
     if filtro_curso:
         filtro_curso = list(map(int, filtro_curso))
-        print(filtro_curso)
-        filtro_curso = post.filter(Curso.id.in_(filtro_curso)).all()
-        posts = filtro_curso
+        post = post.filter(Curso.id.in_(filtro_curso))
 
-    filtro_anexo = request.form.get("anexos")
     if filtro_anexo == '1':
-        posts = post.filter(Postagem.image != '').all()
+        post = post.filter(Postagem.image != '')
     if filtro_anexo == '2':
-        posts = post.filter(Postagem.image == '').all()
+        post = post.filter(Postagem.image == '')
+
+    posts = post.all()
 
     return render_template("home.html", user=user, posts=posts, cargo=cargo, user_edit=user_edit(), remetente=remetente, filtro=filtro, remetente_nome=remetente_nome)
 
@@ -87,10 +86,45 @@ def edit():
 
     if not user_edit():
         return redirect(url_for('view.inicio'))
+
+    post = db.session.query(Postagem).filter(
+        Postagem.user_id == user.id).order_by(Postagem.data.desc())
     posts = db.session.query(Postagem).filter(
         Postagem.user_id == user.id).order_by(Postagem.data.desc()).all()
 
-    if request.method == 'POST':
+    filtro_data = request.form.get("data")
+    filtro_papel = filtro.filtro_papel.data
+    filtro_curso = filtro.filtro_curso.data
+    filtro_anexo = request.form.get("anexos")
+
+    busca = request.form.get("busca")
+    if busca:
+        busca = f"%{busca}%"
+        post = post.filter(Postagem.titulo.like(busca))
+
+    if filtro_data:
+        filtro_data = f"%{filtro_data}%"
+        post = post.filter(Postagem.data.like(filtro_data))
+
+    if filtro_papel:
+        filtro_papel = list(map(int, filtro_papel))
+        papel_userid = tupleToList(db.session.query(User.id).join(
+            Papel.user).filter(Papel.id.in_(filtro_papel)).all())
+        print('oi')
+        post = post.filter(Postagem.user_id.in_(papel_userid))
+
+    if filtro_curso:
+        filtro_curso = list(map(int, filtro_curso))
+        post = post.filter(Curso.id.in_(filtro_curso))
+
+    if filtro_anexo == '1':
+        post = post.filter(Postagem.image != '')
+    if filtro_anexo == '2':
+        post = post.filter(Postagem.image == '')
+
+    posts = post.all()
+
+    if 'form_enviar' in request.form:
         if not request.files.get("photo").filename:
             file_teste = ''
         else:
@@ -144,23 +178,43 @@ def arquivar_post():
 @ login_required
 def archive():
     filtro = FiltroForm()
+    post = db.session.query(Postagem).join(Postagem.destinatario).join(
+        Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).order_by(Postagem.data.desc())
     posts = db.session.query(Postagem).join(Postagem.destinatario).join(
         Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).order_by(Postagem.data.desc()).all()
+
+    filtro_data = request.form.get("data")
+    filtro_papel = filtro.filtro_papel.data
+    filtro_curso = filtro.filtro_curso.data
+    filtro_anexo = request.form.get("anexos")
 
     busca = request.form.get("busca")
     if busca:
         busca = f"%{busca}%"
-        search_post = db.session.query(Postagem).join(Postagem.destinatario).join(
-            Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).filter(Postagem.titulo.like(
-                busca)).order_by(Postagem.data.desc()).all()
-        posts = search_post
-    filtro_data = request.form.get("data")
+        post = post.filter(Postagem.titulo.like(busca))
+
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
-        filtro_data = db.session.query(Postagem).join(Postagem.destinatario).join(
-            Papel.user).join(Arquivadas).filter(User.id == user.id).filter(Postagem.id == Arquivadas.arquivada).filter(Postagem.data.like(
-                filtro_data)).order_by(Postagem.data.desc()).all()
-        posts = filtro_data
+        post = post.filter(Postagem.data.like(filtro_data))
+
+    if filtro_papel:
+        filtro_papel = list(map(int, filtro_papel))
+        papel_userid = tupleToList(db.session.query(User.id).join(
+            Papel.user).filter(Papel.id.in_(filtro_papel)).all())
+        print('oi')
+        post = post.filter(Postagem.user_id.in_(papel_userid))
+
+    if filtro_curso:
+        filtro_curso = list(map(int, filtro_curso))
+        post = post.filter(Curso.id.in_(filtro_curso))
+
+    if filtro_anexo == '1':
+        post = post.filter(Postagem.image != '')
+    if filtro_anexo == '2':
+        post = post.filter(Postagem.image == '')
+
+    posts = post.all()
+
     return render_template('arquivos.html', user=user, posts=posts, user_edit=user_edit(), remetente=remetente, remetente_nome=remetente_nome, filtro=filtro)
 
 

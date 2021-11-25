@@ -1,8 +1,9 @@
 import os
 from .database.models import *
 from flask_login import login_required, current_user
-from flask import current_app
+from flask import current_app, request
 from . import db
+from .formulario.registerForm import FiltroForm
 
 user = current_user
 
@@ -86,3 +87,31 @@ def postConsulta(rota=None):
                 .order_by(Postagem.data.desc())
 
     return posts
+
+
+def filtrarPost(post, filtro_anexo, filtro_curso, filtro_papel, filtro_data):
+    # def filtrarPost(post):
+    if filtro_data:
+        filtro_data = f"%{filtro_data}%"
+        post = post.filter(Postagem.data.like(filtro_data))
+
+    # print(filtro_data, filtro_papel,
+    #       filtro_curso, filtro_anexo)
+
+    if filtro_papel != None:
+        filtro_papel = list(map(int, filtro_papel))
+        papel_userid = tupleToList(db.session.query(User.id).join(
+            Papel.user).filter(Papel.id.in_(filtro_papel)).all())
+        print('oi')
+        post = post.filter(Postagem.user_id.in_(papel_userid))
+
+    if filtro_curso:
+        filtro_curso = list(map(int, filtro_curso))
+        post = post.filter(Curso.id.in_(filtro_curso))
+
+    if filtro_anexo == '1':
+        post = post.filter(Postagem.image != '')
+    if filtro_anexo == '2':
+        post = post.filter(Postagem.image == '')
+
+    return post
