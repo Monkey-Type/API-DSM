@@ -46,14 +46,16 @@ def registrar2():
         registro = form.ra.data
         aluno_papel = Papel.query.filter_by(nome='Aluno').first()
         funcionario_papel = Papel.query.filter_by(nome='Funcionário').first()
+        cpf = int(re.sub("[.-]", "", form.cpf.data))
+        user.cpf = cpf
         if len (registro) == 7:
             user.papeis = [funcionario_papel]
             db.session.commit()
-            return redirect(url_for('auth.cursoaluno'))
+            return redirect(url_for('auth.cursofuncionario'))
         elif len(registro) == 13:
             user.papeis = [aluno_papel]
             db.session.commit()
-            return redirect(url_for('auth.corsufuncionario'))
+            return redirect(url_for('auth.cursoaluno'))
         else:
             flash('Você não existe', 'danger')
     return render_template('registrar-2.html', form=form)
@@ -61,11 +63,24 @@ def registrar2():
 @routes.route('/conclusaoregistro', methods=['GET', 'POST'])
 def cursoaluno():
     form = SelectForm()
-    aluno_curso = Curso.query.filter_by(nome= request.form.get('curso')).first()
+    form.select.choices = [(select.id, select.nome)
+                           for select in Papel.query.all()]
+    form.curso.choices = [(curso.id, curso.nome_curso)
+                          for curso in Curso.query.all()]
+    curso_list = form.curso.data
+
+    if curso_list:
+        curso_list = list(map(int, curso_list))
+        curso = Curso.query.filter(Curso.id.in_(curso_list)).all()
+        print(curso)
+        user.cursos = curso
+        db.session.commit()
+        print(user)
+        return redirect(url_for('view.inicio'))
     return render_template('curso-aluno.html', form=form)
 
-@routes.route('/conclusaoregistro2', methods=['GET', 'POST'])
-def cursofuncionario():
+#@routes.route('/conclusaoregistro2', methods=['GET', 'POST'])
+#def cursofuncionario():
     form = InfoForm()
     return render_template('curso-funcionario.html', form=form)
 

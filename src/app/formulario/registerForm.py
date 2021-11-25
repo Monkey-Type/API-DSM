@@ -54,7 +54,7 @@ class EsqueceuFormulario(FlaskForm):
 
 class SelectForm(FlaskForm):
     select = ChosenSelectMultipleField("Enviar para", choices=[])
-    curso = ChosenSelectMultipleField("Para o curso", choices=[('1', 'DSM'),('2', 'ADS')])
+    curso = ChosenSelectMultipleField("Para o curso", choices=[])
     
 
 class NovaSenhaForm(FlaskForm):
