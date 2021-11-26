@@ -26,7 +26,6 @@ user = current_user
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
-        #raExistente = User.query.filter_by(ra=form.ra.data).first()
 
         hashed_password = bcrypt.generate_password_hash(
             form.senha.data).decode("utf-8")
