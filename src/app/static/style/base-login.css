@@ -63,6 +63,8 @@ tspan{
 
 .login-title{
   font-size: var(--h1-font-size);
+  line-height: 1.1;
+  margin-bottom: .5rem;
 }
 .login-subtitle{
   font-size: var(--h3-font-size);

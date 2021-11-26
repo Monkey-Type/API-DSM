@@ -1,3 +1,4 @@
+from operator import not_
 from .email_service import EmailService
 from flask import Blueprint, render_template, url_for, flash
 from flask_login.utils import login_user
@@ -11,7 +12,7 @@ from .database.models import User, Papel
 from .formulario.registerForm import *
 from flask_login import login_required, logout_user, current_user
 import re
-from .controller import tupleToString
+from .controller import tupleToString, tupleToList
 
 # imports para token
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
@@ -46,7 +47,7 @@ def registrar2():
     if form.validate_on_submit():
         registro = form.ra.data
         aluno_papel = Papel.query.filter_by(nome='Aluno').first()
-        funcionario_papel = Papel.query.filter_by(nome='Funcionário').first()
+        funcionario_papel = Papel.query.filter_by(nome='Funcionario').first()
         cpf = int(re.sub("[.-]", "", form.cpf.data))
         user.cpf = cpf
         if len(registro) == 7:
@@ -78,9 +79,27 @@ def cursoaluno():
 
     return render_template('curso-aluno.html', form=form)
 
-# @routes.route('/conclusaoregistro2', methods=['GET', 'POST'])
-# def cursofuncionario():
-    form = InfoForm()
+
+@routes.route('/conclusaoregistro2', methods=['GET', 'POST'])
+def cursofuncionario():
+    form = FuncionarioForm()
+    papel_list = form.papel.data
+    curso_list = form.curso.data
+
+    if papel_list and curso_list:
+        papel_list = list(map(int, papel_list))
+        curso_list = list(map(int, curso_list))
+
+        papel = Papel.query.filter(Papel.id.in_(papel_list)).all()
+        curso = Curso.query.filter(Curso.id.in_(curso_list)).all()
+        # user_papeis = tupleToList(user.papeis)
+        # user_papeis.append(papel)
+
+        user.papeis = user.papeis + papel
+        user.cursos = curso
+        db.session.commit()
+        return redirect(url_for('view.inicio'))
+
     return render_template('curso-funcionario.html', form=form)
 
 
@@ -93,12 +112,15 @@ def login():
             if user.confirmado == 1:  # Verificando se ele confirmou email
                 if bcrypt.check_password_hash(user.senha, form.senha.data):
                     login_user(user)
-                    cpf = tupleToString(db.session.query(
-                        User.cpf).filter_by(cpf=user.cpf).first())
+                    cpf = db.session.query(
+                        User.cpf).filter_by(cpf=user.cpf).first()
                     print(cpf)
-                    if cpf == '':
+                    if not all(cpf):
+                        print(cpf)
                         return redirect(url_for('auth.registrar2'))
                     else:
+                        print('tchau')
+                        print(cpf)
                         return redirect(url_for('view.inicio'))
                 else:
                     flash('Senha ou email incorreto', 'danger')
@@ -182,7 +204,7 @@ def confirma_email(token):
             flash('Seu link expirou, cadastre-se novamente', 'erro')
         # aqui html para o token expirado
         return render_template('registrar.html', form=form)
-    flash('Cadastro feito com sucesso!', 'info')
+    flash('Confirmação de email feita com sucesso!', 'info')
     return render_template('login.html', form=form)
 
 

@@ -2,15 +2,16 @@
 
 {% block title %}Finalizar Cadastro{% endblock %}
 
-{%block loginTitle %}Escolha seu(s) curso(s){% endblock %}
-{%block loginSub %}Para finalizar seu cadastro selecione o(s) curso(s) a qual você leciona.{% endblock %}
+{%block loginTitle %}Finalize seu cadastro{% endblock %}
+{%block loginSub %}Para finalizar seu cadastro selecione o(s) papel(is) em que atua e o(s) curso(s) os quais você
+leciona.{% endblock %}
 
 {% block form %}{{ url_for('auth.cursofuncionario') }} {% endblock %}
 
 {% block login %}
 <div class="login-input registrar-input">
-  {{ render_field(form.cpf, 'badge') }}
-  {{ render_field(form.ra, 'badge') }}
+  {{ render_field(form.papel, 'badge') }}
+  {{ render_field(form.curso, 'badge') }}
 
 </div>
 {% endblock %}

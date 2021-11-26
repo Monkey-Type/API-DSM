@@ -22,13 +22,12 @@ def save_photo(photo):
 
 
 def user_edit():
-    user_edit = db.session.query(Papel.pode_editar).join(
-        Papel.user).filter(User.id == user.id).all()
+    user_edit = tupleToList(db.session.query(Papel.pode_editar).join(
+        Papel.user).filter(User.id == user.id).all())
     for edit in user_edit:
         if edit:
-            user_edit = edit[0]
-        break
-    return user_edit
+            return True
+    return False
 
 
 def tupleToString(tupla):
@@ -37,7 +36,7 @@ def tupleToString(tupla):
 
 def remetente(userid):
     return tupleToString(db.session.query(Papel).join(
-        Papel.user).filter(User.id == userid).all())
+        Papel.user).filter(User.id == userid).filter(Papel.nome != 'Funcionario').all())
 
 
 def remetente2(userid):

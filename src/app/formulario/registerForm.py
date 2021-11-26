@@ -53,9 +53,9 @@ class SelectForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.papel.choices = [(papel.id, papel.nome)
-                              for papel in Papel.query.join(Papel.user).all()]
+                              for papel in Papel.query.filter(Papel.nome != 'Funcionario').all()]
         self.curso.choices = [(curso.id, curso.nome_curso)
-                              for curso in Curso.query.join(Curso.user).filter(User.id != current_user.id).all()]
+                              for curso in Curso.query.all()]
 
 
 class FiltroForm(FlaskForm):
@@ -65,9 +65,22 @@ class FiltroForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.filtro_papel.choices = [(papel.id, papel.nome)
-                                     for papel in Papel.query.join(Papel.user).all()]
+                                     for papel in Papel.query.join(Papel.user).filter(Papel.nome != 'Funcionario').all()]
         self.filtro_curso.choices = [(curso.id, curso.nome_curso)
                                      for curso in Curso.query.join(Curso.user).filter(User.id != current_user.id).all()]
+
+
+class FuncionarioForm(FlaskForm):
+    papel = ChosenSelectMultipleField("Qual seu cargo na FATEC ?", choices=[])
+    curso = ChosenSelectMultipleField(
+        "Se você faz parte de algum curso (Leciona ou Modera), Qual/Quais ?", choices=[])
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.papel.choices = [(papel.id, papel.nome)
+                              for papel in Papel.query.join(Papel.user).filter(Papel.nome != 'Funcionario').filter(Papel.nome != 'Aluno').all()]
+        self.curso.choices = [(curso.id, curso.nome_curso)
+                              for curso in Curso.query.all()]
 
 
 class NovaSenhaForm(FlaskForm):

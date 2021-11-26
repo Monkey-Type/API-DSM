@@ -24,12 +24,11 @@
       <div class="main-logo">
         <a href="/login">
           <svg xmlns="http://www.w3.org/2000/svg" width="99" height="56" viewBox="0 0 99 56">
-            <text id="SJC" transform="translate(99 49)" fill="#c62f45" font-size="24"
-              font-family="Open Sans" font-weight="700">
+            <text id="SJC" transform="translate(99 49)" fill="#c62f45" font-size="24" font-family="Open Sans"
+              font-weight="700">
               <tspan x="-39.096" y="0">SJC</tspan>
             </text>
-            <text id="FATEC" transform="translate(87 31)" font-size="32"
-              font-family="Open Sans" font-weight="800">
+            <text id="FATEC" transform="translate(87 31)" font-size="32" font-family="Open Sans" font-weight="800">
               <tspan x="-86.592" y="0">FATEC</tspan>
             </text>
           </svg>
@@ -107,6 +106,7 @@
 <script src="{{url_for('static', filename='js/mask.js')}}"></script>
 <script src="{{url_for('static', filename='js/chosen.js')}}"></script>
 <script>
+  $('#papel').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "Professor, Coordenador..." });
   $('#select').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "Aluno, Professor..." });
   $('#curso').chosen({ width: "100%", no_results_text: "Nada encontrado!", placeholder_text: "DMS, ADS..." });
   //$('.chosen-search-input').val("Aluno, Professor...")

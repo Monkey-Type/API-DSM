@@ -82,7 +82,8 @@ def edit():
     form = SelectForm()
     filtro = FiltroForm()
     papel = db.session.query(Papel.nome).all()
-    user_papel = tupleToString(user.papeis)
+    user_papel = tupleToString(db.session.query(Papel).join(
+        Papel.user).filter(User.id == user.id).filter(Papel.nome != 'Funcionario').all())
 
     if not user_edit():
         return redirect(url_for('view.inicio'))
