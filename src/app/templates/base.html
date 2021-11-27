@@ -46,10 +46,12 @@
           {% endif %}
         </div>
         <div class="main-nav-items bottom-items">
-          <a href="/config">
+          {% if user.is_admin() %}
+          <a href="/admin">
             <span class="material-icons-round medium-icon">settings</span>
             <div class="selection-bar"></div>
           </a>
+          {% endif %}
           <a href="/logout">
             <span class="material-icons-round medium-icon">logout</span>
             <div class="selection-bar"></div>

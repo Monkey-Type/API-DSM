@@ -82,7 +82,9 @@ def create_app():
 
     # Flask Admin Config
     from .database.models import Postagem, User, Papel, Curso, PapelView, PostagemView, UsuarioView, ModelView, CursoView
-    admin = Admin(app, name='FATEC SJC', template_mode='bootstrap4')
+    from .database.models import AdminIndexView
+    admin = Admin(app, index_view=AdminIndexView(),
+                  name='FATEC SJC', template_mode='bootstrap4')
     admin.add_view(PostagemView(Postagem, db.session))
     admin.add_view(PapelView(Papel, db.session))
     admin.add_view(UsuarioView(User, db.session))

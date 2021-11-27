@@ -1,4 +1,27 @@
 {% extends 'admin/master.html' %}
 
+{% block head_css %}
+{{ super() }}
+<link href="{{ url_for('static', filename='style/base.css') }}" rel="stylesheet">
+<style>
+  .btn:hover {
+    color: white;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+</style>
+{% endblock %}
+
+
+{% block menu_links %}
+<ul class="nav navbar-nav navbar-right">
+  {{ layout.menu_links() }}
+</ul>
+<a href="{{ url_for('view.inicio') }}" class="nav-link">Voltar ao inicio</a>
+{% endblock %}
+
 {% block body %}
+
 {% endblock %}

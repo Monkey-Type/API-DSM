@@ -1,9 +1,14 @@
 from flask_admin.contrib.sqla.view import ModelView
+from flask_migrate import current
 from sqlalchemy.orm import backref
 from app import db
 from datetime import datetime
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 import base64
+from flask import redirect, url_for
+import flask_admin as admin
+from flask_admin import expose
+
 
 # Relações
 # Postagem e Usuario one to many
@@ -61,6 +66,13 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return self.nome
+
+    def is_admin(self):
+        admin = [role.admin for role in self.papeis]
+        for adm in admin:
+            if adm:
+                return True
+        return False
 
 
 class Postagem(db.Model):
@@ -137,9 +149,25 @@ class Curso(db.Model):
         return self.nome_curso
 
 
+# def is_admin():
+#     admin = db.session(Papel.admin).join(
+#         Papel.user).filter(User.id == current_user.id).all()
+#     admin = [id for id, in admin]
+#     for adm in admin:
+#         if adm:
+#             return True
+#     return False
+
 class PapelView(ModelView):
     column_list = ['nome', 'user', 'pode_editar', 'admin']
     form_columns = ['nome', 'user', 'pode_editar', 'admin']
+
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin()
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('view.inicio'))
 
 
 class PostagemView(ModelView):
@@ -147,14 +175,47 @@ class PostagemView(ModelView):
     form_columns = ['titulo', 'texto', 'data', 'destinatario', 'curso']
     can_create = False
 
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin()
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('view.inicio'))
+
 
 class UsuarioView(ModelView):
     column_list = ['nome', 'email', 'papeis', 'cursos']
     form_columns = ['nome', 'email', 'papeis', 'cursos']
     can_create = False
 
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin()
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('view.inicio'))
+
 
 class CursoView(ModelView):
     column_list = ['nome_curso']
     form_columns = ['nome_curso']
     can_create = True
+
+    def is_accessible(self):
+        return current_user.is_authenticated and current_user.is_admin()
+
+    def inaccessible_callback(self, name, **kwargs):
+        # redirect to login page if user doesn't have access
+        return redirect(url_for('view.inicio'))
+
+
+class AdminIndexView(admin.AdminIndexView):
+
+    @expose('/')
+    def index(self):
+        if not current_user.is_authenticated:
+            return redirect(url_for('auth.login'))
+        if not current_user.is_admin():
+            return redirect(url_for('view.inicio'))
+
+        return super(AdminIndexView, self).index()

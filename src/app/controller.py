@@ -30,6 +30,15 @@ def user_edit():
     return False
 
 
+def is_admin():
+    admin = tupleToList(db.session(Papel.admin).join(
+        Papel.user).filter(User.id == current_user.id).all())
+    for adm in admin:
+        if adm:
+            return True
+    return False
+
+
 def tupleToString(tupla):
     return ', '.join(map(str, tupla))
 
