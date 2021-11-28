@@ -18,9 +18,13 @@ from flask_migrate import Migrate
 from os import path
 
 
+# Tentei usar database_exists para fazer a função no final do código
+# from sqlalchemy_utils.functions import database_exists
+
+
 # Banco de dados config
 db = SQLAlchemy()
-DB_NAME = "fatec.db"
+DB_NAME = "fatec.db" # COLOCAR O NOME DO BD QUE CRIAR NO POSTGRES
 
 # Migrate
 migrate = Migrate()
@@ -43,7 +47,7 @@ def create_app():
     app.config['SECURITY_PASSWORD_HASH'] = 'pbkdf2_sha512'
 
     # App config SQLALCHEMY
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///database/{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///database/{DB_NAME}' #f'postgresql://postgres:010298@localhost/{DB_NAME}' --> string de conexão do postgress, lembrar que 010298 é minha senha, colocar a sua
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #
@@ -102,6 +106,16 @@ def create_app():
 
     return app
 
+
+# - Executar uma vez para gerar o banco de dados.
+# def create_database(app):
+#      db.create_all(app=app)
+
+
+# - Tentei criar algo que check se o bd já está criado sem se basear na string de conexão modelo sqlite
+# def create_database(app):
+#     if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
+#         db.create_all(app=app)
 
 def create_database(app):
     if not path.exists('app/database/' + DB_NAME):
