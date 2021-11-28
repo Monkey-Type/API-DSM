@@ -446,6 +446,20 @@ MariaDB/MySQL/PostGresSQL</td>
 
 <br>
 
+<br>
+
+## Modelo Conceitual e Lógico do Banco de Dados
+
+### Modelo Lógico
+
+![BDLOGICO](https://github.com/Monkey-Type/API-DSM/blob/main/docs/Modelo_Conceitual_BD.jpeg)
+
+### Modelo Conceitual
+
+![BDCONCEITUAL](https://github.com/Monkey-Type/API-DSM/blob/main/docs/Modelo_Logico_BD.jpg)
+
+<br>
+
 
 > [Voltar ao Topo](#topo) ☝️
 
