@@ -24,9 +24,9 @@
 
 ## :bookmark_tabs: Sobre o projeto
 
-<p align="justify">Em face de uma pandemia mundial instituições de ensino do mundo todo enfrentaram o grande desafio de adaptarem  as atividades acadêmicas para o ensino remoto em um curto espaço de tempo. Com isso o aumento do uso de ferramentas de correios eletrônicos para comunicação dentro das instituições cresceu de forma exponencial levando a diversos problemas de perda de informações. Com o intuito de resolver esse problema, a <strong>FATEC São José dos Campos</strong> propôs aos alunos do 1° semestre do curso de <strong>Desenvolvimento de Software Multiplataforma (DSM)</strong>, o desenvolvimento de um portal de informações para o Corpo Docente, Discente e Administrativo da Fatec SJC capaz de exibir e gerar de forma seletiva e controlada os avisos gerais ou específicos de cada usuário, respeitando as respectivas hierarquias dentro da universidade com o intuíto de melhorar a comunicação interna da instituição.</p>
+<p align="justify">Em face de uma pandemia mundial instituições de ensino do mundo todo enfrentaram o grande desafio de adaptarem  as atividades acadêmicas para o ensino remoto em um curto espaço de tempo. Com isso o aumento do uso de ferramentas de correios eletrônicos para comunicação dentro das instituições cresceu de forma exponencial levando a diversos problemas por perda de informações. Com o intuito de resolver esse problema, a <strong>FATEC São José dos Campos</strong> propôs aos alunos do 1° semestre do curso de <strong>Desenvolvimento de Software Multiplataforma (DSM)</strong>, o desenvolvimento de um portal de informações para o Corpo Docente, Discente e Administrativo da Fatec SJC capaz de exibir e gerar de forma seletiva e controlada os avisos gerais ou específicos de cada usuário, respeitando as respectivas hierarquias dentro da universidade com o intuíto de melhorar a comunicação interna da instituição.</p>
 
->### Status do Projeto: Em Andamento :warning:
+>### Status do Projeto: Finalizado ✔
 <br>
 
 
@@ -42,7 +42,7 @@
 | 01 | [Sprint 01](#sprint1) | 08/09/2021 | 19/09/2021 | ✔ |
 | 02 | [Sprint 02](#sprint2) | 20/09/2021 | 10/10/2021 | ✔ |
 | 03 | [Sprint 03](#sprint3) | 18/10/2021 | 07/11/2021 | ✔ |
-| 04 | Sprint 04 | 08/11/2021 | 28/11/2021 | Em Aberto |
+| 04 | [Sprint 04](#sprint4) | 08/11/2021 | 28/11/2021 | ✔ |
 
 <br>
 
@@ -163,70 +163,58 @@ flask run -p 9000
         <td>RF - 9</td>
         <td>#22</td>
         <td>   Nas categoria de usuário onde há uma hierarquia  (ex.: chefe da secretaria e assistente da secretaria), deverá haver a opção de habilitar quem pode mandar mensagem dentro desse grupo de usuário</td>
-        <td>#03 #04</td>
+        <td>#03 #04 ✔</td>
     </tr>
     <tr>
         <td>RF - 10</td>
         <td>#18 #20</td>
         <td>  O usuário deve ter a automia de marcar a mensagem como lida e não lida (arquivar). Será importante manter um histórico de mensagem.</td>
-        <td>#03 #04</td>
+        <td>#03 #04 ✔</td>
     </tr>
     <tr>
         <td>RF - 11</td>
         <td>#06 #10 #12</td>
         <td>  Possibilidade de anexar documentos (e.g.: PDFs, Docs, etc)</td>
-        <td>#03 #04</td>
-    </tr>
-    <tr>
-        <td>RF - 12</td>
-        <td>#23</td>
-        <td>  O Usuário dever ter a opção de receber ou não notificações via app, cada vez que receber uma mensagem no sistema</td>
-        <td>#04</td>
-    </tr>
-    <tr>
-        <td>RF - 13</td>
-        <td>#19</td>
-        <td>   Informes e mensagens que não sejam mais úteis devem ser arquivadas automaticamente</td>
-        <td>#03 #04</td>
+        <td>#03 #04 ✔</td>
     </tr>
     <tr><td></td><td></td><td></td><td></td></tr>
     <tr>
         <td>RNF - 1</td>
         <td></td>
         <td>   Utilizar HTML5 para arquitetura da informação da aplicação</td>
-        <td>#01</td>
+        <td>#01 ✔</td>
     </tr>
     <tr>
         <td>RNF - 2</td>
         <td></td>
         <td>  Utilizar CSS 3 para especificação do layout e demais características de renderização da interface com o usuário</td>
-        <td>#01</td>
+        <td>#01 ✔</td>
     </tr>
     <tr>
         <td>RNF - 3</td>
         <td></td>
         <td> Utilizar JavaScript no front end (obs.: pode fazer uso de frameworks)</td>
-        <td>#01</td>
+        <td>#01 ✔</td>
     </tr>
     <tr>
         <td>RNF - 4</td>
         <td></td>
         <td> Desenvolver o back end com a linguagem Python 3+ e o 
 microframework Flask</td>
-        <td>#02</td>
+        <td>#02 ✔</td>
     </tr>
     <tr>
         <td>RNF - 5</td>
         <td></td>
         <td> Utilizar o sistema gerenciador de banco de dados 
 MariaDB/MySQL/PostGresSQL</td>
-        <td>#02</td>
+        <td>#02 ✔</td>
     </tr>
     <tr>
         <td>RNF - 6</td>
         <td></td>
         <td>  Sistema responsivo</td>
-        <td>#02 #03</td>
+        <td>#02 #03 ✔</td>
     </tr>
 </table>
 
@@ -380,13 +368,6 @@ MariaDB/MySQL/PostGresSQL</td>
         <td>Para que  as mensagens lidas saiam da minha lista de mensagens</td>
     </tr>
     <tr>
-        <td align="center">US-19</td>
-        <td align="center">#13</td>
-        <td>Administrador</td>
-        <td> Como Administrador quero que as menssagens que não são mais úteis sejam arquivadas automaticamente</td>
-        <td>Para que o Usuário Geral não tenha a sua caixa de mensagens poluída</td>
-    </tr>
-    <tr>
         <td align="center">US-20</td>
         <td align="center">#10</td>
         <td>Administrador</td>
@@ -406,13 +387,6 @@ MariaDB/MySQL/PostGresSQL</td>
         <td>Secretaria</td>
         <td> Como Usuário que possuí hierarquia interna quero poder habilitar quais Usuários podem ou não enviar mensagens dentro do meu grupo</td>
         <td>Para que eu possa manter o controle dos Usuários dentro da hierarquia da minha categoria</td>
-    </tr>
-    <tr>
-        <td align="center">US-23</td>
-        <td align="center">#12</td>
-        <td>Usuário Geral</td>
-        <td> Como Usuário quero poder optar por receber mensagens e anúncios também via app</td>
-        <td>Para que eu possa ter uma outra opção de controle dos anúnciois enviados e recebidos</td>
     </tr>
 </table>
 
@@ -482,47 +456,54 @@ MariaDB/MySQL/PostGresSQL</td>
 ## :monkey::computer: Equipe
 <br>
 
-
 <table>
 <tr>
         <td>Nome</td>
         <td>Posição</td>
-        <td>Contato</td>
+        <td>GitHub</td>
+        <td>LinkedIn</td>
     </tr>
     <tr>
         <td>Rafael da Silva Peres</td>
         <td>Product Owner</td>
-        <td><a href="https://github.com/Rafaeldasilvaperes">GitHub</td>
+        <td><a href="https://github.com/Rafaeldasilvaperes"><span style="color:gold"><b>GitHub</b></span></td>
+        <td><a href="https://www.linkedin.com/in/rafael-da-silva-peres-ba4228bb/"><span style="color:gold"><b>LinkedIn</b></span></td>
     </tr>
     <tr>
         <td>Gabriel Souza Bicho Nunes</td>
         <td>Scrum Master</td>
-        <td><a href="https://github.com/ZeroPirata">GitHub</td>
+        <td><a href="https://github.com/ZeroPirata"><span style="color:gold"><b>GitHub</b></span></td>
+        <td><a href="https://www.linkedin.com/in/gabriel-souza-bicho-nunes-429191185/"><span style="color:gold"><b>LinkedIn<b></span></td>
     </tr>
     <tr>
         <td>Gustavo Pereira</td>
         <td>DEV</td>
-        <td><a href="https://github.com/Foot-G">GitHub</td>
+        <td><a href="https://github.com/Foot-G"><span style="color:gold"><b>GitHub<b></span></td>
+        <td><a href="COLOCAR O SEU LINK PARA O LINKEDIN AQUI MEUBOMSENHOR"><span style="color:gold"><b>LinkedIn</b></span></td>
     </tr>
     <tr>
         <td>Leonardo Queiróz Machado</td>
         <td>DEV</td>
-        <td><a href="https://github.com/Lrd-M">GitHub</td>
+        <td><a href="https://github.com/Lrd-M"><span style="color:gold"><b>GitHub</b></span></td>
+        <td><a href="https://www.linkedin.com/in/leonardo-queir%C3%B3z-machado-606321198/"><span style="color:gold"><b>LinkedIn</b></span></td>
     </tr>
     <tr>
         <td>Lucas Ferreira da Costa</td>
         <td>DEV</td>
-        <td><a href="https://github.com/orgs/Monkey-Type/people/ddaiwon">GitHub</td>
+        <td><a href="https://github.com/ddaiwon"><span style="color:gold"><b>GitHub</b></span></td>
+        <td><a href="https://www.linkedin.com/in/lucas-costa-a49a01219/"><span style="color:gold"><b>LinkedIn</b></span></td>
     </tr>
     <tr>
         <td>Rafael Leonardo Lopes</td>
         <td>DEV</td>
-        <td><a href="https://github.com/Rafael-leonardo">GitHub</td>
+        <td><a href="https://github.com/Rafael-leonardo"><span style="color:gold"><b>GitHub</b></span></td>
+        <td><a href="https://www.linkedin.com/in/rafael-leonardo-lopes/"><span style="color:gold"><b>LinkedIn</b></span></td>
     </tr>
     <tr>
         <td>Vinícius Andrade B.</td>
         <td>DEV</td>
-        <td><a href="https://github.com/orgs/Monkey-Type/people/ViniciusAndBar">GitHub</td>
+        <td><a href="https://github.com/ViniciusAndBar"><span style="color:gold"><b>GitHub</b></span></td>
+        <td><a href="https://www.linkedin.com/in/vin%C3%ADcius-barbosa-78111a206/"><span style="color:gold"><b>LinkedIn</b></span></td>
     </tr>
 </table>
 
@@ -762,7 +743,7 @@ MariaDB/MySQL/PostGresSQL</td>
 
 <br>
 
-<p align="justify">Na <b>Terceira Sprint</b>, já possuindo uma aplicação minimamente funcional, focamos em adicionar <b>novas funcionalidades essênciais</b> a aplicação. Implementamos um método de <b>autenticação por e-mail</b>, <b>filtragem</b> dos informativos <b>por dia</b> organizados por ordem de mais recente ao menos recente, <b>filtro por palavra chave</b> também em ordem e a funcionalidade de <b>arquivar informativos</b>. Foram feitas melhorias em alguns aspectos visuais da aplicação, principalmente na exibição dos informativos arquivados, e também feita uma <b>revisão no modelo lógico do banco de dados</b> conseguindo relacionar todos os papéis na nossa aplicação de forma efetiva. Implementamos o uso da ferramenta <b>Flask-Migrate</b> para facilitar o versionamento do esquema do nosso banco de dados caso necessário junto a ferramenta <b>Flask-Alembic</b> para prover as configurações e o ambiente para migração das atualizações feitas no banco de dados sem riscos as informações contidas neste. A nossa aplicação agora permite a <b>inserção (editar), ocultamento (arquivar) e remoção dos informativos. 
+<p align="justify">Na <b>Terceira Sprint</b>, já possuindo uma aplicação minimamente funcional, focamos em adicionar <b>novas funcionalidades essênciais</b> a aplicação. Implementamos um método de <b>autenticação por e-mail</b>, <b>filtragem</b> dos informativos <b>por dia</b> organizados por ordem de mais recente ao menos recente, <b>filtro por palavra chave</b> também em ordem e a funcionalidade de <b>arquivar informativos</b>. Foram feitas melhorias em alguns aspectos visuais da aplicação, principalmente na exibição dos informativos arquivados, e também feita uma <b>revisão no modelo lógico do banco de dados</b> conseguindo relacionar todos os papéis na nossa aplicação de forma efetiva. Implementamos o uso da ferramenta <b>Flask-Migrate</b> para facilitar o versionamento do esquema do nosso banco de dados caso necessário junto a ferramenta <b>Flask-Alembic</b> para prover as configurações e o ambiente para migração das atualizações feitas no banco de dados sem riscos as informações contidas neste. A nossa aplicação agora permite a <b>inserção (editar), ocultamento (arquivar) e remoção dos informativos.</b></p> 
 
 <br>
 
@@ -812,7 +793,7 @@ MariaDB/MySQL/PostGresSQL</td>
     </tr>
     <tr>
         <td>RF - 5</td>
-        <td>Criação de um mecanismo de filtro por palavras chaves em um campo de busca de fácil acesso para pesquisas rápidas</td>
+        <td>Criação de um mecanismo de filtro por palavras-chave em um campo de busca de fácil acesso para pesquisas rápidas</td>
         <td align="center">✔</td>
         <td align="center">✔</td>
     </tr>
@@ -825,6 +806,67 @@ MariaDB/MySQL/PostGresSQL</td>
     <tr>
         <td>RF - 9</td>
         <td>Funcionamento da seção adm. com acesso restrito para que seja feita a administração de papéis e funções dentro da aplicação</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+</table>
+
+<br>
+
+> [Voltar ao Topo](#topo) ☝️
+
+<br>
+
+<span id="sprint4">
+
+## Sprint 04 :running:
+
+<br>
+
+<p align="justify">Na <b>Quarta Sprint</b> tinhamos como necessidade a entrega da <b>aplicação completa</b>, por se tratar da <b>Sprint de fechamento do projeto</b> desenvolvido por nossa equipe durante esse semestre. O <b>foco principal</b> da nossa equipe foi no desenvolvimento de todas as demais <b>funcionalidades necessárias</b> para a aplicação, com base nos requisitos funcionais, assim como em <b>testes práticos</b> dos recursos que ela dispõe <b>para a solução do problema de perda de informação</b> do nosso cliente. Dentro das <b>funcionalidades necessárias</b>, a nossa aplicação agora dispõe da possibilidade de <b>anexar arquivos</b> ao criar novos informativos. Na <b>área de cadastro</b>, agora conseguimos fazer uma <b>seleção inicial</b> entre <strong>funcionários</strong> e <strong>alunos</strong> da instituição, considerando o número de <b>Matrícula</b> ou número <b>RA</b> após a validação do novo cadastro. Além dos papeis, agora temos as <b>opções de Cursos</b> na nossa aplicação, que podem ser adicionados de acordo com os cursos existentes e devem ser relacionados aos entes de interesse na instituição para que a <b>organização da comunicação</b> entre o corpo docente, discente e administrativo seja efetiva. Além dos filtros de busca por data, papel e palavra-chave agora também existe a possibilidade de <b>filtrar informativos que possuem ou não arquivos anexados</b>. Dentro da aplicação, os <b>informativos</b> agora possuem a <b>opção "Ler mais"</b> funcional que permite ao usuário expandir todo o conteúdo dos informativos para que sejam exibidas todas as informações escritas do informativo assim como os seus arquivos anexados. Parte importante da nossa <b>aplicação</b> é que o seu layout agora é <b>responsivo</b>. Devido ao <b>uso</b> de um <b>MOR/ORM (Mapeamento objeto-relacional)</b> para gerar o nosso <b>banco de dados</b>, fizemos o uso do SQLite durante todo o nosso projeto, <b>aumentando a produtividade</b> de forma significativa e também adicionando a <b>possibilidade de rápida migração da aplicação para outros bancos de dados</b>. Escolhemos o banco de dados <b>PostGresSQL</b> como opção de uso para nossa aplicação considerando as opções dentro dos requisitos não-funcionais da nossa aplicação.</p>
+
+<br>
+
+# Sprint Backlog
+
+> ## Sprint 04
+
+<br>
+
+<table>
+    <tr>
+        <td align="center">REQUISITO FUNCIONAL_ID</td>
+        <td align="center">REQUISITOS DA SPRINT</td>
+        <td align="center">TAREFA INICIADA</td>
+        <td align="center">STATUS</td>
+    </tr>
+    <tr>
+        <td>RF - 9</td>
+        <td>Página de moderação (admin) funcional</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 6</td>
+        <td>Página de moderação (admin) com layout responsivo</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 11</td>
+        <td> Adicionar funcionalidade de anexar arquivos aos informativos</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 5</td>
+        <td> Adicionar a opção de cursos dentro da aplicação de forma funcional</td>
+        <td align="center">✔</td>
+        <td align="center">✔</td>
+    </tr>
+    <tr>
+        <td>RF - 10</td>
+        <td>Fazer funcional a opção de "Ler mais" para os informativos</td>
         <td align="center">✔</td>
         <td align="center">✔</td>
     </tr>
