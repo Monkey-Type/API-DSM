@@ -41,6 +41,10 @@ mail = Mail()
 @with_appcontext
 def create_tables():
     db.create_all()
+    from app.database.models import insert_papel, insert_curso, insert_user
+    insert_papel()
+    insert_curso()
+    insert_user()
 
 
 def create_app():
