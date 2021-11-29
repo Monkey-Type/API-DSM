@@ -497,8 +497,8 @@ MariaDB/MySQL/PostGresSQL</td>
     <tr>
         <td>Gustavo Pereira</td>
         <td>DEV</td>
-        <td><a href="https://github.com/Foot-G"><span style="color:gold"><b>GitHub<b></span></td>
-        <td><a href="COLOCAR O SEU LINK PARA O LINKEDIN AQUI MEUBOMSENHOR"><span style="color:gold"><b>LinkedIn</b></span></td>
+        <td><a href="https://github.com/TheMachineDev"><span style="color:gold"><b>GitHub<b></span></td>
+        <td><a href="https://www.linkedin.com/in/gustavo-molina-054bb6215/"><span style="color:gold"><b>LinkedIn</b></span></td>
     </tr>
     <tr>
         <td>Leonardo Queiróz Machado</td>
