@@ -401,7 +401,7 @@ MariaDB/MySQL/PostGresSQL</td>
 <br>
 
 [![PREVIEW DA APLICAÇÃO](https://img.youtube.com/vi/z2p6d4gffMM/0.jpg)](https://www.youtube.com/watch?v=z2p6d4gffMM)
-<a href="https://fatec-sjc-mt.herokuapp.com/login">![https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white]</a>
+[Heroku:](https://fatec-sjc-mt.herokuapp.com/login) Acesso nossa aplicação!!!!
 
 <br>
 
