@@ -49,7 +49,7 @@ def create_app():
     # --> string de conexão do postgress, lembrar que 010298 é minha senha, colocar a sua f'sqlite:///database/{DB_NAME}'
     # f'postgresql://postgres:010298@localhost/{DB_NAME}'
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
-        'DATABASE_URL').replace('postgres: // ', 'postgresql: //')
+        'DATABASE_URL').replace('postgres://', 'postgresql://')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Uso de Variável de Ambiente para esconder o Email e a Senha para quando subir esse código no GITHUB
