@@ -43,7 +43,7 @@ def inicio():
 
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
-        post = post.filter(Postagem.data.like(filtro_data))
+        post = post.filter(cast(Postagem.data, String).like(filtro_data))
 
     if filtro_papel:
         filtro_papel = list(map(int, filtro_papel))
@@ -105,7 +105,7 @@ def edit():
 
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
-        post = post.filter(Postagem.data.like(filtro_data))
+        post = post.filter(cast(Postagem.data, String).like(filtro_data))
 
     if filtro_papel:
         filtro_papel = list(map(int, filtro_papel))
@@ -196,7 +196,7 @@ def archive():
 
     if filtro_data:
         filtro_data = f"%{filtro_data}%"
-        post = post.filter(Postagem.data.like(filtro_data))
+        post = post.filter(cast(Postagem.data, String).like(filtro_data))
 
     if filtro_papel:
         filtro_papel = list(map(int, filtro_papel))
