@@ -400,7 +400,7 @@ MariaDB/MySQL/PostGresSQL</td>
 ## :movie_camera: Preview da Aplicação
 <br>
 
-[![PREVIEW DA APLICAÇÃO](https://img.youtube.com/vi/tgTBTtuiZNc/0.jpg)](https://www.youtube.com/watch?v=tgTBTtuiZNc)
+[![PREVIEW DA APLICAÇÃO](https://img.youtube.com/vi/z2p6d4gffMM/0.jpg)](https://www.youtube.com/watch?v=z2p6d4gffMM)
 
 <br>
 
