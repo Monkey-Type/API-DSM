@@ -2,13 +2,13 @@
 
 <div class="page-wrapper modal-lermais--wrapper" data-id="{{ post.id }}" onClick="fecharPopup({{post.id}})">
   <div class="popup p-9 lg:p-14 max-w-screen-lg flex-grow" onClick="stop(event)">
-    <div class=" modal-top flex justify-between mb-12">
-      <div class="sender-info texts flex gap-9">
-        <div>
+    <div class=" modal-top flex justify-between lg:mb-12">
+      <div class="sender-info texts flex lg:gap-9">
+        <div class="flex-1 lg:flex-initial">
           <h4>NOME</h4>
           <h2 class="sender-name">{{ remetente_nome }}</h2>
         </div>
-        <div>
+        <div class="flex-1">
           <h4>AREA DE ATUAÇÃO</h4>
           <p class="sender-papel">{{ remetente }}</p>
         </div>
@@ -55,7 +55,7 @@
     <div class="buttons-area flex gap-6">
       {% if post.image %}
       <a href="{{url_for('view.get_arquivo', nome_do_arquivo=post.image)}}">
-        <button class="btn btn-full">
+        <button class="btn btn-full lg:w-full">
           <span class="material-icons-round">download</span>
           <p>Baixar</p>
         </button>

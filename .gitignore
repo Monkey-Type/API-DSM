@@ -11,6 +11,9 @@ src/migrations/
 migrations/
 .migrations/
 
+#images
+images/
+
 # Distribution / packaging
 .Python
 build/

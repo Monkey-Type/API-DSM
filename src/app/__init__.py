@@ -19,12 +19,11 @@ from os import path
 
 
 # Tentei usar database_exists para fazer a função no final do código
-# from sqlalchemy_utils.functions import database_exists
 
 
 # Banco de dados config
 db = SQLAlchemy()
-DB_NAME = "fatec.db" # COLOCAR O NOME DO BD QUE CRIAR NO POSTGRES
+DB_NAME = "fatec"  # COLOCAR O NOME DO BD QUE CRIAR NO POSTGRES
 
 # Migrate
 migrate = Migrate()
@@ -47,10 +46,11 @@ def create_app():
     app.config['SECURITY_PASSWORD_HASH'] = 'pbkdf2_sha512'
 
     # App config SQLALCHEMY
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///database/{DB_NAME}' #f'postgresql://postgres:010298@localhost/{DB_NAME}' --> string de conexão do postgress, lembrar que 010298 é minha senha, colocar a sua
+    # --> string de conexão do postgress, lembrar que 010298 é minha senha, colocar a sua f'sqlite:///database/{DB_NAME}'
+    app.config[
+        'SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:010298@localhost/{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-#
     # Uso de Variável de Ambiente para esconder o Email e a Senha para quando subir esse código no GITHUB
     # os.environ.get('SERVER_EMAIL')
     app.config['MAIL_USERNAME'] = 'contato.monkey.type@gmail.com'
@@ -69,7 +69,6 @@ def create_app():
     app.config['MAIL_MAX_EMAILS'] = None
     #app.config['MAIL_SUPPRESS_SEND'] = False
     app.config['MAIL_ASCII_ATTACHMENTS'] = False
-#
 
     # Init
     db.init_app(app)
@@ -104,12 +103,27 @@ def create_app():
     def load_user(user_id):
         return User.query.get(int(user_id))
 
+    from sqlalchemy import create_engine
+    from sqlalchemy_utils.functions import database_exists, create_database
+
+    engine = create_engine(app.config[
+        'SQLALCHEMY_DATABASE_URI'])
+
+    with app.app_context():
+        if not database_exists(app.config[
+                'SQLALCHEMY_DATABASE_URI']):
+            create_database(app.config[
+                'SQLALCHEMY_DATABASE_URI'])
+            db.create_all()
+            from app.database.models import insert_papel, insert_curso, insert_user
+            insert_papel()
+            insert_curso()
+            insert_user()
+
     return app
 
 
 # - Executar uma vez para gerar o banco de dados.
-# def create_database(app):
-#      db.create_all(app=app)
 
 
 # - Tentei criar algo que check se o bd já está criado sem se basear na string de conexão modelo sqlite
@@ -117,7 +131,7 @@ def create_app():
 #     if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
 #         db.create_all(app=app)
 
-def create_database(app):
-    if not path.exists('app/database/' + DB_NAME):
-        db.create_all(app=app)
-        print('Created Database!')
+# def create_database(app):
+#     if not path.exists('app/database/' + DB_NAME):
+#         db.create_all(app=app)
+#         print('Created Database!')

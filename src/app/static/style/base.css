@@ -922,6 +922,18 @@ body{
 
 @media screen and (max-width: 450px) {
   
+  .attach-icon-div{
+    left:0 !important;
+  }
+  
+  #FolderPatch{
+    font-size: 1rem !important;
+  }
+  
+  a .btn{
+    width: 100%;
+  }
+  
   :root{
     --medium-icon:1.5rem;
     --h1-font-size:2rem;
@@ -964,6 +976,8 @@ body{
 }
 
 @media screen and (max-width: 400px) {
+  
+  
 
   .text-title-area{
     flex-direction: column;

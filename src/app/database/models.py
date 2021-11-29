@@ -1,6 +1,7 @@
 from flask_admin.contrib.sqla.view import ModelView
 from flask_migrate import current
 from sqlalchemy.orm import backref
+from werkzeug.utils import append_slash_redirect
 from app import db
 from datetime import datetime
 from flask_login import UserMixin, current_user
@@ -42,37 +43,6 @@ user_papel_tabela = db.Table('user_papel',
                                        db.ForeignKey('papel.id'))
                              )
 # Tabelas Criadas
-
-
-class User(db.Model, UserMixin):
-    __tablename__ = "user"
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    nome = db.Column(db.String(150), nullable=False)
-    cpf = db.Column(db.Integer, unique=True, nullable=True)  # ATENÇÃO: mudar db.Integer para db.BigInteger porque o Postgres só suporta 10 digitos no int
-    email = db.Column(db.String(150), unique=True, nullable=False) 
-    senha = db.Column(db.String(150), nullable=False)
-    # Chaves Estrangeiras
-    postagem = db.relationship('Postagem')
-    arquivado = db.relationship('Arquivadas', backref='user')
-    papeis = db.relationship('Papel',
-                             secondary=user_papel_tabela,
-                             back_populates='user')
-    confirmado = db.Column(db.Integer, nullable=True, default=0)  # adicionado
-    # Muitos para Muitos
-    cursos = db.relationship('Curso',
-                             secondary=curso_user_tabela,
-                             back_populates='user')
-    # Funcão para ver o Nome
-
-    def __repr__(self):
-        return self.nome
-
-    def is_admin(self):
-        admin = [role.admin for role in self.papeis]
-        for adm in admin:
-            if adm:
-                return True
-        return False
 
 
 class Postagem(db.Model):
@@ -149,14 +119,37 @@ class Curso(db.Model):
         return self.nome_curso
 
 
-# def is_admin():
-#     admin = db.session(Papel.admin).join(
-#         Papel.user).filter(User.id == current_user.id).all()
-#     admin = [id for id, in admin]
-#     for adm in admin:
-#         if adm:
-#             return True
-#     return False
+class User(db.Model, UserMixin):
+    __tablename__ = "user"
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    nome = db.Column(db.String(150), nullable=False)
+    # ATENÇÃO: mudar db.Integer para db.BigInteger porque o Postgres só suporta 10 digitos no int
+    cpf = db.Column(db.BigInteger, unique=True, nullable=True)
+    email = db.Column(db.String(150), unique=True, nullable=False)
+    senha = db.Column(db.String(150), nullable=False)
+    # Chaves Estrangeiras
+    postagem = db.relationship('Postagem')
+    arquivado = db.relationship('Arquivadas', backref='user')
+    papeis = db.relationship('Papel',
+                             secondary=user_papel_tabela,
+                             back_populates='user')
+    confirmado = db.Column(db.Integer, nullable=True, default=0)  # adicionado
+    # Muitos para Muitos
+    cursos = db.relationship('Curso',
+                             secondary=curso_user_tabela,
+                             back_populates='user')
+    # Funcão para ver o Nome
+
+    def __repr__(self):
+        return self.nome
+
+    def is_admin(self):
+        admin = [role.admin for role in self.papeis]
+        for adm in admin:
+            if adm:
+                return True
+        return False
+
 
 class PapelView(ModelView):
     column_list = ['nome', 'user', 'pode_editar', 'admin']
@@ -219,3 +212,40 @@ class AdminIndexView(admin.AdminIndexView):
             return redirect(url_for('view.inicio'))
 
         return super(AdminIndexView, self).index()
+
+
+def insert_papel():
+    aluno = Papel(nome='Aluno')
+    func = Papel(nome='Funcionario')
+    prof = Papel(nome='Professor', pode_editar=1)
+    coord = Papel(nome='Coordenador', pode_editar=1)
+    secretaria = Papel(nome='Secretaria', pode_editar=1, admin=1)
+    diretor = Papel(nome='Diretor', pode_editar=1, admin=1)
+    papeis = [aluno, func, prof, coord, secretaria, diretor]
+    for papel in papeis:
+        db.session.add(papel)
+    db.session.commit()
+
+
+def insert_curso():
+    ads = Curso(nome_curso='ADS')
+    dsm = Curso(nome_curso='DSM')
+
+    cursos = [ads, dsm]
+    for curso in cursos:
+        db.session.add(curso)
+    db.session.commit()
+
+
+def insert_user():
+    diretor = User(nome='Usuário Diretor', cpf=33188020007, email='diretor@fatec.sp.gov.br',
+                   senha='$2b$12$KF6Iicw0avczJPXQxxmVge98kaDyVOs7g.KRLhrIqZijlE7M3Nzby', confirmado=1)
+    prof = User(nome='Usuário Professor', email='prof@fatec.sp.gov.br',
+                senha='$2b$12$d2vesmbXosqAIzkx/oXvwei3G0vh366opdgNYrAVDUWMds/PIRQXe', confirmado=1)
+    users = [diretor, prof]
+
+    diretor.papeis = [Papel.query.filter_by(nome='Diretor').first()]
+
+    for user in users:
+        db.session.add(user)
+    db.session.commit()

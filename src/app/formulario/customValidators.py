@@ -5,6 +5,13 @@ import re
 message = 'Este usuario já existe!'
 
 
+def fatecEmail(form, field):
+    email = field.data
+    fatec_email = 'fatec.sp.gov.br'
+    if fatec_email not in email:
+        raise ValidationError('Este email não é da fatec')
+
+
 def emailExistente(form, field):
     if User.query.filter_by(email=field.data).first():
         raise ValidationError(message)

@@ -12,7 +12,7 @@ message = 'Este campo é necessario'
 
 
 class RegisterForm(FlaskForm):
-    email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email'), emailExistente], render_kw={
+    email = EmailField(validators=[InputRequired(message=message), Email(message='Digite um email'), emailExistente, fatecEmail], render_kw={
         "placeholder": "exemple@fatec.sv.gov.br"})
 
     nome = StringField(validators=[InputRequired(message=message)], render_kw={
@@ -53,7 +53,7 @@ class SelectForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.papel.choices = [(papel.id, papel.nome)
-                              for papel in Papel.query.filter(Papel.nome != 'Funcionario').all()]
+                              for papel in Papel.query.filter(Papel.nome != 'Funcionario').filter(Papel.nome != 'Diretor').all()]
         self.curso.choices = [(curso.id, curso.nome_curso)
                               for curso in Curso.query.all()]
 
@@ -67,7 +67,7 @@ class FiltroForm(FlaskForm):
         self.filtro_papel.choices = [(papel.id, papel.nome)
                                      for papel in Papel.query.join(Papel.user).filter(Papel.nome != 'Funcionario').all()]
         self.filtro_curso.choices = [(curso.id, curso.nome_curso)
-                                     for curso in Curso.query.join(Curso.user).filter(User.id != current_user.id).all()]
+                                     for curso in Curso.query.join(Curso.user).filter(User.id == current_user.id).all()]
 
 
 class FuncionarioForm(FlaskForm):
@@ -78,7 +78,7 @@ class FuncionarioForm(FlaskForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.papel.choices = [(papel.id, papel.nome)
-                              for papel in Papel.query.join(Papel.user).filter(Papel.nome != 'Funcionario').filter(Papel.nome != 'Aluno').all()]
+                              for papel in Papel.query.filter(Papel.nome != 'Funcionario').filter(Papel.nome != 'Aluno').filter(Papel.nome != 'Diretor').all()]
         self.curso.choices = [(curso.id, curso.nome_curso)
                               for curso in Curso.query.all()]
 
