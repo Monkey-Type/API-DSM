@@ -16,7 +16,8 @@ from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 # Path
 from os import path
-
+import click
+from flask.cli import with_appcontext
 
 # Tentei usar database_exists para fazer a função no final do código
 
@@ -34,6 +35,12 @@ bcrypt = Bcrypt()
 
 # Mail
 mail = Mail()
+
+
+@click.command(name='create_tables')
+@with_appcontext
+def create_tables():
+    db.create_all()
 
 
 def create_app():
@@ -120,6 +127,8 @@ def create_app():
             insert_papel()
             insert_curso()
             insert_user()
+
+    app.cli.add_command(create_tables)
 
     return app
 
