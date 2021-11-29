@@ -418,11 +418,13 @@ MariaDB/MySQL/PostGresSQL</td>
 ![](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![](https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white)
 ![](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
 ![](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 ![](https://img.shields.io/badge/Adobe%20XD-470137?style=for-the-badge&logo=Adobe%20XD&logoColor=#FF61F6)
 ![](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
 ![](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+
 
 
 [](https://user-images.githubusercontent.com/58151594/136624912-b1371a56-89e8-4d4f-aa4f-331a7e683a32.jpg)
@@ -434,6 +436,7 @@ MariaDB/MySQL/PostGresSQL</td>
 - [HTML5](https://pt.wikipedia.org/wiki/HTML5)
 - [CSS3](https://pt.wikipedia.org/wiki/CSS3)
 - [JavaScript](https://pt.wikipedia.org/wiki/JavaScript)
+- [TailwindCSS](https://tailwindcss.com/)
 - [Adobe XD](https://www.adobe.com/br/products/xd.html)
 - [GitHub](https://github.com)
 - [Visual Studio Code](https://code.visualstudio.com/)
