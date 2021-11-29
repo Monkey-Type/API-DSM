@@ -438,7 +438,7 @@ MariaDB/MySQL/PostGresSQL</td>
 - [GitHub](https://github.com)
 - [Visual Studio Code](https://code.visualstudio.com/)
 - [Git](https://git-scm.com/)
-- [Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+- [Postgres](https://www.postgresql.org/)
 - [Flask](https://flask.palletsprojects.com/en/2.0.x/installation/#install-flask)
 - [Python](https://python.org.br/instalacao-windows/)
 - [Slack](https://slack.com/intl/pt-br/)
