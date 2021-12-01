@@ -49,7 +49,7 @@ class Postagem(db.Model):
     __tablename__ = "postagem"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     titulo = db.Column(db.String(150), nullable=False)
-    texto = db.Column(db.String(150), nullable=False)
+    texto = db.Column(db.String, nullable=False)
     data = db.Column(db.DateTime, default=datetime.now)
     image = db.Column(db.String(150), default="sem imagem")
     mimetype = db.Column(db.Text)
@@ -219,7 +219,7 @@ def insert_papel():
     func = Papel(nome='Funcionario')
     prof = Papel(nome='Professor', pode_editar=1)
     coord = Papel(nome='Coordenador', pode_editar=1)
-    secretaria = Papel(nome='Secretaria', pode_editar=1, admin=1)
+    secretaria = Papel(nome='Secretaria', pode_editar=1, admin=0)
     diretor = Papel(nome='Diretor', pode_editar=1, admin=1)
     papeis = [aluno, func, prof, coord, secretaria, diretor]
     for papel in papeis:

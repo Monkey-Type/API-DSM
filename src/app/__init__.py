@@ -61,6 +61,8 @@ def create_app():
     # f'postgresql://postgres:010298@localhost/{DB_NAME}'
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
         'DATABASE_URL').replace('postgres://', 'postgresql://')
+    # app.config[
+    #     'SQLALCHEMY_DATABASE_URI'] = f'postgresql://postgres:010298@localhost/{DB_NAME}'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     # Uso de Variável de Ambiente para esconder o Email e a Senha para quando subir esse código no GITHUB

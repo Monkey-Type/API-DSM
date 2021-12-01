@@ -74,11 +74,17 @@ a:hover{
 }
 
 .col-texto{
-    word-wrap: break-word;
+    word-wrap: anywhere;
     overflow: auto;
     display: flex;
     max-height: 161px;
     min-height: 85px;
+    min-width: 300px;
+}
+
+.col-titulo{
+    max-width: 300px;
+    word-wrap: break-word;
 }
 
 .form-control:focus, .select2-container-multi.select2-container-active .select2-choices, select.form-control:focus, .select2-dropdown-open.select2-container-active {
@@ -161,7 +167,7 @@ input { accent-color: var(--primary-text-color) }
         padding: 0 !important;
     }
 
-    .col-texto{
+    .col-texto, .col-titulo{
         min-width: 80vw;
     
     }
