@@ -238,11 +238,15 @@ def insert_curso():
 
 
 def insert_user():
-    diretor = User(nome='Usuário Diretor', cpf=33188020007, email='diretor@fatec.sp.gov.br',
+    diretor = User(nome='usuário diretor', cpf=33188020007, email='diretor@fatec.sp.gov.br',
                    senha='$2b$12$KF6Iicw0avczJPXQxxmVge98kaDyVOs7g.KRLhrIqZijlE7M3Nzby', confirmado=1)
-    prof = User(nome='Usuário Professor', email='prof@fatec.sp.gov.br',
+    prof = User(nome='usuário professor', email='prof@fatec.sp.gov.br',
                 senha='$2b$12$d2vesmbXosqAIzkx/oXvwei3G0vh366opdgNYrAVDUWMds/PIRQXe', confirmado=1)
-    users = [diretor, prof]
+    prof2 = User(nome='usuário professor 2', email='prof2@fatec.sp.gov.br',
+                 senha='$2b$12$JUEFKZxvlFvC.YdMsAIWfeGmfTyxlPt3r8OEetzJJs8KqlIChU3n.', confirmado=1)
+    coord = User(nome='usuário coordenador', email='coordenador@fatec.sp.gov.br',
+                 senha='$2b$12$HY0aKCiloViEcVuPM9wZTeCwqGHxvbo4j5E54y/mOjXdZp/1cMuIu', confirmado=1)
+    users = [diretor, prof, prof2, coord]
 
     diretor.papeis = [Papel.query.filter_by(nome='Diretor').first()]
 

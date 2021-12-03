@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
     rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
-<link href="{{ url_for('static', filename='style/base.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='style/admin/index.css') }}" rel="stylesheet">
 <style>
     .btn:hover {
         color: white;
@@ -16,8 +16,10 @@
     a:hover {
         text-decoration: none;
     }
+
+
+    @media only screen and (max-width: 500px) {}
 </style>
-<link href="{{ url_for('static', filename='style/admin/index.css') }}" rel="stylesheet">
 
 {% endblock %}
 

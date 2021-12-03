@@ -82,19 +82,19 @@ def cursoaluno():
 @routes.route('/conclusaoregistro2', methods=['GET', 'POST'])
 def cursofuncionario():
     form = FuncionarioForm()
-    papel_list = form.papel.data
+    # papel_list = form.papel.data
     curso_list = form.curso.data
 
-    if papel_list and curso_list:
-        papel_list = list(map(int, papel_list))
+    if curso_list:
+        # papel_list = list(map(int, papel_list))
         curso_list = list(map(int, curso_list))
 
-        papel = Papel.query.filter(Papel.id.in_(papel_list)).all()
+        # papel = Papel.query.filter(Papel.id.in_(papel_list)).all()
         curso = Curso.query.filter(Curso.id.in_(curso_list)).all()
         # user_papeis = tupleToList(user.papeis)
         # user_papeis.append(papel)
 
-        user.papeis = user.papeis + papel
+        # user.papeis = user.papeis + papel
         user.cursos = curso
         db.session.commit()
         return redirect(url_for('view.inicio'))
